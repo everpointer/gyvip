@@ -8,6 +8,7 @@ return array(
     'bind' => array(
       'method' => 'get',
       'url' => 'https://leancloud.cn/1.1/login',
+      'params' => array('username', 'password')
     ) 
   )
 );
