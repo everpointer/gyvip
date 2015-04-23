@@ -47,6 +47,7 @@ class Rest
             $this->options = array("header" => []);
         }
     }
+    public  function getOptions() { return $this->options; }
     
     /**
      * Sets REST call timeout in seconds
