@@ -2,19 +2,19 @@
 namespace LyfMember;
 
 class Member {
-  private $user;
   private $config;
   
-  function __construct($user) {
-    $this->user = $user;
+  public function __construct() {
     $this->api = new Api();
   }
   
-  function bind($mobile, $password)
-  {
-    $params = array("username" => $mobile, "password" => $password);
+  public function bind($params) {
     $result = $this->api->call('bind', $params);
-    
+    return $result;
+  }
+  
+  public function register($params) {
+    $result = $this->api->call('register', $params);
     return $result;
   }
 }

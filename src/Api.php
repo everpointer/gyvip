@@ -14,12 +14,12 @@ class Api {
   public function call($api_name, $params) {
     $api = $this->config["api"][$api_name];
     if (!$api) {
-      throw_api_error($api_name, "API 没有配置");
+      $this->throw_api_error($api_name, "API 没有配置");
     }
     
     foreach ($api['params'] as $param) {
       if (!$params[$param]) {
-        throw_api_error($api_name, "参数 $param 缺失");
+        $this->throw_api_error($api_name, "参数 $param 缺失");
       }
     }
     
@@ -27,8 +27,17 @@ class Api {
       case "get":
         return $this->get($api['url'], $params);
         break;
+      case "post":
+        return $this->post($api['url'], $params);
+        break;
+      case "update":
+        return $this->update($api['url'], $params);
+        break;
+      case "delete":
+        return $this->delete($api['url'], $params);
+        break;
       default:
-        throw_api_error($api_name, "配置选项 method 配置错误");
+        $this->throw_api_error($api_name, "配置选项 method 配置错误");
     }
   }
   
@@ -38,6 +47,15 @@ class Api {
     }, array_keys($params), array_values($params)));
    
     return $this->rest->get("$url?$query");
+  }
+  public function post($url, $params) {
+    return $this->rest->post($url, $params);
+  }
+  public function update($url, $params) {
+    return $this->rest->update($url, $params);
+  }
+  public function delete($url, $params) {
+    return $this->rest->delete($url, $params);
   }
   
   protected function throw_api_error($api_name, $msg) {

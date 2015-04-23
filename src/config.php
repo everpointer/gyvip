@@ -6,9 +6,14 @@ return array(
   ),
   'api' => array(
     'bind' => array(
-      'method' => 'get',
+      'method' => 'update',
       'url' => 'https://leancloud.cn/1.1/login',
-      'params' => array('username', 'password')
-    ) 
+      'params' => array('username', 'password', 'uid')
+    ),
+    'register' => array(
+      'method' => 'post',
+      'url' => 'https://api.leancloud.cn/1.1/users',
+      'params' => array('username', 'password', 'uid')
+    )
   )
 );

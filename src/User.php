@@ -9,4 +9,8 @@ class User {
     $this->uid = $uid;
     $this->platform = $platform;
   }
+  
+  function getUid() {
+    return $this->uid;
+  }
 }
