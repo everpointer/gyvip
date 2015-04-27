@@ -14,6 +14,21 @@ return array(
       'method' => 'post',
       'url' => 'https://api.leancloud.cn/1.1/users',
       'params' => array('username', 'password', 'uid')
+    ),
+      /**
+       * @return string return a string orderId and status code: 200 means a
+       * successful request.
+       */ 
+    'createCardOrder' => array(
+      'method' => 'post',
+      'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder',
+      'params' => array('uid', 'amount', 'paid', 'binded')
+    ),
+    'updateCardOrder' => array(
+      'method' => 'put',
+      'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
+      'params' => array(),
+      'optionParams' => array('outTradeNo', 'paid', 'binded')
     )
   )
 );

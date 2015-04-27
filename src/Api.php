@@ -16,29 +16,17 @@ class Api {
     if (!$api) {
       $this->throw_api_error($api_name, "API 没有配置");
     }
-    
-    foreach ($api['params'] as $param) {
-      if (!$params[$param]) {
-        $this->throw_api_error($api_name, "参数 $param 缺失");
-      }
+    return $this->_call($api, $params);
+  }
+  
+  public function callExtUrl($api_name, $params, $ext) {
+    $api = $this->config["api"][$api_name];
+    if (!$api) {
+      $this->throw_api_error($api_name, "API 没有配置");
     }
-    
-    switch(strtolower($api['method'])) {
-      case "get":
-        return $this->get($api['url'], $params);
-        break;
-      case "post":
-        return $this->post($api['url'], $params);
-        break;
-      case "update":
-        return $this->update($api['url'], $params);
-        break;
-      case "delete":
-        return $this->delete($api['url'], $params);
-        break;
-      default:
-        $this->throw_api_error($api_name, "配置选项 method 配置错误");
-    }
+    // url is a format string
+    $api['url'] = sprintf($api['url'], $ext);
+    return $this->_call($api, $params);
   }
   
   public function get($url, $params) {
@@ -51,8 +39,8 @@ class Api {
   public function post($url, $params) {
     return $this->rest->post($url, $params);
   }
-  public function update($url, $params) {
-    return $this->rest->update($url, $params);
+  public function put($url, $params) {
+    return $this->rest->set($url, $params);
   }
   public function delete($url, $params) {
     return $this->rest->delete($url, $params);
@@ -61,4 +49,44 @@ class Api {
   protected function throw_api_error($api_name, $msg) {
     throw new Exception("API error: 调用API - $api_name 发生 $msg");
   }
+  
+  private function _call($api, $params) {
+    $api_name = "";
+    foreach ($api['params'] as $param) {
+      if (!isset($params[$param])) {
+        $this->throw_api_error($api_name, "参数 $param 缺失");
+      }
+    }
+    
+    if (isset($api['optionParams'])) {
+      $hasOptionParam = false;
+      foreach ($api['optionParams'] as $param) {
+        if (isset($params[$param])) {
+          $hasOptionParam = true;
+        }
+      }
+      
+      if (!$hasOptionParam) {
+        $this->throw_api_error($api_name, "可选参数缺失, 至少填写一个");
+      }
+    }
+    
+    switch(strtolower($api['method'])) {
+      case "get":
+        return $this->get($api['url'], $params);
+        break;
+      case "post":
+        return $this->post($api['url'], $params);
+        break;
+      case "put":
+        return $this->put($api['url'], $params);
+        break;
+      case "delete":
+        return $this->delete($api['url'], $params);
+        break;
+      default:
+        $this->throw_api_error($api_name, "配置选项 method 配置错误");
+    }
+  }
+  
 }

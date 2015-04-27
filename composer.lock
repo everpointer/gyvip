@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "b5d5205b0c0d8d5795adc3eb5cf426e0",
+    "packages": [
+        {
+            "name": "pingplusplus/pingpp-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PingPlusPlus/pingpp-php.git",
+                "reference": "d039ec96b5cb303bcf1789772b1827454d36c47f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PingPlusPlus/pingpp-php/zipball/d039ec96b5cb303bcf1789772b1827454d36c47f",
+                "reference": "d039ec96b5cb303bcf1789772b1827454d36c47f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pingpp\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pingplusplus and contributors",
+                    "homepage": "https://github.com/PingPlusPlus/pingpp-php/contributors"
+                }
+            ],
+            "description": "Pingplusplus PHP Library",
+            "homepage": "https://pingxx.com/",
+            "keywords": [
+                "api",
+                "mobile payment processing",
+                "pingpp"
+            ],
+            "time": "2015-04-23 09:35:18"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "pingplusplus/pingpp-php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
