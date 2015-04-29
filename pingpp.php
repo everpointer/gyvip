@@ -35,13 +35,14 @@ $ch = \Pingpp\Charge::create(
         'body'      => '花果山电子会员卡，与普通会员卡功能一致',
         'extra'     => array(
           "success_url" => "https://member-laoyufu.c9.io/finishPurchase.php",
-          "cancel_url"  => "http://127.0.0.1"
+          "cancel_url"  => "https://member-laoyufu.c9.io/cancelPurchase.php"
         )
     )
 );
 // 更新外部订单支付接口
 $chJson = json_decode($ch);
 $api->callExtUrl('updateCardOrder', array(
+  "orderId" => $orderId,
   "outTradeNo" => $chJson->id
 ), $orderId);
 ?>

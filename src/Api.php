@@ -18,7 +18,7 @@ class Api {
     }
     return $this->_call($api, $params);
   }
-  
+  // only for leancloud
   public function callExtUrl($api_name, $params, $ext) {
     $api = $this->config["api"][$api_name];
     if (!$api) {

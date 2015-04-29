@@ -10,6 +10,10 @@ return array(
       'url' => 'https://leancloud.cn/1.1/login',
       'params' => array('username', 'password', 'uid')
     ),
+      /**
+       * @return Member return a member object with member card ID status code: 200 means a
+       * successful request.
+       */ 
     'register' => array(
       'method' => 'post',
       'url' => 'https://api.leancloud.cn/1.1/users',
@@ -27,8 +31,18 @@ return array(
     'updateCardOrder' => array(
       'method' => 'put',
       'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
+      'params' => array('orderId'),
+      'optionParams' => array('outTradeNo', 'paid', 'binded', 'status')
+    ),
+      /**
+       * @return CardOrder return one user card order code: 200 means a
+       * successful request.
+       */ 
+    'getCardOrder' => array(
+      'method' => 'get',
+      'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder',
       'params' => array(),
-      'optionParams' => array('outTradeNo', 'paid', 'binded')
+      'optionParams' => array('uid', 'orderId', 'where')
     )
   )
 );
