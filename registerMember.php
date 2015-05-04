@@ -40,6 +40,19 @@ if ($result) {
     ),
     $userOrder->orderId
   );
+  // get member card numer and setting session
+  $responseStr = $api->call('getMemberInfo', array(
+    'where' => json_encode(array('uid' => $uid))
+  ));
+  $response = json_decode($responseStr);
+  if (!$response || empty($response->results)) exit(503);
+  
+  $member = $response->results[0];
+  $_SESSION['memberInfo'] = array(
+    'cardNumber' => $member->cardNumber,
+    'mobile' => $member->mobile,
+    'createdAt' => $member->createdAt
+  );
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page
