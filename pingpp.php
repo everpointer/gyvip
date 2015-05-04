@@ -1,6 +1,7 @@
 <?php
 require_once('vendor/autoload.php');
 require_once('autoload.php');
+require_once('common.php');
 
 $appId = 'app_u1mrPCG4GeXDLa1O';
 $appKey  = 'sk_test_1i1abHv5mbjHHCuTKCDyXP08'; // Test Key
@@ -8,7 +9,6 @@ $appKey  = 'sk_test_1i1abHv5mbjHHCuTKCDyXP08'; // Test Key
 
 $api = new \LyfMember\Api();
 
-$uid = '12345678';
 $amount = 10;
 
 $responseStr = $api->call('createCardOrder', array(

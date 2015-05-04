@@ -1,10 +1,10 @@
 <?php
 require_once 'autoload.php';
+require_once 'common.php';
 
-$uid = '12345678';
 $api = new \LyfMember\Api();
 
-if (!isset($_POST['username']) ||
+if (!isset($_POST['mobile']) ||
     !isset($_POST['password']) ||
     !isset($_POST['uid']))
 {
@@ -13,7 +13,7 @@ if (!isset($_POST['username']) ||
   exit(501);  // malformed request
 }
 
-$username = $_POST['username'];
+$mobile = $_POST['mobile'];
 $password = $_POST['password'];
 
 
@@ -27,7 +27,7 @@ if ($userOrder->binded) exit("订单已绑定会员卡");
 
 // 开始创建会员卡, TODO: return member card ID
 $result = $api->call('register', array(
-  "username" => $username,
+  "mobile" => $mobile,
   "password" => $password,
   "uid"      => $uid
 ));

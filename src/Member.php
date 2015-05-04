@@ -2,8 +2,6 @@
 namespace LyfMember;
 
 class Member {
-  private $config;
-  
   public function __construct() {
     $this->api = new Api();
   }
