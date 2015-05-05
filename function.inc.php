@@ -39,3 +39,12 @@ function aopclient_request_execute($request, $token = NULL) {
 	writeLog("response: ".var_export($result,true));
 	return $result;
 }
+
+// leancloud member object to client member info
+function memberToMemberInfo($member) {
+	return array(
+    'cardNumber' => $member->cardNumber,
+    'mobile' => $member->mobile,
+    'createdAt' => $member->createdAt
+  );	
+}

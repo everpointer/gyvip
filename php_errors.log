@@ -1,0 +1,55 @@
+[04-May-2015 16:39:15 UTC] PHP Notice:  Undefined index: ALIPAY_BUYER_ID in /home/ubuntu/workspace/AlipassSDKDemo/demo.php on line 85
+[04-May-2015 16:53:46 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/AlipassSDKDemo/com.alipay.alipass.sdk/util/AlipassUtil.php on line 184
+[04-May-2015 16:54:04 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/AlipassSDKDemo/com.alipay.alipass.sdk/util/AlipassUtil.php on line 184
+[05-May-2015 04:48:31 UTC] PHP Warning:  require_once(common.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/member/show.php on line 2
+[05-May-2015 04:48:31 UTC] PHP Fatal error:  require_once(): Failed opening required 'common.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/member/show.php on line 2
+[05-May-2015 04:49:24 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 25
+[05-May-2015 04:49:24 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 04:49:24 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 04:49:24 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 04:52:40 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 25
+[05-May-2015 04:52:40 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 26
+[05-May-2015 04:52:40 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 04:52:40 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 04:52:40 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 04:53:15 UTC] PHP Notice:  Undefined variable: members in /home/ubuntu/workspace/common.php on line 20
+[05-May-2015 04:53:15 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 26
+[05-May-2015 04:53:15 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 27
+[05-May-2015 04:53:15 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 04:53:15 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 04:53:15 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 04:55:08 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 26
+[05-May-2015 04:55:08 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 27
+[05-May-2015 04:55:08 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 04:55:08 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 04:55:08 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 04:58:09 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 27
+[05-May-2015 04:58:09 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 28
+[05-May-2015 04:58:09 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 04:58:09 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 04:58:09 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 05:05:17 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 28
+[05-May-2015 05:05:17 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 29
+[05-May-2015 05:05:17 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 05:05:17 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 05:05:17 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 05:05:50 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 28
+[05-May-2015 05:05:50 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 29
+[05-May-2015 05:05:50 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 05:05:50 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 05:05:50 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 05:06:16 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 28
+[05-May-2015 05:06:16 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 29
+[05-May-2015 05:06:16 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 05:06:16 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 05:06:16 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 05:06:36 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 28
+[05-May-2015 05:06:36 UTC] PHP Notice:  Undefined variable: member in /home/ubuntu/workspace/common.php on line 29
+[05-May-2015 05:06:36 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 46
+[05-May-2015 05:06:36 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 47
+[05-May-2015 05:06:36 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/function.inc.php on line 48
+[05-May-2015 05:25:37 UTC] PHP Notice:  Undefined variable: config in /home/ubuntu/workspace/member/show.php on line 15
+[05-May-2015 05:26:32 UTC] PHP Warning:  require(config.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/member/show.php on line 3
+[05-May-2015 05:26:32 UTC] PHP Fatal error:  require(): Failed opening required 'config.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/member/show.php on line 3
+[05-May-2015 05:27:26 UTC] PHP Warning:  require(/home/ubuntu/workspaceconfig.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/member/show.php on line 3
+[05-May-2015 05:27:26 UTC] PHP Fatal error:  require(): Failed opening required '/home/ubuntu/workspaceconfig.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/member/show.php on line 3

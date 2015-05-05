@@ -19,30 +19,25 @@ if (!isset($_POST['mobile']) ||
 $mobile = $_POST['mobile'];
 $password = $_POST['password'];
 
-
-$responseStr = $api->call('getCardOrder', array("uid" => $uid));
-$response = json_decode($responseStr);
-$userOrder = $response->results[0];
-
-if (!$userOrder) exit("获取订单数据失败！");
-if (!$userOrder->paid) exit("订单未成功支付！");
-if ($userOrder->binded) exit("订单已绑定会员卡");
-
-// 开始创建会员卡, TODO: return member card ID
-$result = $api->call('register', array(
-  "mobile" => $mobile,
-  "password" => $password,
-  "uid"      => $uid
+// verify member by mobile and password
+$responseStr = $api->call('getMemberInfo', array(
+  'where' => json_encode(array('mobile' => $mobile, 'password' => $password))
 ));
+
+$response = json_decode($responseStr);
+if (!$response || empty($response->results)) exit("信息不正确，绑定失败!");
+
+$member = $response->results[0];
+
+// 更新会员支付宝uid
+$result = $api->callExtUrl('updateMemberInfo', array(
+      "uid" => $uid,
+    ),
+    $member->objectId
+);
 
 // 更新订单状态
 if ($result) {
-  $api->callExtUrl('updateCardOrder', array(
-      "binded" => true,
-      "orderId" => $userOrder->orderId
-    ),
-    $userOrder->orderId
-  );
   // get member card numer and setting session
   $responseStr = $api->call('getMemberInfo', array(
     'where' => json_encode(array('uid' => $uid))
@@ -58,7 +53,7 @@ if ($result) {
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page
-  echo "会员创建成功";
+  echo "会员绑定成功";
 } else {
-  echo "会员创建失败";
+  echo "会员绑定失败";
 }

@@ -23,14 +23,22 @@ if ($order->uid != $uid) exit("订单不属于您");
 <!DOCTYPE html>
 <html>
   <head>
-    <meta title="注册会员">
+    <title>注册会员</title>
+    <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" /> 
+    <link rel="stylesheet" href="assets/css/base.css" type="text/css" /> 
   </head>
   <body>
-    <form action="registerMember.php" method="POST">
-      <input type="text" name="mobile" placeholder="手机号"/>
-      <input type="password" name="password" placeholder="会员密码"/>
-      <input type="submit" value="注册"/>
-      <input type="hidden" name="uid" value="<?php echo $uid; ?>">
-    </form>
+    <section class="measure p2">
+      <h3>完善会员信息</h3>
+      <p class="h4">您已成功购买会员卡，请继续填写一下信息。</p>
+      <form action="registerMember.php" method="POST" class="my2">
+        <label for="mobile">手机</label>
+        <input type="text" name="mobile" placeholder="请输入手机号"/>
+        <label for="password">密码</label>
+        <input type="password" name="password" placeholder="请输入密码"/>
+        <input type="submit" value="注册" class="btn--blue" />
+        <input type="hidden" name="uid" value="<?php echo $uid; ?>">
+      </form>
+    </section>
   </body>
 </html>

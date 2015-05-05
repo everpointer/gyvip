@@ -7,6 +7,7 @@ return array(
 	'gatewayUrl' => "https://openapi.alipay.com/gateway.do",
 	'app_id' => "2015031700036703",
 	'partner_id' => "2088311515754978",
+	'partner_name' => "果忆",
   'header' => array(
     'X-AVOSCloud-Application-Id: 0s4hffciblz94hah0m63rsn0x970m2obrjthz0cwmqwsipdy',
     'X-AVOSCloud-Application-Key: 0b7jsd5h44y4wcv6w4w0alomwmpwufx8odk3irmvk36q2g10'  
@@ -15,7 +16,7 @@ return array(
     'bind' => array(
       'method' => 'update',
       'url' => 'https://leancloud.cn/1.1/login',
-      'params' => array('username', 'password', 'uid')
+      'params' => array('mobile', 'password', 'uid')
     ),
       /**
        * @return Member return a member object with member card ID status code: 200 means a
@@ -30,7 +31,12 @@ return array(
       'method' => 'get',
       'url' => 'https://api.leancloud.cn/1.1/classes/Member',
       'params' => array(),
-      'optionParams' => array('uid', 'where')
+      'optionParams' => array('uid', 'where', 'mobile', 'password')
+    ),
+    'updateMemberInfo' => array(
+      'method' => 'put',
+      'url' => 'https://api.leancloud.cn/1.1/classes/Member/%s',
+      'params' => array('uid')
     ),
       /**
        * @return string return a string orderId and status code: 200 means a

@@ -4,20 +4,33 @@ require_once 'common.php';
 
 if (!$uid) exit(500);
 
-$api = new \LyfMember\Api();
-$membersStr = $api->call('getMemberInfo', array(
-  'where' => json_encode(array("uid" => $uid))
-));
-$members = json_decode($membersStr);
-if ($members && !empty($members->results)) {
-  $memberInfo = $members->results[0];
-  var_dump($memberInfo);
+if (isset($memberInfo)) {
+  header("Location: member/show.php");
 } else {
 ?>
 
-<p><a href="#">绑定会员卡</a></p>
-<p><a href="pingpp.php">购买会员卡</a></p>
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>会员中心</title>
+        <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />
+        <style type="text/css">
+            .block {
+                display: block;
+                width: 100%;
+            }
+        </style>
+    </head>
+<body>
+    <section class="measure p2">
+        <h2 class="txt--center">会员中心</h2>
+        <div>
+            <a href="bindMember.php" class="btn--green block my2 h3">绑定会员卡</a>
+            <a href="purchase.php" class="btn--blue block my2 h3">购买会员卡</a>
+        </div>
+    </section>
+</body>
+</html>
 <?php
 }
 ?>
