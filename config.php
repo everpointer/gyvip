@@ -6,6 +6,7 @@ return array(
 	'charset' => "GBK",
 	'gatewayUrl' => "https://openapi.alipay.com/gateway.do",
 	'app_id' => "2015031700036703",
+	'partner_id' => "2088311515754978",
   'header' => array(
     'X-AVOSCloud-Application-Id: 0s4hffciblz94hah0m63rsn0x970m2obrjthz0cwmqwsipdy',
     'X-AVOSCloud-Application-Key: 0b7jsd5h44y4wcv6w4w0alomwmpwufx8odk3irmvk36q2g10'  

@@ -1,8 +1,10 @@
 <?php
 require_once 'autoload.php';
 require_once 'common.php';
+require_once 'AlipayPass.php';
 
 $api = new \LyfMember\Api();
+$config = (require 'conifg.php');
 
 if (!isset($_POST['mobile']) ||
     !isset($_POST['password']) ||
@@ -48,11 +50,16 @@ if ($result) {
   if (!$response || empty($response->results)) exit(503);
   
   $member = $response->results[0];
-  $_SESSION['memberInfo'] = array(
+  $memberInfo = array(
     'cardNumber' => $member->cardNumber,
     'mobile' => $member->mobile,
     'createdAt' => $member->createdAt
   );
+  $_SESSION['memberInfo'] = $memberInfo;
+  
+  $alipayPass = new AlipayPass($uid, $userOrder->orderId, $config['app_id']);
+  $fileContent = file_get_contents('AlipassSDKDemo/alipass/714126920.alipass');
+  $alipayPass->syncAdd($fileContent);
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page
