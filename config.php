@@ -8,6 +8,13 @@ return array(
 	'app_id' => "2015031700036703",
 	'partner_id' => "2088311515754978",
 	'partner_name' => "果忆",
+	'card_price' => 10,  // 单位元
+	'pingxx' => array(
+  	'app_id' => 'app_unXbrDnvDaj90O4e',
+  	'test_key' => 'sk_test_1i1abHv5mbjHHCuTKCDyXP08',
+  	'live_key' => 'sk_live_wULlucfQQ6k4bEYjp6k8r2h9',
+  	'env_key' => 'live_key'
+	 ),
   'header' => array(
     'X-AVOSCloud-Application-Id: 0s4hffciblz94hah0m63rsn0x970m2obrjthz0cwmqwsipdy',
     'X-AVOSCloud-Application-Key: 0b7jsd5h44y4wcv6w4w0alomwmpwufx8odk3irmvk36q2g10'  

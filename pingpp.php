@@ -3,9 +3,10 @@ require_once('vendor/autoload.php');
 require_once('autoload.php');
 require_once('common.php');
 
-$appId = 'app_u1mrPCG4GeXDLa1O';
-$appKey  = 'sk_test_1i1abHv5mbjHHCuTKCDyXP08'; // Test Key
-// $appKey  = 'sk_live_wULlucfQQ6k4bEYjp6k8r2h9'; // Live Key
+$config = (require 'config.php');
+$appId = $config['pingxx']['app_id']; //GYMember-GY
+$envKey = $config['pingxx']['env_key'];
+$appKey  = $config['pingxx'][$envKey]; // Live Key
 
 $api = new \LyfMember\Api();
 
@@ -26,10 +27,9 @@ if ($response && !empty($response->results)) {
     ), $cardOrder->objectId);
   }
 }
-$amount = 10;
 $responseStr = $api->call('createCardOrder', array(
   'uid' => $uid,
-  'amount' => $amount,
+  'amount' => $config['card_price'],
   'paid' => false,
   'binded' => false
 ));
@@ -44,7 +44,7 @@ $ch = \Pingpp\Charge::create(
         'order_no'  => $orderId,  // should be orderId
         'app'       => array('id' => $appId),
         'channel'   => 'alipay_wap',
-        'amount'    => $amount,
+        'amount'    => $config['card_price'] * 100,
         'client_ip' => '127.0.0.1',
         'currency'  => 'cny',
         'subject'   => '花果山会员卡一张',
