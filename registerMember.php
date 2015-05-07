@@ -1,19 +1,22 @@
 <?php
 require_once 'autoload.php';
+require_once 'UserInfo.php';
+require_once 'function.inc.php';
 
-$uid = '12345678';
 $api = new \LyfMember\Api();
+$config = (require 'config.php');
 
-if (!isset($_POST['username']) ||
+$userinfo = new UserInfo ();
+$uid = $userinfo->getUserId ();
+
+if (!isset($_POST['mobile']) ||
     !isset($_POST['password']) ||
-    !isset($_POST['uid']))
+    !isset($uid))
 {
   exit(500);  // malformed request
-} else if ($uid != $_POST['uid']) {
-  exit(501);  // malformed request
-}
+} 
 
-$username = $_POST['username'];
+$mobile = $_POST['mobile'];
 $password = $_POST['password'];
 
 
@@ -27,7 +30,7 @@ if ($userOrder->binded) exit("订单已绑定会员卡");
 
 // 开始创建会员卡, TODO: return member card ID
 $result = $api->call('register', array(
-  "username" => $username,
+  "mobile" => $mobile,
   "password" => $password,
   "uid"      => $uid
 ));
@@ -40,6 +43,18 @@ if ($result) {
     ),
     $userOrder->orderId
   );
+  // get member card numer and setting session
+  $responseStr = $api->call('getMemberInfo', array(
+    'where' => json_encode(array('uid' => $uid))
+  ));
+  $response = json_decode($responseStr);
+  if (!$response || empty($response->results)) exit(503);
+  
+  $member = $response->results[0];
+  $memberInfo = memberToMemberInfo($member);
+  $_SESSION['memberInfo'] = $memberInfo;
+  
+  header("Location: member/show.php");
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page

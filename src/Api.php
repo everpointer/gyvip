@@ -7,7 +7,7 @@ class Api {
   private $config;
   
   public function __construct() {
-    $this->config = (require 'config.php');
+    $this->config = (require $_SERVER['DOCUMENT_ROOT'].'/config.php');
     $this->rest = new Rest(array("header" => $this->config["header"]));
   }
   
@@ -58,7 +58,7 @@ class Api {
       }
     }
     
-    if (isset($api['optionParams'])) {
+    if (isset($api['optionParams']) && !empty($api['optionParams'])) {
       $hasOptionParam = false;
       foreach ($api['optionParams'] as $param) {
         if (isset($params[$param])) {
