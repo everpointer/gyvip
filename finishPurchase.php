@@ -29,8 +29,8 @@ if ($order->uid != $uid) exit("订单不属于您");
   </head>
   <body>
     <section class="measure p2">
-      <h3>完善会员信息</h3>
-      <p class="h4">您已成功购买会员卡，请继续填写一下信息。</p>
+      <h2>完善会员信息</h2>
+      <p class="h3">您已成功购买会员卡，请继续填写一下信息。</p>
       <form action="registerMember.php" method="POST" class="my2">
         <label for="mobile">手机</label>
         <input type="text" name="mobile" placeholder="请输入手机号"/>

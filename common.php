@@ -10,7 +10,6 @@ if (!$uid && isset( $_REQUEST['auth_code'] )) {
 } else if (!$uid) {
   exit('User unauthorized!');
 }
-
 if (isset($_SESSION['memberInfo'])) {
   $memberInfo = $_SESSION['memberInfo'];
 } else {
@@ -22,8 +21,7 @@ if (isset($_SESSION['memberInfo'])) {
   $members = json_decode($membersStr);
   if ($members && !empty($members->results)) {
     $member = $members->results[0];
-  }
-  
-  $memberInfo = memberToMemberInfo($member);
-  $_SESSION['memberInfo'] = $memberInfo;
+    $memberInfo = memberToMemberInfo($member);
+    $_SESSION['memberInfo'] = $memberInfo;
+  } 
 }

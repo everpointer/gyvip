@@ -14,6 +14,7 @@ if (isset($memberInfo)) {
     <head>
         <title>会员中心</title>
         <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/base.css" type="text/css" />
         <style type="text/css">
             .block {
                 display: block;

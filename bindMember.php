@@ -7,8 +7,8 @@
   </head>
   <body>
     <section class="measure p2">
-      <h3>老会员绑定</h3>
-      <p class="h4">老会员电子会员卡绑定</p>
+      <h2>老会员绑定</h2>
+      <p class="h3">老会员电子会员卡绑定</p>
       <form action="doBindMember.php" method="POST" class="my2">
         <label for="mobile">手机</label>
         <input type="text" name="mobile" placeholder="请输入手机号"/>
