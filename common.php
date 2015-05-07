@@ -10,6 +10,7 @@ if (!$uid && isset( $_REQUEST['auth_code'] )) {
 } else if (!$uid) {
   exit('User unauthorized!');
 }
+unset($_SESSION['memberInfo']);
 if (isset($_SESSION['memberInfo'])) {
   $memberInfo = $_SESSION['memberInfo'];
 } else {

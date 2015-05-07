@@ -62,6 +62,11 @@ return array(
       'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder',
       'params' => array(),
       'optionParams' => array('uid', 'orderId', 'where')
+    ),
+    'deleteCardOrder' => array(
+      'method' => 'delete',
+      'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
+      'params' => array('orderId')
     )
   )
 );

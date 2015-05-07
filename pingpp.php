@@ -9,8 +9,24 @@ $appKey  = 'sk_test_1i1abHv5mbjHHCuTKCDyXP08'; // Test Key
 
 $api = new \LyfMember\Api();
 
+// 查询用户历史会员卡订单
+$responseStr = $api->call('getCardOrder', array(
+  'where' => json_encode(array('uid' => $uid))
+));
+$response = json_decode($responseStr);
+if ($response && !empty($response->results)) {
+  $cardOrder = $response->results[0];
+  
+  if ($cardOrder->paid && !$cardOrder->binded) {
+    header("Location: finishPurchase.php");
+    exit();
+  } else if (!$cardOrder->paid) { // 删除未支付完成的订单
+    $api->callExtUrl('deleteCardOrder', array(
+      "orderId" => $cardOrder->orderId
+    ), $cardOrder->objectId);
+  }
+}
 $amount = 10;
-
 $responseStr = $api->call('createCardOrder', array(
   'uid' => $uid,
   'amount' => $amount,
@@ -58,8 +74,10 @@ $api->callExtUrl('updateCardOrder', array(
       pingpp.createPayment(<?php echo $ch; ?>, function(result, err){
           if(result=="success"){
               // payment succeed
+            alert(result);
           } else {
-              console.log(result+" "+err.msg+" "+err.extra);
+            alert(err.msg);
+            console.log(result+" "+err.msg+" "+err.extra);
           }
       });
     </script>

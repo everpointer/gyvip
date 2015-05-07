@@ -2,12 +2,15 @@
 require_once 'autoload.php';
 require_once 'common.php';
 
-$orderId = $_GET['out_trade_no'];
-
 $api = new \LyfMember\Api();
+
+$where = array('uid' => $uid);
+if (isset($_GET['out_trade_no'])) {
+  $orderId = $_GET['out_trade_no'];
+  $where['orderId'] = $orderId;
+}
 $responseStr = $api->call('getCardOrder', array(
-  'orderId' => $orderId,
-  'where' => json_encode(array("orderId" => $orderId))
+  'where' => json_encode($where)
 ));
 
 $response = json_decode($responseStr);
@@ -37,7 +40,6 @@ if ($order->uid != $uid) exit("订单不属于您");
         <label for="password">密码</label>
         <input type="password" name="password" placeholder="请输入密码"/>
         <input type="submit" value="注册" class="btn--blue" />
-        <input type="hidden" name="uid" value="<?php echo $uid; ?>">
       </form>
     </section>
   </body>
