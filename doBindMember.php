@@ -30,7 +30,7 @@ if (!$response || empty($response->results)) exit("信息不正确，绑定失�
 $member = $response->results[0];
 
 // 更新会员支付宝uid
-$result = $api->callExtUrl('updateMemberInfo', array(
+$result = $api->callExtUrl('bind', array(
       "uid" => $uid,
     ),
     $member->objectId
