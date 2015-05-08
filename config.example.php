@@ -51,6 +51,10 @@ return array(
      *    - mobile & password string  用户手机号和密码
      *    - where string 自定义查询条件
      * @return todo: update mobile 接口
+     *    - status code: 200
+     *      json data: format
+     *        {'results': [{'cardNumber': '', 'mobile': , 'createdAt': }] }
+     *    - otherwise: false
      */
     'getMemberInfo' => array(
       'method' => 'get',
@@ -95,10 +99,10 @@ return array(
      *    - where string 自定义查询条件
      * @return
      *    - status code: 200
-     *      json data: format 
-     *        {'orderId': '', 'binded': , 'paid': }
+     *      json data: format
+     *        {'results': [{'orderId': '', 'binded': , 'paid': }] }
      *    - otherwise: false
-     */ 
+     */
     'getCardOrder' => array(
       'method' => 'get',
       'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder',
@@ -119,4 +123,3 @@ return array(
     )
   )
 );
-       *

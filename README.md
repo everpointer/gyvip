@@ -27,8 +27,14 @@
 ## 模块配置
 - 配置文件 : config.php
 
-### 会员接口说明 
-Todo:
+### 会员接口说明
+- bind : 会员绑定接口
+- register: 会员注册接口
+- getMemberInfo: 获取会员信息接口
+- createCardOder: 会员卡订单创建接口
+- updateCardOrder: 会员卡订单更新接口
+- getCardOrder: 会员卡订单查询接口
+- deleteCardOrder: 会员卡订单删除接口
 ## 目录结构
 - GYMember : 项目目录
 	-  config.php : 模块基本配置，API接口设置
@@ -45,7 +51,7 @@ Todo:
 		- alipay\_rsa\_public\_key.pem
 		- rsa\_private\_key.pem
 		- rsa\_public\_key.pem
-		rsa密钥文件，服务窗，支付宝手机网站支付和ping++等接口的配置，需要上述密钥信息。密钥生成方式，参考附录。
+		rsa密钥文件，服务窗，支付宝手机网站支付和ping++等接口的配置，需要上述密钥信息。密钥生成方式，参考附录1。
 
 	- assets
 		- css
@@ -78,3 +84,7 @@ Todo:
 	- UserInfo.php : 支付宝会员信息接口类
 	- .gitignore
 	- README.md : 模块说明页
+## 附录
+1. [支付宝密钥使用指南][1]
+
+[1]:	https://openhome.alipay.com/doc/docIndex.htm?url=https://openhome.alipay.com/doc/viewKbDoc.htm?key=236615_428849&type=info "支付宝密钥使用指南"
