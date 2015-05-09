@@ -19,7 +19,7 @@
       <div class="name">果忆会员卡</div>
       <div class="number">xxxx-xxxx-xxxx</div>
     </div>
-    <a href="pingpp.php" class="btn--blue block my2 h3 py2">¥10 购买</a>
+    <a href="createOrderByPingpp.php" class="btn--blue block my2 h3 py2">¥10 购买</a>
   </section>
 </body>
 </html>

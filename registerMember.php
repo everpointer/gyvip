@@ -1,13 +1,7 @@
 <?php
-require_once 'autoload.php';
+require_once 'common.php';
 require_once 'UserInfo.php';
 require_once 'function.inc.php';
-
-$api = new \LyfMember\Api();
-$config = (require 'config.php');
-
-$userinfo = new UserInfo ();
-$uid = $userinfo->getUserId ();
 
 if (!isset($_POST['mobile']) ||
     !isset($_POST['password']) ||
@@ -18,7 +12,6 @@ if (!isset($_POST['mobile']) ||
 
 $mobile = $_POST['mobile'];
 $password = $_POST['password'];
-
 
 $responseStr = $api->call('getCardOrder', array("uid" => $uid));
 $response = json_decode($responseStr);
@@ -54,7 +47,7 @@ if ($result) {
   $memberInfo = memberToMemberInfo($member);
   $_SESSION['memberInfo'] = $memberInfo;
   
-  header("Location: member/show.php");
+  header("Location: showMember.php");
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page

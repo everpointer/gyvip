@@ -1,11 +1,10 @@
 <?php
-require_once 'autoload.php';
 require_once 'common.php';
 
 if (!$uid) exit(500);
 
 if (isset($memberInfo)) {
-  header("Location: member/show.php");
+  header("Location: showMember.php");
 } else {
 ?>
 

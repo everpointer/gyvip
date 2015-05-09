@@ -1,5 +1,5 @@
 <?php
-require_once 'autoload.php';
+require_once 'Api.php';
 
 // 读取异步通知数据
 $notify = json_decode(file_get_contents("php://input"));

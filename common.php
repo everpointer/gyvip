@@ -1,7 +1,10 @@
 <?php
-require_once 'autoload.php';
+require_once 'Api.php';
 require_once 'function.inc.php';
 require_once 'UserInfo.php';
+
+$api = new \LyfMember\Api();
+$config = (require 'config.php');
 
 $userinfo = new UserInfo ();
 $uid = $userinfo->getUserId ();

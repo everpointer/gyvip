@@ -1,8 +1,5 @@
 <?php
-require_once 'autoload.php';
 require_once 'common.php';
-
-$api = new \LyfMember\Api();
 
 $where = array('uid' => $uid);
 if (isset($_GET['out_trade_no'])) {
