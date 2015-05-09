@@ -1,8 +1,8 @@
 <?php
 return array(
-  'alipay_public_key_file' => dirname ( __FILE__ ) . "/key/alipay_rsa_public_key.pem", // 支付宝公钥文件路径
-	'merchant_private_key_file' => dirname ( __FILE__ ) . "/key/rsa_private_key.pem", // 商户私钥文件路径
-	'merchant_public_key_file' => dirname ( __FILE__ ) . "/key/rsa_public_key.pem",	// 商户公钥文件路径
+  'alipay_public_key_file' => "——请填写——", // alipay_rsa_public_key.pem, 支付宝公钥文件路径
+	'merchant_private_key_file' => "——请填写——", // rsa_private_key.pem, 商户私钥文件路径
+	'merchant_public_key_file' => "——请填写——", // rsa_public_key.pem, 商户公钥文件路径
 	'charset' => "GBK", // 字符集，支付宝接口需要GBK，无需改变
 	'gatewayUrl' => "https://openapi.alipay.com/gateway.do", // 支付宝接口网关地址, 无需改变
 	'app_id' => "——请填写——", // 服务窗app id, 服务窗后台查看

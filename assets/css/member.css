@@ -249,7 +249,7 @@ html,body,.container{
 	background:red;
 	padding-top:10px;
 	-webkit-box-sizing:border-box;
-	background:url(../image/member-card-background.png) no-repeat 0 0;
+	background:url(../image/member-card-bg.png) no-repeat 0 0;
 	background-size:100% 100%;
 }
 
