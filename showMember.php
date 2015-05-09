@@ -5,119 +5,46 @@ if (!isset($memberInfo)) exit("您还不是会员");
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>会员卡</title>
-    <style type="text/css">
-      html {
-        background: -webkit-linear-gradient(#0bcca5, #019875);
-        background: linear-gradient(#0bcca5, #019875);
-      }
-      
-      html, body {
-        width: 100%;
-        height: 100%;
-        font-size: 62.5%;
-        padding-top: 20px;
-      }
-      
-      .member-card {
-        cursor: -webkit-grab;
-        cursor: grab;
-        position: relative;
-        float: none;
-        margin: 0 auto;
-        width: 700px;
-        height: 400px;
-        background: -webkit-linear-gradient(270deg, #333, #111 55%);
-        background: linear-gradient(-180deg, #333, #111 55%);
-        border-radius: 10px;
-        border: 2px solid #4d4d4d;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 3px rgba(0, 0, 0, 0.2);
-      }
-      .member-card::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "";
-        width: 300px;
-        height: 200px;
-        border-radius: 10px;
-        box-sizing: border-box;
-        background: -webkit-linear-gradient(285deg, rgba(255, 255, 255, 0.035) 45%, transparent 45%);
-        background: linear-gradient(-195deg, rgba(255, 255, 255, 0.035) 45%, transparent 45%);
-      }
-      .member-card::after {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 300px;
-        height: 200px;
-        background: url("http://www.androidpolice.com/wp-content/uploads/2012/10/nexusae0_unnamed-18.png");
-      }
-      .member-card .number {
-        position: relative;
-        top: 40%;
-        left: 10%;
-        color: #ABABAB;
-        text-shadow: 0 2px #000;
-        font-family: "PT Sans";
-        font-size: 40px;
-        font-size: 6rem;
-        font-style: bold;
-      }
-      .member-card .company {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        width: 80px;
-        height: 50px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .member-card .name {
-        position: absolute;
-        bottom: 15px;
-        left: 15px;
-        color: #ABABAB;
-        text-shadow: 0 2px #000;
-        font-family: "PT Sans";
-        font-size: 30px;
-        font-size: 4rem;
-      }
-      .member-card .visa {
-        bottom: 0;
-        background-image: url("http://impotxpert.com/attachments/Image/logo_visa.gif");
-      }
-      .member-card .mastercard {
-        background-image: url("https://cdn0.iconfinder.com/data/icons/member-card-debit-card-payment-PNG/128/Mastercard-Curved.png");
-      }
-
-      .info-item {
-        height: 20px;
-        background: #F9F9F9;
-        font-size: 18px;
-        font-size: 2rem;
-        color: #666666;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="card-wrapper">
-        <div class="member-card">
-          <div class="name"><?php echo $config['partner_name']; ?></div>
-          <div class="number"><?php echo $memberInfo['cardNumber']; ?></div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="assets/css/member.css" media="all">
+  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css" media="all">
+  <title>会员中心</title>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <!-- Mobile Devices Support @begin -->
+  <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+  <meta content="no-cache" http-equiv="pragma">
+  <meta content="0" http-equiv="expires">
+  <meta content="telephone=no, address=no" name="format-detection">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- apple devices fullscreen -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+    <div class="container card">
+      <header>
+        <div class="header card">
+          <div id="card" data-role="card">
+            <div class="front" style="background-image:url(assets/image/member-card.jpg);">
+              <span class="no" style="max-width: 280px; font-size:14px; color:#FFFFFF; top:145px; left:170px; bottom:inherit; right:inherit;">
+                <?php echo $config['cardNumber']; ?>
+              </span>
+            </div>
+          </div>
         </div>
-        <!--<div class="info-list">-->
-        <!--  <div class="info-item">-->
-        <!--    <a href="#">-->
-        <!--      <i class="tel">手机</i>-->
-        <!--      <span class="mobile"><php echo $memberInfo['mobile']; ?></span>-->
-        <!--    </a>-->
-        <!--  </div>-->
-        <!--</div>-->
+      </header>
+      <div class="body">
+        <ul class="list_ul">
+          <div>
+            <li class="li_i">
+              <a class="label" href="tel:<?php echo $memberInfo['mobile'] ?>">
+              <i>&nbsp;</i><?php echo $memberInfo['mobile'] ?><span> &nbsp;</span>
+              </a>
+            </li>
+          </div>
+        </ul>
       </div>
     </div>
   </body>
