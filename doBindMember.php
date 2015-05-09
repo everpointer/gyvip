@@ -19,36 +19,15 @@ if (!isset($_POST['mobile']) ||
 $mobile = $_POST['mobile'];
 $password = $_POST['password'];
 
-// verify member by mobile and password
-$responseStr = $api->call('getMemberInfo', array(
-  'where' => json_encode(array('mobile' => $mobile, 'password' => $password))
-));
-
-$response = json_decode($responseStr);
-if (!$response || empty($response->results)) exit("信息不正确，绑定失败!");
-
-$member = $response->results[0];
-
 // 更新会员支付宝uid
-$result = $api->callExtUrl('bind', array(
-      "uid" => $uid,
-    ),
-    $member->objectId
+$result = $api->call('bindMember', array(
+    "uid" => $uid,
+    "mobile" => $mobile,
+    "password" => $password
+  )
 );
-
 // 更新订单状态
-if ($result) {
-  // get member card numer and setting session
-  $responseStr = $api->call('getMemberInfo', array(
-    'where' => json_encode(array('uid' => $uid))
-  ));
-  $response = json_decode($responseStr);
-  if (!$response || empty($response->results)) exit(503);
-  
-  $member = $response->results[0];
-  $memberInfo = memberToMemberInfo($member);
-  $_SESSION['memberInfo'] = $memberInfo;
-  
+if ($result && !strstr($result, 'error')) { // result checking only for leancloude
   header("Location: member/show.php");
   //TODO:
   // 1. add member card to alipaypass

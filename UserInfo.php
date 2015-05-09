@@ -86,7 +86,7 @@ class UserInfo {
 		return $result;
 	}
 	public function getUserId($auth_code = "") {
-		session_start();
+		@session_start();
 		if (isset($_SESSION['alipay_user_id'])) return $_SESSION['alipay_user_id'];
 		if (empty($auth_code)) return null;
 		

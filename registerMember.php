@@ -29,7 +29,7 @@ if (!$userOrder->paid) exit("订单未成功支付！");
 if ($userOrder->binded) exit("订单已绑定会员卡");
 
 // 开始创建会员卡, TODO: return member card ID
-$result = $api->call('register', array(
+$result = $api->call('registerMember', array(
   "mobile" => $mobile,
   "password" => $password,
   "uid"      => $uid

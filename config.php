@@ -13,7 +13,7 @@ return array(
   	'app_id' => 'app_unXbrDnvDaj90O4e',  // ping++ app_id
   	'test_key' => 'sk_test_1i1abHv5mbjHHCuTKCDyXP08', // ping++ 测试环境key
   	'live_key' => 'sk_live_wULlucfQQ6k4bEYjp6k8r2h9', // ping++ 正式环境key
-  	'env_key' => 'live_key' // 当前使用环境, 正式环境才可调用支付宝
+  	'env_key' => 'test_key' // 当前使用环境, 正式环境才可调用支付宝
 	 ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     'X-AVOSCloud-Application-Id: 0s4hffciblz94hah0m63rsn0x970m2obrjthz0cwmqwsipdy',
@@ -22,35 +22,59 @@ return array(
   'api' => array( // 接口列表，配置对应的url, params 和 optionParams
     /**
      * 新会员注册接口
-     *
+     * @param string mobile 手机号
+     * @param string password 会员密码
+     * @param string uid 支付宝用户ID
+     * @return
+     *        status code: 200, successful
+     *        otherwise: fail
      */
-    'register' => array(
+    'registerMember' => array(
       'method' => 'post',
       'url' => 'https://api.leancloud.cn/1.1/classes/Member',
       'params' => array('mobile', 'password', 'uid')
     ),
     /**
      * 老会员绑定支付宝用户接口
-     *
+     * @param uid string 支付宝会员ID
+     * @param mobile string 会员手机号
+     * @param password string 会员密码
+     * @return
+     *    - status code: 200, successful
+     *    - otherwise: string error messages
      */
-    'bind' => array(
-      'method' => 'put',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member/%s',
-      'params' => array('uid')
+    'bindMember' => array(
+      'method' => 'post',
+      'url' => 'https://leancloud.cn/1.1/functions/bindMember',
+      'params' => array('uid', 'mobile', 'password')
     ),
     /**
      * 会员信息查询接口，支持通过支付宝用户ID 或 手机号和密码 来查询用户
-     *
+     * no reuqired params
+     * @optionParams: 任选一种
+     *    - uid string 支付宝用户ID
+     *    - where string 自定义查询条件
+     * @return
+     *    - status code: 200
+     *      json data : string, format as belows
+     *        {'results': [{'cardNumber': '', 'mobile': , 'createdAt': }] }
+     *    - otherwise: 500 like error http code
      */
     'getMemberInfo' => array(
       'method' => 'get',
       'url' => 'https://api.leancloud.cn/1.1/classes/Member',
       'params' => array(),
-      'optionParams' => array('uid', 'where', 'mobile', 'password')
+      'optionParams' => array('uid', 'where')
     ),
     /**
      * 会员卡购买订单创建接口
-     *
+     * @param uid string 支付宝会员ID
+     * @param amount integer 会员卡单价
+     * @param paid bool 订单支付状态，默认为false
+     * @param binded bool 订单绑定状态，默认为false
+     * @return
+     *      status code: 200, successful
+     *      otherwise: fail
      */
     'createCardOrder' => array(
       'method' => 'post',
@@ -59,19 +83,30 @@ return array(
     ),
     /**
      * 会员卡购买订单更新接口
-     *
+     * @param orderId string 订单编号
+     * @optionParams
+     *    - outTradeNo string 支付宝等外部订单编号
+     *    - paid bool 订单支付状态
+     *    －binded bool 订单绑定状态
      */
     'updateCardOrder' => array(
       'method' => 'put',
       'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
       'params' => array('orderId'),
-      'optionParams' => array('outTradeNo', 'paid', 'binded', 'status')
+      'optionParams' => array('outTradeNo', 'paid', 'binded')
     ),
-      /**
-       * 会员卡订单查询接口
-       * @return CardOrder return one user card order code: 200 means a
-       * successful request.
-       */ 
+    /**
+     * 会员卡订单查询接口
+     * @optionParams
+     *    - uid string 支付宝会员ID
+     *    - orderId string 订单编号
+     *    - where string 自定义查询条件
+     * @return
+     *    - status code: 200
+     *      json data: format
+     *        {'results': [{'orderId': '', 'binded': , 'paid': }] }
+     *    - otherwise: false
+     */
     'getCardOrder' => array(
       'method' => 'get',
       'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder',
@@ -80,7 +115,10 @@ return array(
     ),
     /**
      * 会员卡订单删除接口（或取消接口）
-     *
+     * @param orderId string 订单编号
+     * @return
+     *    - status code: 200, successful
+     *    - otherwise: fail
      */
     'deleteCardOrder' => array(
       'method' => 'delete',

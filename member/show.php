@@ -7,6 +7,7 @@ if (!isset($memberInfo)) exit("您还不是会员");
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>会员卡</title>
     <style type="text/css">
       html {

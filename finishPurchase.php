@@ -26,6 +26,7 @@ if ($order->uid != $uid) exit("订单不属于您");
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>注册会员</title>
     <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" /> 
     <link rel="stylesheet" href="assets/css/base.css" type="text/css" /> 

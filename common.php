@@ -10,7 +10,6 @@ if (!$uid && isset( $_REQUEST['auth_code'] )) {
 } else if (!$uid) {
   exit('User unauthorized!');
 }
-unset($_SESSION['memberInfo']);
 if (isset($_SESSION['memberInfo'])) {
   $memberInfo = $_SESSION['memberInfo'];
 } else {
@@ -26,3 +25,6 @@ if (isset($_SESSION['memberInfo'])) {
     $_SESSION['memberInfo'] = $memberInfo;
   } 
 }
+//Todo: comment when production
+// unset($_SESSION['memberInfo']);
+// unset($memberInfo);
