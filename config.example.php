@@ -19,48 +19,51 @@ return array(
     // 'header-key: header-value',
   ),
   'api' => array( // 接口列表，配置对应的url, params 和 optionParams
-      /**
-       * 新会员注册接口
-       * @param string mobile 手机号
-       * @param string password 会员密码
-       * @param string uid 支付宝用户ID
-       * @return
-       *        status code: 200, successful
-       *        otherwise: fail
-       */
-    'register' => array(
+    /**
+     * 新会员注册接口
+     * @param string mobile 手机号
+     * @param string password 会员密码
+     * @param string uid 支付宝用户ID
+     * @return
+     *        status code: 200, successful
+     *        otherwise: fail
+     */
+    'registerMember' => array(
       'method' => 'post',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member',
+      'url' => '——请填写——',
       'params' => array('mobile', 'password', 'uid')
     ),
     /**
      * 老会员绑定支付宝用户接口
      * @param uid string 支付宝会员ID
-     * @return todo: update mobile 接口
+     * @param mobile string 会员手机号
+     * @param password string 会员密码
+     * @return
+     *    - status code: 200, successful
+     *    - otherwise: string error messages
      */
-    'bind' => array(
-      'method' => 'put',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member/%s',
-      'params' => array('uid')
+    'bindMember' => array(
+      'method' => 'post',
+      'url' => '——请填写——',
+      'params' => array('uid', 'mobile', 'password')
     ),
     /**
      * 会员信息查询接口，支持通过支付宝用户ID 或 手机号和密码 来查询用户
      * no reuqired params
      * @optionParams: 任选一种
      *    - uid string 支付宝用户ID
-     *    - mobile & password string  用户手机号和密码
      *    - where string 自定义查询条件
-     * @return todo: update mobile 接口
+     * @return
      *    - status code: 200
-     *      json data: format
+     *      json data : string, format as belows
      *        {'results': [{'cardNumber': '', 'mobile': , 'createdAt': }] }
-     *    - otherwise: false
+     *    - otherwise: 500 like error http code
      */
     'getMemberInfo' => array(
       'method' => 'get',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member',
+      'url' => '——请填写——',
       'params' => array(),
-      'optionParams' => array('uid', 'where', 'mobile', 'password')
+      'optionParams' => array('uid', 'where')
     ),
     /**
      * 会员卡购买订单创建接口
@@ -74,7 +77,7 @@ return array(
      */
     'createCardOrder' => array(
       'method' => 'post',
-      'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder',
+      'url' => '——请填写——',
       'params' => array('uid', 'amount', 'paid', 'binded')
     ),
     /**
@@ -87,7 +90,7 @@ return array(
      */
     'updateCardOrder' => array(
       'method' => 'put',
-      'url' => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
+      'url' => '——请填写——',
       'params' => array('orderId'),
       'optionParams' => array('outTradeNo', 'paid', 'binded')
     ),
@@ -105,7 +108,7 @@ return array(
      */
     'getCardOrder' => array(
       'method' => 'get',
-      'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder',
+      'url'    => '——请填写——',
       'params' => array(),
       'optionParams' => array('uid', 'orderId', 'where')
     ),
@@ -118,7 +121,7 @@ return array(
      */
     'deleteCardOrder' => array(
       'method' => 'delete',
-      'url'    => 'https://api.leancloud.cn/1.1/classes/CardOrder/%s',
+      'url'    => '——请填写——',
       'params' => array('orderId')
     )
   )
