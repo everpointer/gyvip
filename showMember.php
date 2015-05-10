@@ -21,6 +21,15 @@ if (!isset($memberInfo)) exit("您还不是会员");
   <!-- apple devices fullscreen -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Mobile Devices Support @end -->
+  <style type="text/css">
+    #barcode {
+      margin-left: 10%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      width: 80%;
+    }
+  </style>
 </head>
 <body onselectstart="return true;" ondragstart="return false;">
     <div class="container card">
@@ -29,13 +38,16 @@ if (!isset($memberInfo)) exit("您还不是会员");
           <div id="card" data-role="card">
             <div class="front" style="background-image:url(assets/image/member-card.jpg);">
               <span class="no" style="max-width: 280px; font-size:14px; color:#FFFFFF; top:145px; left:170px; bottom:inherit; right:inherit;">
-                <?php echo $config['cardNumber']; ?>
+                <?php echo $memberInfo['cardNumber']; ?>
               </span>
             </div>
           </div>
         </div>
       </header>
       <div class="body">
+        <div class="barcode-wrapper">
+          <img id="barcode" />
+        </div>
         <ul class="list_ul">
           <div>
             <li class="li_i">
@@ -47,5 +59,10 @@ if (!isset($memberInfo)) exit("您还不是会员");
         </ul>
       </div>
     </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/JsBarcode.all.min.js"></script>
+    <script type="text/javascript">
+      $("#barcode").JsBarcode("<?php echo $memberInfo['cardNumber']; ?>",{height: 60, fontSize:20});
+    </script>
   </body>
 </html>
