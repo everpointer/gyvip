@@ -1,20 +1,20 @@
 <?php
 return array(
   'alipay_public_key_file' => "——请填写——", // alipay_rsa_public_key.pem, 支付宝公钥文件路径
-	'merchant_private_key_file' => "——请填写——", // rsa_private_key.pem, 商户私钥文件路径
-	'merchant_public_key_file' => "——请填写——", // rsa_public_key.pem, 商户公钥文件路径
-	'charset' => "GBK", // 字符集，支付宝接口需要GBK，无需改变
-	'gatewayUrl' => "https://openapi.alipay.com/gateway.do", // 支付宝接口网关地址, 无需改变
-	'app_id' => "——请填写——", // 服务窗app id, 服务窗后台查看
-	'partner_id' => "——请填写——", // 商户partner id，支付宝后台查看
-	'partner_name' => "——请填写——", // 商户名称
-	'card_price' => 10,  // 会员卡单价，单位元
-	'pingxx' => array( // ping++ 配置, ping++后台可查看
-  	'app_id' => '——请填写——',  // ping++ app_id
-  	'test_key' => '——请填写——', // ping++ 测试环境key
-  	'live_key' => '——请填写——', // ping++ 正式环境key
-  	'env_key' => 'live_key' // 当前使用环境, 正式环境才可调用支付宝
-	 ),
+  'merchant_private_key_file' => "——请填写——", // rsa_private_key.pem, 商户私钥文件路径
+  'merchant_public_key_file' => "——请填写——", // rsa_public_key.pem, 商户公钥文件路径
+  'charset' => "GBK", // 字符集，支付宝接口需要GBK，无需改变
+  'gatewayUrl' => "https://openapi.alipay.com/gateway.do", // 支付宝接口网关地址, 无需改变
+  'app_id' => "——请填写——", // 服务窗app id, 服务窗后台查看
+  'partner_id' => "——请填写——", // 商户partner id，支付宝后台查看
+  'partner_name' => "——请填写——", // 商户名称
+  'card_price' => 10,  // 会员卡单价，单位元
+  'pingxx' => array( // ping++ 配置, ping++后台可查看
+    'app_id' => '——请填写——',  // ping++ app_id
+    'test_key' => '——请填写——', // ping++ 测试环境key
+    'live_key' => '——请填写——', // ping++ 正式环境key
+    'env_key' => 'live_key' // 当前使用环境, 正式环境才可调用支付宝
+  ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     // 'header-key: header-value',
   ),

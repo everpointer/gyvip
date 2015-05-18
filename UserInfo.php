@@ -8,7 +8,7 @@ class UserInfo {
 		$token = $this->requestToken ( $auth_code );
 		// echo "token: " .var_export($token);
 		// print_r($token);
-		
+
 		if (isset ( $token->alipay_system_oauth_token_response )) {
 			// 成功返回
 			// 示例：array(
@@ -23,7 +23,7 @@ class UserInfo {
 			// var_dump ( $user_info );
 			if (isset ( $user_info->alipay_user_userinfo_share_response )) {
 				$user_info_resp = $user_info->alipay_user_userinfo_share_response;
-				
+
 				// 以下每个字段都需要申请权限，才会返回。
 				// 支付宝返回的是GBK编码，所以中文会有乱码
 				// 'phone' => '',
@@ -64,7 +64,7 @@ class UserInfo {
 			// [msg] => Invalid Arguments
 			// [sub_code] => isv.code-invalid
 			// [sub_msg] => 授权码code无效
-			
+
 			// 记录错误返回信息
 			writeLog ( $token->error_response->sub_msg );
 		}
@@ -73,7 +73,7 @@ class UserInfo {
 	public function requestUserInfo($token) {
 		$AlipayUserUserinfoShareRequest = new AlipayUserUserinfoShareRequest ();
 		// $AlipayUserUserinfoShareRequest->setProdCode ( $token );
-		
+
 		$result = aopclient_request_execute ( $AlipayUserUserinfoShareRequest, $token );
 		return $result;
 	}
@@ -81,7 +81,7 @@ class UserInfo {
 		$AlipaySystemOauthTokenRequest = new AlipaySystemOauthTokenRequest ();
 		$AlipaySystemOauthTokenRequest->setCode ( $auth_code );
 		$AlipaySystemOauthTokenRequest->setGrantType ( "authorization_code" );
-		
+
 		$result = aopclient_request_execute ( $AlipaySystemOauthTokenRequest );
 		return $result;
 	}
@@ -89,7 +89,7 @@ class UserInfo {
 		@session_start();
 		if (isset($_SESSION['alipay_user_id'])) return $_SESSION['alipay_user_id'];
 		if (empty($auth_code)) return null;
-		
+
 		$token = $this->requestToken ( $auth_code );
 		if (isset ( $token->alipay_system_oauth_token_response )) {
 			$userId = $token->alipay_system_oauth_token_response->alipay_user_id;
