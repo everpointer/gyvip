@@ -7,8 +7,8 @@ $api = new \LyfMember\Api();
 $config = (require 'config.php');
 
 $userinfo = new UserInfo ();
-// $uid = $userinfo->getUserId ();
-$uid = '20881016718708634955964451718217';
+$uid = $userinfo->getUserId ();
+// $uid = '20881016718708634955964451718217';
 if (!$uid && isset( $_REQUEST['auth_code'] )) {
   $uid = $userinfo->getUserId ( $_REQUEST['auth_code'] );
 } else if (!$uid) {

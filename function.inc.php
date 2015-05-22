@@ -45,6 +45,21 @@ function memberToMemberInfo($member) {
 	return array(
     'cardNumber' => $member->cardNumber,
     'mobile' => $member->mobile,
+    'name'   => $member->name,
+    'sex'		 => $member->name,
+    'merchantId' => $member->merchantId,
+    'registedAt' => $member->registedAt,
     'createdAt' => $member->createdAt
   );	
+}
+// kmtk member
+function fromKmtkMember($member) {
+	return array(
+    "cardNumber" => $member['CARDNO'],
+    "mobile" => $member['MOBILE'],
+    "name"   => $member['NAME'],
+    "sex"    => $member['SEX'],
+    "merchantId" => $member['MERCHANTID'],
+    "registedAt" => $member['CREATEON']
+  );
 }
