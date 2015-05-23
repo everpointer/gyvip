@@ -23,6 +23,9 @@ if (!isset($_GET['action']) && isset($_REQUEST['mobile'])) {
   if ($result) {
     $_SESSION['bindingMember']  = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
+    // temply send sms code here (100 limited)
+    // $api = new \LyfMember\Api();
+    // $api->call('requestSmsCode', array('mobilePhoneNumber' => $mobile));
   } else if ($result == 0) {
    exit("没有找到对应的会员");
   } else {
@@ -39,12 +42,21 @@ $member = $_SESSION['bindingMember'];
 // bindingMember actions
 $action = $_GET['action'];
 if ($action == 'verifyMobile') {
-  echo $twig->render('verifyMobile.html', array('mobile' => $member['mobile']));
+  echo $twig->render('verifyMobile.html', array(
+    'mobile' => $member['mobile'],
+    'leancloud_app_id' => $config['leancloud']['app_id'],
+    'leancloud_app_key' => $config['leancloud']['app_key']
+  ));
 } else if ($action == 'bind') {
   // todo: smscode verification
-  $verifyResult = true;
+  if (!isset($_POST['smsCode'])) exit("Bad request.");
+  $smsCode = $_POST['smsCode'];
+  $api = new LyfMember\Api();
+  $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $member['mobile']), $smsCode);
+  $verifyResult = json_decode($verifyResultStr);
+  var_dump($verifyResult);
   
-  if($verifyResult) {
+  if($verifyResult && !isset($verifyResult->error)) {
     // create old member on leancloud
     $member['uid'] = $uid;
     $member['from'] = 'store';  // 来自门店的老会员
@@ -57,6 +69,8 @@ if ($action == 'verifyMobile') {
       header("Location: showMember.php");
       echo "绑定成功";
     }
+  } else {
+    header("Location: ?action=verifyMobile&&mobile={$member['mobile']}");
   }
 } else {
   exit("No resources founded");

@@ -5,7 +5,6 @@ require_once 'UserInfo.php';
 
 $api = new \LyfMember\Api();
 $config = (require 'config.php');
-
 $userinfo = new UserInfo ();
 $uid = $userinfo->getUserId ();
 // $uid = '20881016718708634955964451718217';
@@ -30,5 +29,5 @@ if (isset($_SESSION['memberInfo'])) {
   }
 }
 //Todo: comment when production
-// unset($_SESSION['memberInfo']);
-// unset($memberInfo);
+unset($_SESSION['memberInfo']);
+unset($memberInfo);

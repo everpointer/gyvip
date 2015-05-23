@@ -9,11 +9,50 @@
 <body>
   <section class="measure p2">
     <form action="doBindMember.php?action=bind" method=POST class="my2">
-      <input type="text" name="mobile" value="{{mobile}}" disabled/>
-      <a href="#" class='btn--blue'>获取验证码</a>
-      <input type="text" name="smscode" placeholder="输入验证码"/>
+      <input type="text" name="mobile" value="{{mobile}}" disabled class="my1"/>
+      <a href="#" class="btn--blue" id="requestSmsCode" class="my2">获取验证码</a>
+      <input type="text" name="smsCode" placeholder="输入验证码" class="my2"/>
       <input type="submit" value="绑定" class="btn--blue" />
     </form>
   </section>
+  <script src="https://cdn1.lncld.net/static/js/av-mini-0.5.4.js"></script>
+  <script type="text/javascript">
+    // Todo: limit api requester
+    AV.initialize("{{leancloud_app_id}}", "{{leancloud_app_key}}");
+    
+    document.getElementById('requestSmsCode').onclick = function(e) {
+      e.preventDefault();
+      if (this.disabled === true) {
+        return false;
+      }
+      countDown(this, this.text);
+      AV.Cloud.requestSmsCode('{{mobile}}').then(function(){
+        //发送成功
+      }, function(err){
+        //发送失败
+        alert("发送失败");
+      });
+    };
+    
+    function countDown(element, content) {
+      // disable element
+      element.disabled = true;
+      // add disabled styling
+      element.className = "btn btn--light-gray";
+      // seconds count down
+      var seconds = 10;
+      element.textContent = content + '('  + seconds + ')';
+      var intervalId = setInterval(function() {
+        if (seconds-- > 0) {
+          element.textContent = content + '(' + seconds + ')';
+        } else {
+          clearInterval(intervalId);
+          element.textContent = content;
+          element.className = "btn btn--blue";
+          element.disabled = false;
+        }
+      }, 1000);
+    }
+  </script>
 </body>
 </html>

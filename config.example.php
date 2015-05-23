@@ -15,6 +15,10 @@ return array(
     'live_key' => '——请填写——', // ping++ 正式环境key
     'env_key' => 'live_key' // 当前使用环境, 正式环境才可调用支付宝
   ),
+  'leancloud' => array( // leancloud 配置
+	  'app_id' => '——请填写——',
+	  'app_key' => '——请填写——',
+	 ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     // 'header-key: header-value',
   ),
