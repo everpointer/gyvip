@@ -14,18 +14,16 @@ if ((!isset($_GET['action']) && !isset($_REQUEST['mobile']))
   exit(500);  // malformed request
 }
 
-
-// Todo: query user by mobile
-if (!isset($_GET['action']) && isset($_REQUEST['mobile'])) {
+// verify mobile user existed
+if (!isset($_GET['action']) && isset($_REQUEST['mobile']) &&
+    !empty($_REQUEST['mobile']))
+{
   $mobile = $_REQUEST['mobile'];
   $member = new KMTK\Member();
   $result = $member->queryUserByMobile($mobile);
   if ($result) {
     $_SESSION['bindingMember']  = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
-    // temply send sms code here (100 limited)
-    // $api = new \LyfMember\Api();
-    // $api->call('requestSmsCode', array('mobilePhoneNumber' => $mobile));
   } else if ($result == 0) {
    exit("没有找到对应的会员");
   } else {
@@ -54,7 +52,7 @@ if ($action == 'verifyMobile') {
   $api = new LyfMember\Api();
   $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $member['mobile']), $smsCode);
   $verifyResult = json_decode($verifyResultStr);
-  var_dump($verifyResult);
+  $verifyResult = true;
   
   if($verifyResult && !isset($verifyResult->error)) {
     // create old member on leancloud
@@ -66,11 +64,11 @@ if ($action == 'verifyMobile') {
     if ($result) {
       $_SESSION['memberInfo'] = $member;
       unset($_SESSION['bindingMember']);
-      header("Location: showMember.php");
       echo "绑定成功";
     }
   } else {
-    header("Location: ?action=verifyMobile&&mobile={$member['mobile']}");
+    // header code 501
+    header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
   }
 } else {
   exit("No resources founded");

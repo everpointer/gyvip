@@ -127,6 +127,15 @@ return array(
       'method' => 'delete',
       'url'    => '——请填写——',
       'params' => array('orderId')
+    ),
+    /**
+     * 手机号码验证短信验证接口
+     */
+    'verifySmsCode' => array(
+      'method' => 'post',
+      'url' => 'https://api.leancloud.cn/1.1/verifySmsCode/%s',
+      'params' => array('mobilePhoneNumber')
+      // 'optionParams' => array('smsCode')
     )
   )
 );
