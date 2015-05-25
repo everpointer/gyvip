@@ -79,7 +79,7 @@ class Member {
   }
   
   public function queryUserByMobile($mobile) {
-    $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\'';
+    $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\' and status=1';
     $result = $this->ora->select($sql);
     return $result;
   }
