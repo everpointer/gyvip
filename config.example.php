@@ -133,9 +133,21 @@ return array(
      */
     'verifySmsCode' => array(
       'method' => 'post',
-      'url' => 'https://api.leancloud.cn/1.1/verifySmsCode/%s',
+      'url' => '——请填写——',
       'params' => array('mobilePhoneNumber')
       // 'optionParams' => array('smsCode')
     )
+  ),
+  /**
+  * 注册KMTK用户
+  */
+  'kmtkRegisterMember' => array(
+    'method' => 'get',
+    'url' => '——请填写——',
+    'params' => array('name', 'cardno', 'CardType', 'checksum', 'fullName',
+                      'sex', 'birthday', 'telephone', 'mobile', 'address',
+                      'postcode', 'email', 'idCardType', 'idCard', 'amount',
+                      'businessId', 'merchantId', 'opId', 'opName',
+                      'description', 'sign')
   )
 );

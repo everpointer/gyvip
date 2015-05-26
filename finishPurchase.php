@@ -35,8 +35,6 @@ if ($order->uid != $uid) exit("订单不属于您");
       <form action="registerMember.php" method="POST" class="my2">
         <label for="mobile">手机</label>
         <input type="text" name="mobile" placeholder="请输入手机号"/>
-        <label for="password">密码</label>
-        <input type="password" name="password" placeholder="请输入密码"/>
         <input type="submit" value="注册" class="btn--blue" />
       </form>
     </section>

@@ -22,7 +22,7 @@ if (!isset($_GET['action']) && isset($_REQUEST['mobile']) &&
   $member = new KMTK\Member();
   $result = $member->queryUserByMobile($mobile);
   if ($result) {
-    $_SESSION['bindingMember']  = fromKmtkMember($result);
+    $_SESSION['bindingMember'] = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
   } else if ($result == 0) {
    exit("没有找到对应的会员");

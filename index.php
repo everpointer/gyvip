@@ -1,5 +1,6 @@
 <?php
 require_once 'common.php';
+require_once 'checkMember.php';
 
 if (!$uid) exit(500);
 

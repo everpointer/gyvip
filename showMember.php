@@ -1,7 +1,10 @@
 <?php
 require_once 'common.php';
+require_once 'checkMember.php';
 
-if (!isset($memberInfo)) exit("您还不是会员");
+if (!isset($memberInfo)) {
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
