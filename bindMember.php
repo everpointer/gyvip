@@ -10,15 +10,14 @@
     <section class="measure p2">
       <h2>老会员绑定</h2>
       <p class="h3">老会员电子会员卡绑定</p>
-      <!--<form id="bindForm" action="doBindMember.php" method="POST" class="my2">-->
       <form id="bindForm" action="doBindMember.php" method="POST" class="my2">
         <input type="text" name="mobile" placeholder="请输入您的手机号"/>
         <input type="submit" value="下一步" class="btn--blue" />
       </form>
     </section>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0rc1/zepto.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
-    <script src="//cdn1.lncld.net/static/js/av-mini-0.5.4.js"></script>
+    <script type="text/javascript" src="assets/js/zepto.min.js"></script>
+    <script type="text/javascript" src="assets/js/spin.min.js"></script>
+    <script type="text/javascript" src="assets/js/av-mini.js"></script>
     <script>
       $(function() {
         $("#bindForm").submit(function(e) {

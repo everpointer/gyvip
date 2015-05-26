@@ -52,7 +52,6 @@ if ($action == 'verifyMobile') {
   $api = new LyfMember\Api();
   $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $member['mobile']), $smsCode);
   $verifyResult = json_decode($verifyResultStr);
-  $verifyResult = true;
   
   if($verifyResult && !isset($verifyResult->error)) {
     // create old member on leancloud
