@@ -21,11 +21,14 @@ if (!isset($_GET['action']) && isset($_REQUEST['mobile']) &&
   $mobile = $_REQUEST['mobile'];
   $member = new KMTK\Member();
   $result = $member->queryUserByMobile($mobile);
-  if ($result) {
+  if ($result && !empty($result)) {
     $_SESSION['bindingMember'] = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
-  } else if ($result == 0) {
-   exit("没有找到对应的会员");
+  } else if (empty($result)) {
+    echo $twig->render('message.html', array(
+      'msg' => "没有找到对应的会员"
+    ));
+    exit;
   } else {
     $member->triggerError();
     exit();
