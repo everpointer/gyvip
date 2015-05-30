@@ -10,3 +10,4 @@ releases
 templates/cache
 phpinfo.php
 oci8.php
+*.bak

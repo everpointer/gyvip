@@ -14,21 +14,16 @@ if (isset($memberInfo)) {
     <head>
         <meta charset="utf-8">
         <title>会员中心</title>
-        <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />
+        <!--<link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />-->
+        <link rel="stylesheet" href="https://preview.c9.io/everpointer_1/nodejs/scally/css/style.css" type="text/css" />
         <link rel="stylesheet" href="assets/css/base.css" type="text/css" />
-        <style type="text/css">
-            .block {
-                display: block;
-                width: 100%;
-            }
-        </style>
     </head>
 <body>
-    <section class="measure p2">
-        <h2 class="txt--center">会员中心</h2>
+    <section class="u-s-ms-base">
+        <h2 class="u-text-align-center">会员中心</h2>
         <div>
-            <a href="bindMember.php" class="btn--green block my2 h3">绑定会员卡</a>
-            <a href="purchase.php" class="btn--blue block my2 h3">购买会员卡</a>
+            <a href="bindMember.php" class="c-button c-button--full-bleed u-s-mb-base">绑定会员卡</a>
+            <a href="purchase.php" class="c-button c-button--secondary c-button--full-bleed">购买会员卡</a>
         </div>
     </section>
 </body>
