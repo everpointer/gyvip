@@ -2,19 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>绑定会员卡</title>
-    <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />
+    <!--<link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />-->
+    <link rel="stylesheet" href="https://preview.c9.io/everpointer_1/nodejs/scally/css/style.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/base.css" type="text/css" />
   </head>
   <body>
-    <section class="measure p2">
-      <h2>老会员绑定</h2>
-      <p class="h3">老会员电子会员卡绑定</p>
-      <form id="bindForm" action="doBindMember.php" method="POST" class="my2">
-        <input type="text" name="mobile" placeholder="请输入您的手机号"/>
-        <input type="submit" value="下一步" class="btn--blue" />
-      </form>
-    </section>
+    <div class="c-main-container">
+       <section class="l-container">
+          <h2>老会员绑定</h2>
+          <p class="h3">老会员电子会员卡绑定</p>
+          <form id="bindForm" action="doBindMember.php" method="POST" class="form-horizontal">
+            <input type="text" name="mobile" placeholder="请输入您的手机号"/>
+            <input type="submit" value="下一步" class="c-button c-button--full-bleed" />
+          </form>
+      </section>
+    </div>
     <script type="text/javascript" src="assets/js/zepto.min.js"></script>
     <script type="text/javascript" src="assets/js/spin.min.js"></script>
     <script type="text/javascript" src="assets/js/av-mini.js"></script>

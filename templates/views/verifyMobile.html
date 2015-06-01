@@ -8,14 +8,18 @@
 <!--  <script src="assets/js/av-mini.js"></script>-->
 <!--</head>-->
 <!--<body>-->
-  <section class="measure p2">
-    <form id="bindForm" action="doBindMember.php?action=bind" method=POST class="my2">
-      <input type="text" name="mobile" value="{{mobile}}" disabled class="my1"/>
-      <a href="#" class="btn--blue" id="requestSmsCode" class="my2">获取验证码</a>
-      <input type="text" name="smsCode" placeholder="输入验证码" class="my2"/>
-      <input type="submit" value="绑定" class="btn--blue" />
-    </form>
-  </section>
+  <div class="c-main-container">
+    <section class="l-container">
+      <form id="bindForm" action="doBindMember.php?action=bind" method=POST class="form-horizontal">
+        <div class="form-group">
+          <input type="text" name="mobile" value="{{mobile}}" disabled class="u-one-half-up-to-palm u-four-fifths"/>
+          <a href="#" id="requestSmsCode" class="c-button">获取验证码</a>
+        </div>
+        <input type="text" name="smsCode" placeholder="输入验证码" class="u-one-half-up-to-palm u-four-fifths"/>
+        <input type="submit" value="绑定" class="c-button c-button--full-bleed" />
+      </form>
+    </section>
+  </div>
   <script type="text/javascript">
     // Todo: limit api requester
     AV.initialize("{{leancloud_app_id}}", "{{leancloud_app_key}}");
