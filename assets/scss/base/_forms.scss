@@ -1,20 +1,20 @@
 // form extending
 input[type='text'],
+input[type='password'] {
+   @include to-rem(padding, $spacing-half $spacing-half); 
+}
+input[type='text'],
 input[type='password'],
 input[type='submit'] {
    @include to-rem(margin-bottom, $spacing-base);
 }
 .form-horizontal {
-   input[type='text'],
-   input[type='password'] {
-      @include to-rem(padding, $spacing-half $spacing-half); 
-   }
-   input[type='text'],
+   > input[type='text'],
    input[type='password'],
    input[type='submit'] {
       display: inline-block;
-      // width: 100%;
-      @include to-rem(margin-bottom, $spacing-base);
+      width: 100%;
+      // @include to-rem(margin-bottom, $spacing-base);
    }
 }
 .form-group {

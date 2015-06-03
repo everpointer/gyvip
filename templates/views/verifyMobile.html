@@ -1,90 +1,80 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>验证手机号码</title>-->
-<!--  <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />-->
-<!--  <link rel="stylesheet" href="assets/css/base.css" type="text/css" />-->
-<!--  <script src="assets/js/av-mini.js"></script>-->
-<!--</head>-->
-<!--<body>-->
-  <div class="c-main-container">
-    <section class="l-container">
-      <form id="bindForm" action="doBindMember.php?action=bind" method=POST class="form-horizontal">
-        <div class="form-group">
-          <input type="text" name="mobile" value="{{mobile}}" disabled class="u-one-half-up-to-palm u-four-fifths"/>
-          <a href="#" id="requestSmsCode" class="c-button">获取验证码</a>
-        </div>
-        <input type="text" name="smsCode" placeholder="输入验证码" class="u-one-half-up-to-palm u-four-fifths"/>
-        <input type="submit" value="绑定" class="c-button c-button--full-bleed" />
-      </form>
-    </section>
-  </div>
-  <script type="text/javascript">
-    // Todo: limit api requester
-    AV.initialize("{{leancloud_app_id}}", "{{leancloud_app_key}}");
-    
-    document.getElementById('requestSmsCode').onclick = function(e) {
-      e.preventDefault();
-      if (this.disabled === true) {
-        return false;
-      }
-      countDown(this, this.text);
-      AV.Cloud.requestSmsCode('{{mobile}}').then(function(){
-        //发送成功
-      }, function(err){
-        //发送失败
-        alert("发送失败");
-      });
-    };
-    
-   $("#bindForm").submit(function(e) {
-      e.preventDefault();
-      
-      var mobile = $("input[name='mobile']").val();
-      var smsCode = $("input[name='smsCode']").val();
-      if (! mobile.match(/(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/) ||
-          smsCode == "") {
-        return false;
-      }
-      
-      var spinner = new Spinner({color:'#545454', lines: 12}).spin(document.body);
-      $("body").addClass("bg--off-white").css("opaticy", 0.6);
-      $.ajax({
-        type: 'POST',
-        url: 'doBindMember.php?action=bind',
-        data: $("#bindForm").serialize(),
-        success: function() {
-          spinner.stop();
-          alert("绑定成功");
-          window.location = 'showMember.php';
-        },
-        error: function() {
-          spinner.stop();
-          alert("验证失败");
-        }
-      });
-    }); 
-    
-    function countDown(element, content) {
-      // disable element
-      element.disabled = true;
-      // add disabled styling
-      element.className = "c-button c-button--light-gray";
-      // seconds count down
-      var seconds = 60;
-      element.textContent = content + '('  + seconds + ')';
-      var intervalId = setInterval(function() {
-        if (seconds-- > 0) {
-          element.textContent = content + '(' + seconds + ')';
-        } else {
-          clearInterval(intervalId);
-          element.textContent = content;
-          element.className = "c-button";
-          element.disabled = false;
-        }
-      }, 1000);
+<div class="c-main-container">
+  <section class="l-container">
+    <form id="bindForm" action="doBindMember.php?action=bind" method=POST class="form-horizontal c-form">
+      <div class="c-form__header">2. 验证手机号码</div>
+      <p class="c-form__desc">请点击“获取验证码”</p>
+      <div class="form-group">
+        <input type="text" name="mobile" value="{{mobile}}" disabled class="u-one-half u-four-fifths-from-lap"/>
+        <a href="#" id="requestSmsCode" class="c-button">获取验证码</a>
+      </div>
+      <input type="text" name="smsCode" placeholder="输入验证码" class="u-one-half u-four-fifths-from-lap"/>
+      <input type="submit" value="绑定" class="c-button c-button--full-bleed" />
+    </form>
+  </section>
+</div>
+<script type="text/javascript">
+  // Todo: limit api requester
+  AV.initialize("{{leancloud_app_id}}", "{{leancloud_app_key}}");
+  
+  document.getElementById('requestSmsCode').onclick = function(e) {
+    e.preventDefault();
+    if (this.disabled === true) {
+      return false;
     }
-  </script>
-<!--</body>-->
-<!--</html>-->
+    countDown(this, this.text);
+    AV.Cloud.requestSmsCode('{{mobile}}').then(function(){
+      //发送成功
+    }, function(err){
+      //发送失败
+      alert("发送失败");
+    });
+  };
+  
+ $("#bindForm").submit(function(e) {
+    e.preventDefault();
+    
+    var mobile = $("input[name='mobile']").val();
+    var smsCode = $("input[name='smsCode']").val();
+    if (! mobile.match(/(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/) ||
+        smsCode == "") {
+      return false;
+    }
+    
+    var spinner = new Spinner({color:'#545454', lines: 12}).spin(document.body);
+    $("body").addClass("bg--off-white").css("opaticy", 0.6);
+    $.ajax({
+      type: 'POST',
+      url: 'doBindMember.php?action=bind',
+      data: $("#bindForm").serialize(),
+      success: function() {
+        spinner.stop();
+        alert("绑定成功");
+        window.location = 'showMember.php';
+      },
+      error: function() {
+        spinner.stop();
+        alert("验证失败");
+      }
+    });
+  }); 
+  
+  function countDown(element, content) {
+    // disable element
+    element.disabled = true;
+    // add disabled styling
+    element.className = "c-button c-button--light-gray";
+    // seconds count down
+    var seconds = 60;
+    element.textContent = content + '('  + seconds + ')';
+    var intervalId = setInterval(function() {
+      if (seconds-- > 0) {
+        element.textContent = content + '(' + seconds + ')';
+      } else {
+        clearInterval(intervalId);
+        element.textContent = content;
+        element.className = "c-button";
+        element.disabled = false;
+      }
+    }, 1000);
+  }
+</script>

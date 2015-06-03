@@ -18,7 +18,7 @@ if (!isset($memberInfo)) {
     <div role="main">
       <div class="bg-mask"></div>
          <div class="member-card">
-           <img src="assets/image/gy-member-card.png"></img>
+           <img src="assets/images/gy-member-card.png"></img>
            <p>使用时请向收银员出示此卡</p>
            <span class="card-number">No. <?php echo $memberInfo['cardNumber'] ?></span>
          </div>

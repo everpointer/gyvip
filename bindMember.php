@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>绑定会员卡</title>
-    <!--<link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" />-->
-    <link rel="stylesheet" href="https://preview.c9.io/everpointer_1/nodejs/scally/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="assets/css/base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
   </head>
-  <body>
+  <body class="u-color-bg-primary">
     <div class="c-main-container">
        <section class="l-container">
-          <h2>老会员绑定</h2>
-          <p class="h3">老会员电子会员卡绑定</p>
-          <form id="bindForm" action="doBindMember.php" method="POST" class="form-horizontal">
+          <form id="bindForm" action="doBindMember.php" method="POST" class="form-horizontal c-form">
+            <div class="c-form__header">1. 手机号码绑定</div>
+            <p class="c-form__desc">请输入预留手机号码</p>
             <input type="text" name="mobile" placeholder="请输入您的手机号"/>
             <input type="submit" value="下一步" class="c-button c-button--full-bleed" />
           </form>

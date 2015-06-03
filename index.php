@@ -20,7 +20,7 @@ if (isset($memberInfo)) {
     <div role="main">
       <div class="bg-mask"></div>
        <div class="member-card">
-         <img src="assets/image/gy-member-card.png" />
+         <img src="assets/images/gy-member-card.png" />
          <div class="img-line-mask"></div>
        </div>
        <!--<div class="c-button u-three-quarters u-s-ms-one-eighth">-->

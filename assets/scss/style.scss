@@ -366,3 +366,15 @@ html, body{
 .c-button--light-gray {
   background: $color-gray;
 }
+// c-forms
+.c-form {
+  .c-form__header {
+    @include font-size($font-size-heading-3);
+    @include to-rem(padding-bottom, $spacing-half);
+    @include to-rem(margin-bottom, $spacing-half);
+    border-bottom: 1px dashed black;
+  }
+  .c-form__desc {
+    @include font-size($font-size-heading-5);
+  }
+}
