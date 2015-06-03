@@ -149,5 +149,13 @@ return array(
                       'postcode', 'email', 'idCardType', 'idCard', 'amount',
                       'businessId', 'merchantId', 'opId', 'opName',
                       'description', 'sign')
+  ),
+  /**
+   * 查询KMTK用户余额
+   */
+  'kmtkBalance' => array(
+    'method' => 'get',
+    'url' => '——请填写——',
+    'params' => array('name', 'userType', 'accountType', 'businessId', 'sign')
   )
 );

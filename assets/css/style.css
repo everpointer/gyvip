@@ -2090,6 +2090,82 @@ input[type='submit'] {
  * OBJECTS.
  */
 /* ============================================================================
+   @OBJECTS -> TABLE
+   ========================================================================= */
+/**
+ * A table object that provides very common table styles which can be
+ * extended with a number of modifiers.
+ *
+ * @markup
+   <table class="o-table [modifier(s)]" cellspacing="0">
+     <tr>
+       <td>Lorem</td>
+       <td>Aliquam</td>
+       <td>Vestibulum</td>
+     </tr>
+   </table>
+ */
+/**
+ * Settings.
+ */
+/**
+ * Apply at these breakpoints (turned off by default).
+ */
+/**
+ * Cell padding.
+ */
+/**
+ * Cosmetics.
+ */
+.o-table {
+  width: 100%; }
+  .o-table caption,
+  .o-table th {
+    text-align: left; }
+  .o-table th,
+  .o-table td {
+    padding: 0.75rem; }
+
+/**
+ * Modifier: striped.
+ *
+ * Applies a background colour to every odd row.
+ */
+.o-table--striped tr:nth-of-type(odd) td {
+  background-color: #e6e6e6; }
+
+/**
+ * Modifier: border.
+ */
+.o-table--border th,
+.o-table--border td {
+  border: 1px solid #e6e6e6; }
+  .o-table--border th:empty,
+  .o-table--border td:empty {
+    border: 0; }
+
+/**
+ * Modifier: layout fixed, force tables into having equal-width columns.
+ */
+.o-table--fixed {
+  table-layout: fixed; }
+
+/**
+ * Modifiers: cell padding.
+ */
+.o-table--cell-padding-small th,
+.o-table--cell-padding-small td {
+  padding: 0.375rem; }
+
+.o-table--cell-padding-large th,
+.o-table--cell-padding-large td {
+  padding: 1.5rem; }
+
+.o-table--no-cell-padding th,
+.o-table--no-cell-padding td {
+  padding: 0; }
+
+/* ============================================================================
    @OBJECTS -> BUTTON
    ========================================================================= */
 /**

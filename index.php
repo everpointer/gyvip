@@ -51,10 +51,10 @@ if (isset($memberInfo)) {
               会员卡办理说明
               <div class="u-float-right"> > </div>
             </a>
-            <a href="#" class="c-item">
-              余额查询
-              <div class="u-float-right"> > </div>
-            </a>
+            <!--<a href="#" class="c-item">-->
+            <!--  余额查询-->
+            <!--  <div class="u-float-right"> > </div>-->
+            <!--</a>-->
          </div>
        </div>
     </div>
