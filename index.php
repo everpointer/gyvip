@@ -39,8 +39,8 @@ if (isset($memberInfo)) {
                 "老会员，请点击绑定会员卡；新会员，请购买会员卡。"
               </p>
               <p class="modal-content">
-                <a href="bindMember.php" class="c-button c-button-small c-button--full-bleed u-s-mb-small">申请会员卡</a>
-                <a href="purchase.php" class="c-button c-button-small c-button--full-bleed c-button--secondary">绑定会员卡</a>
+                <a href="bindMember.php" class="c-button c-button-small c-button--full-bleed u-s-mb-small">绑定会员卡</a>
+                <a href="purchase.php" class="c-button c-button-small c-button--full-bleed c-button--secondary">购买会员卡</a>
               </p>
             </div>
           </div>

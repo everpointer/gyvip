@@ -81,7 +81,7 @@
     @include position(fixed, 0px 0px 0px 0px);
     background: rgba(0,0,0, 0.85);
     opacity: 0;
-    padding-top: 0.6em;
+    padding-top: 50%;
     text-align: left;
     visibility: hidden;
     z-index: 99999999999;
@@ -131,20 +131,13 @@
     transition: opacity 0.25s ease;
     background: $modal-background;
     border-radius: $base-border-radius;
-    margin-top: 0;
+    margin-top: 30%;
     margin: auto;
     max-height: 95%;
     overflow: auto;
     padding: $modal-padding / 2;
     position: relative;
     width: 85%;
-
-    // @include respond-to(palm) {
-    @include respond-to(400) {
-      max-height: 70%;
-      padding: $modal-padding;
-      width: 80%;
-    }
 
     @include respond-to(lap) {
       width: 50%;

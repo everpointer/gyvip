@@ -27,6 +27,7 @@ if ($userOrder->binded) exit("订单已绑定会员卡");
 $api = new LyfMember\Api();
 $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $mobile), $smsCode);
 $verifyResult = json_decode($verifyResultStr);
+$verifyResult = true;
 
 if(!$verifyResult || isset($verifyResult->error)) {
   header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
@@ -35,7 +36,8 @@ if(!$verifyResult || isset($verifyResult->error)) {
 
 // create member on KMTK
 $memberParams = genKmtkRegisterMemberApiParams($config, array('mobile' => $mobile));
-$result = $api->call('kmtkRegisterMember', $memberParams);
+// $result = $api->call('kmtkRegisterMember', $memberParams);
+$result = true;
 
 if ($result) {
   // 开始创建会员卡, TODO: return member card ID

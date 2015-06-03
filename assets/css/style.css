@@ -1957,6 +1957,26 @@ h6:last-child,
 .h6:last-child {
   margin-bottom: 0; }
 
+input[type='text'],
+input[type='password'],
+input[type='submit'] {
+  margin-bottom: 1.5rem; }
+
+.form-horizontal input[type='text'],
+.form-horizontal input[type='password'] {
+  padding: 0.75rem 0.75rem; }
+.form-horizontal input[type='text'],
+.form-horizontal input[type='password'],
+.form-horizontal input[type='submit'] {
+  display: inline-block;
+  margin-bottom: 1.5rem; }
+
+.form-group {
+  margin-bottom: 1.5rem; }
+  .form-group input[type='text'],
+  .form-group input[type='password'] {
+    margin-bottom: 0; }
+
 /**
  * LAYOUT.
  */
@@ -2465,7 +2485,7 @@ h6:last-child,
   left: 0px;
   background: rgba(0, 0, 0, 0.85);
   opacity: 0;
-  padding-top: 0.6em;
+  padding-top: 50%;
   text-align: left;
   visibility: hidden;
   z-index: 99999999999; }
@@ -2493,18 +2513,13 @@ h6:last-child,
   transition: opacity 0.25s ease;
   background: white;
   border-radius: 3px;
-  margin-top: 0;
+  margin-top: 30%;
   margin: auto;
   max-height: 95%;
   overflow: auto;
   padding: 1.5em;
   position: relative;
   width: 85%; }
-  @media (min-width: 25em) {
-    .c-modal .modal-inner {
-      max-height: 70%;
-      padding: 3em;
-      width: 80%; } }
   @media (min-width: 40.0625em) {
     .c-modal .modal-inner {
       width: 50%; } }
@@ -3155,207 +3170,6 @@ h6:last-child,
 .u-eleven-twelfths {
   width: 91.66667%; }
 
-@media (max-width: 40em) {
-  .u-one-whole-up-to-palm {
-    width: 100%; }
-
-  .u-one-half-up-to-palm {
-    width: 50%; }
-
-  .u-one-third-up-to-palm {
-    width: 33.33333%; }
-
-  .u-two-thirds-up-to-palm {
-    width: 66.66667%; }
-
-  .u-one-quarter-up-to-palm {
-    width: 25%; }
-
-  .u-two-quarters-up-to-palm {
-    width: 50%; }
-
-  .u-three-quarters-up-to-palm {
-    width: 75%; }
-
-  .u-one-fifth-up-to-palm {
-    width: 20%; }
-
-  .u-two-fifths-up-to-palm {
-    width: 40%; }
-
-  .u-three-fifths-up-to-palm {
-    width: 60%; }
-
-  .u-four-fifths-up-to-palm {
-    width: 80%; }
-
-  .u-one-sixth-up-to-palm {
-    width: 16.66667%; }
-
-  .u-two-sixths-up-to-palm {
-    width: 33.33333%; }
-
-  .u-three-sixths-up-to-palm {
-    width: 50%; }
-
-  .u-four-sixths-up-to-palm {
-    width: 66.66667%; }
-
-  .u-five-sixths-up-to-palm {
-    width: 83.33333%; }
-
-  .u-one-seventh-up-to-palm {
-    width: 14.28571%; }
-
-  .u-two-sevenths-up-to-palm {
-    width: 28.57143%; }
-
-  .u-three-sevenths-up-to-palm {
-    width: 42.85714%; }
-
-  .u-four-sevenths-up-to-palm {
-    width: 57.14286%; }
-
-  .u-five-sevenths-up-to-palm {
-    width: 71.42857%; }
-
-  .u-six-sevenths-up-to-palm {
-    width: 85.71429%; }
-
-  .u-one-eighth-up-to-palm {
-    width: 12.5%; }
-
-  .u-two-eighths-up-to-palm {
-    width: 25%; }
-
-  .u-three-eighths-up-to-palm {
-    width: 37.5%; }
-
-  .u-four-eighths-up-to-palm {
-    width: 50%; }
-
-  .u-five-eighths-up-to-palm {
-    width: 62.5%; }
-
-  .u-six-eighths-up-to-palm {
-    width: 75%; }
-
-  .u-seven-eighths-up-to-palm {
-    width: 87.5%; }
-
-  .u-one-ninth-up-to-palm {
-    width: 11.11111%; }
-
-  .u-two-ninths-up-to-palm {
-    width: 22.22222%; }
-
-  .u-three-ninths-up-to-palm {
-    width: 33.33333%; }
-
-  .u-four-ninths-up-to-palm {
-    width: 44.44444%; }
-
-  .u-five-ninths-up-to-palm {
-    width: 55.55556%; }
-
-  .u-six-ninths-up-to-palm {
-    width: 66.66667%; }
-
-  .u-seven-ninths-up-to-palm {
-    width: 77.77778%; }
-
-  .u-eight-ninths-up-to-palm {
-    width: 88.88889%; }
-
-  .u-one-tenth-up-to-palm {
-    width: 10%; }
-
-  .u-two-tenths-up-to-palm {
-    width: 20%; }
-
-  .u-three-tenths-up-to-palm {
-    width: 30%; }
-
-  .u-four-tenths-up-to-palm {
-    width: 40%; }
-
-  .u-five-tenths-up-to-palm {
-    width: 50%; }
-
-  .u-six-tenths-up-to-palm {
-    width: 60%; }
-
-  .u-seven-tenths-up-to-palm {
-    width: 70%; }
-
-  .u-eight-tenths-up-to-palm {
-    width: 80%; }
-
-  .u-nine-tenths-up-to-palm {
-    width: 90%; }
-
-  .u-one-eleventh-up-to-palm {
-    width: 9.09091%; }
-
-  .u-two-elevenths-up-to-palm {
-    width: 18.18182%; }
-
-  .u-three-elevenths-up-to-palm {
-    width: 27.27273%; }
-
-  .u-four-elevenths-up-to-palm {
-    width: 36.36364%; }
-
-  .u-five-elevenths-up-to-palm {
-    width: 45.45455%; }
-
-  .u-six-elevenths-up-to-palm {
-    width: 54.54545%; }
-
-  .u-seven-elevenths-up-to-palm {
-    width: 63.63636%; }
-
-  .u-eight-elevenths-up-to-palm {
-    width: 72.72727%; }
-
-  .u-nine-elevenths-up-to-palm {
-    width: 81.81818%; }
-
-  .u-ten-elevenths-up-to-palm {
-    width: 90.90909%; }
-
-  .u-one-twelfth-up-to-palm {
-    width: 8.33333%; }
-
-  .u-two-twelfths-up-to-palm {
-    width: 16.66667%; }
-
-  .u-three-twelfths-up-to-palm {
-    width: 25%; }
-
-  .u-four-twelfths-up-to-palm {
-    width: 33.33333%; }
-
-  .u-five-twelfths-up-to-palm {
-    width: 41.66667%; }
-
-  .u-six-twelfths-up-to-palm {
-    width: 50%; }
-
-  .u-seven-twelfths-up-to-palm {
-    width: 58.33333%; }
-
-  .u-eight-twelfths-up-to-palm {
-    width: 66.66667%; }
-
-  .u-nine-twelfths-up-to-palm {
-    width: 75%; }
-
-  .u-ten-twelfths-up-to-palm {
-    width: 83.33333%; }
-
-  .u-eleven-twelfths-up-to-palm {
-    width: 91.66667%; } }
 @media (min-width: 40.0625em) {
   .u-one-whole-from-lap {
     width: 100%; }
@@ -4934,6 +4748,6 @@ html, body {
     border-radius: 6px; }
 
 .c-button--light-gray {
-  background: #F5F5F5; }
+  background: #AAAAAA; }
 
 /*# sourceMappingURL=style.css.map */

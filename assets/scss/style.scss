@@ -188,6 +188,11 @@
 // Placeholders
 @import "../../bower_components/scally/core/placeholders/bottom-spacing";
 
+// My bases
+// =============================================================================
+@import "./base/forms";
+
+
 
 /**
  * LAYOUT.
@@ -293,7 +298,7 @@
 
 // My utilities
 // =============================================================================
-@import "./utilities/my-others";
+@import "./utilities/u-my-others";
 @import "./utilities/u-colors";
 
 
@@ -359,5 +364,5 @@ html, body{
 
 // c-button
 .c-button--light-gray {
-  background: $color-bg-primary;
+  background: $color-gray;
 }
