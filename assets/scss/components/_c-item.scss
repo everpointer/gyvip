@@ -1,0 +1,135 @@
+/**
+ * Items
+ * --------------------------------------------------
+ */
+ 
+// Variables
+// --------------------------------------------------
+
+$c-item-default-bg: #fff !default;
+$c-item-default-border: #ddd !default;
+$c-item-default-text: #444 !default;
+$c-item-z-index-item:                    2 !default;
+$c-item-font-size:                  16px !default;
+$c-item-border-width:               1px !default;
+$c-item-padding:                    16px !default;
+
+// Item Mixins
+// --------------------------------------------------
+
+@mixin item-style($bg-color, $border-color, $color) {
+  border-color: $border-color;
+  background-color: $bg-color;
+  color: $color;
+}
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c-item {
+  @include item-style($c-item-default-bg, $c-item-default-border, $c-item-default-text);
+
+  position: relative;
+  z-index: $c-item-z-index-item; // Make sure the borders and stuff don't get hidden by children
+  display: block;
+
+  margin: $c-item-border-width * -1;
+  padding: $c-item-padding;
+
+  border-width: $c-item-border-width;
+  border-style: solid;
+  font-size: $c-item-font-size;
+
+  h2 {
+    margin: 0 0 2px 0;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+  }
+  h4 {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+  }
+  h5, h6 {
+    margin: 0 0 3px 0;
+    font-size: 10px;
+  }
+  p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  h1:last-child,
+  h2:last-child,
+  h3:last-child,
+  h4:last-child,
+  h5:last-child,
+  h6:last-child,
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  // Align badges within items
+  .badge {
+    @include display-flex();
+    position: absolute;
+    top: $c-item-padding;
+    right: ($c-item-padding * 2);
+  }
+  &.item-button-right .badge {
+    right: ($c-item-padding * 2) + 35;
+  }
+  &.item-divider .badge {
+    top: ceil($c-item-padding / 2);
+  }
+  .badge + .badge {
+    margin-right: 5px;
+  }
+
+  // Different themes for items
+//   &.item-light {
+//     @include item-style($c-item-light-bg, $c-item-light-border, $c-item-light-text);
+//   }
+//   &.item-stable {
+//     @include item-style($c-item-stable-bg, $c-item-stable-border, $c-item-stable-text);
+//   }
+//   &.item-positive {
+//     @include item-style($c-item-positive-bg, $c-item-positive-border, $c-item-positive-text);
+//   }
+//   &.item-calm {
+//     @include item-style($c-item-calm-bg, $c-item-calm-border, $c-item-calm-text);
+//   }
+//   &.item-assertive {
+//     @include item-style($c-item-assertive-bg, $c-item-assertive-border, $c-item-assertive-text);
+//   }
+//   &.item-balanced {
+//     @include item-style($c-item-balanced-bg, $c-item-balanced-border, $c-item-balanced-text);
+//   }
+//   &.item-energized {
+//     @include item-style($c-item-energized-bg, $c-item-energized-border, $c-item-energized-text);
+//   }
+//   &.item-royal {
+//     @include item-style($c-item-royal-bg, $c-item-royal-border, $c-item-royal-text);
+//   }
+//   &.item-dark {
+//     @include item-style($c-item-dark-bg, $c-item-dark-border, $c-item-dark-text);
+//   }
+
+//   &[ng-click]:hover {
+//     cursor: pointer;
+//   }
+     a:hover {
+        text-decoration: none;
+     }
+
+}

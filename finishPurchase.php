@@ -107,7 +107,7 @@ if ($order->uid != $uid) exit("订单不属于您");
         // disable element
         element.disabled = true;
         // add disabled styling
-        element.className = "btn btn--light-gray";
+        element.className = "c-button c-button--light-gray";
         // seconds count down
         var seconds = 60;
         element.textContent = content + '('  + seconds + ')';
@@ -117,7 +117,7 @@ if ($order->uid != $uid) exit("订单不属于您");
           } else {
             clearInterval(intervalId);
             element.textContent = content;
-            element.className = "btn btn--blue";
+            element.className = "c-button";
             element.disabled = false;
           }
         }, 1000);
