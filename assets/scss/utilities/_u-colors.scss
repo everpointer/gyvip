@@ -2,3 +2,10 @@
    @Utilities -> colors
    ========================================================================= */
 .u-color-bg-primary { background: $color-bg-primary !important; }
+.u-color-bg-error { background: $color-state-error !important; }
+.u-color-bg-white { background: $color-white !important; }
+
+.u-color-error { 
+   background: $color-state-error !important;
+   color: $color-white !important;
+}

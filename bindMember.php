@@ -27,6 +27,7 @@
           
           var mobile = $("input[name='mobile']").val();
           if (! mobile.match(/(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)) {
+            alert("请输入正确的手机号码");
             return false;
           }
           

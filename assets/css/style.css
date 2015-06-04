@@ -4775,6 +4775,16 @@ input[type='submit'] {
 .u-color-bg-primary {
   background: #F5F5F5 !important; }
 
+.u-color-bg-error {
+  background: #dc322f !important; }
+
+.u-color-bg-white {
+  background: #fff !important; }
+
+.u-color-error {
+  background: #dc322f !important;
+  color: #fff !important; }
+
 /* Your styles
    ========================================================================= */
 html, body {
