@@ -47,8 +47,8 @@ if (isset($memberInfo)) {
         </div>
 
        <div class="c-list c-list-inset u-s-ms-base">
-            <a href="#" class="c-item">
-              会员卡办理说明
+            <a href="articles/membercard.html" class="c-item">
+              会员卡使用说明
               <div class="u-float-right"> > </div>
             </a>
             <!--<a href="#" class="c-item">-->
