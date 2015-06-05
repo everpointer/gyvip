@@ -4,7 +4,6 @@ temp
 AlipassSDKDemo
 bower_components
 backup
-php.ini
 config.php
 releases
 templates/cache
