@@ -78,8 +78,9 @@ class Member {
     $this->ora->connect();
   }
   
+  // query mobile or telephone
   public function queryUserByMobile($mobile) {
-    $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\' and status=1';
+    $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\' or telephone=\''. $mobile .'\' and status=1';
     $result = $this->ora->select($sql);
     return $result;
   }

@@ -1,0 +1,21 @@
+/**
+ *  my utilities
+ */
+// spacing
+.u-s-ms-one-eighth {
+   margin-left: percentage(1/8) !important;
+   margin-right: percentage(1/8) !important;
+}
+
+/**
+ * Library typo fixing
+ */
+
+.u-width--full-bleed {
+  display: block !important;
+  width: 100% !important;
+
+  @if $apply-friendly-box-model == false {
+    box-sizing: border-box !important;
+  }
+}

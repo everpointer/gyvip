@@ -58,9 +58,13 @@ function memberToMemberInfo($member) {
  */
 // kmtk member
 function fromKmtkMember($member) {
+	$mobile = $member['MOBILE'];
+	if (empty($mobile) && !empty($member['TELEPHONE'])) {
+		$mobile = $member['TELEPHONE'];
+	}
 	return array(
     "cardNumber" => $member['CARDNO'],
-    "mobile" => $member['MOBILE'],
+    "mobile" => $mobile,
     "name"   => $member['NAME'],
     "sex"    => $member['SEX'],
     "merchantId" => $member['MERCHANTID'],

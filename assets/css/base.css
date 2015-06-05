@@ -1,3 +1,15 @@
-body {
-  font-size: 50px;
+/*body {*/
+/*  font-size: 16px;*/
+/*}*/
+
+.img-line-mask {
+  position: absolute;
+  border-top: 3px solid rgb(209, 224, 222);
+  height: 13%;
+  width: 110%;
+  background: white;
+  bottom: 0px;
+  left: -5%;
+  z-index: 2;
+  border-radius: 6px;
 }

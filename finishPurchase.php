@@ -26,21 +26,27 @@ if ($order->uid != $uid) exit("订单不属于您");
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>注册会员</title>
-    <link rel="stylesheet" href="assets/css/furtive.min.css" type="text/css" /> 
-    <link rel="stylesheet" href="assets/css/base.css" type="text/css" /> 
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" /> 
   </head>
-  <body>
-    <section class="measure p2">
-      <h2>完善会员信息</h2>
-      <p class="h3">您已成功购买会员卡，请继续填写一下信息。</p>
-      <form id="registerForm" action="registerMember.php" method="POST" class="my2">
-        <input type="text" name="mobile" placeholder="请输入手机号" class="my2"/>
-        <a href="#" class="btn--blue" id="requestSmsCode" class="my2">获取验证码</a>
-        <input type="text" name="smsCode" placeholder="输入验证码" class="my2"/>
-        <input type="submit" value="注册" class="btn--blue" />
-      </form>
-    </section>
+  <body class="u-color-bg-primary">
+    <div class="c-main-container">
+      <section class="l-container">
+        <form id="registerForm" action="registerMember.php" method="POST" class="form-horizontal c-form">
+          <div class="c-form__header">完善会员信息</div>
+          <p class="c-form__desc">您已成功购买会员卡，请继续填写一下信息。</p>
+          <div class="form-group">
+            <input type="text" name="mobile" placeholder="请输入手机号" class="u-one-half u-four-fifths-from-lap"/>
+            <a href="#" id="requestSmsCode" class="c-button">获取验证码</a>
+          </div>
+          <div class="form-group">
+            <input type="text" name="smsCode" placeholder="输入验证码" class="u-one-half u-four-fifths-from-lap" />
+          </div>
+          <input type="submit" value="注册" class="c-button c-button--full-bleed"/>
+        </form>
+      </section>
+    </div>
     <script type="text/javascript" src="assets/js/zepto.min.js"></script>
     <script type="text/javascript" src="assets/js/spin.min.js"></script>
     <script type="text/javascript" src="assets/js/av-mini.js"></script>
@@ -99,7 +105,7 @@ if ($order->uid != $uid) exit("订单不属于您");
         // disable element
         element.disabled = true;
         // add disabled styling
-        element.className = "btn btn--light-gray";
+        element.className = "c-button c-button--light-gray";
         // seconds count down
         var seconds = 60;
         element.textContent = content + '('  + seconds + ')';
@@ -109,7 +115,7 @@ if ($order->uid != $uid) exit("订单不属于您");
           } else {
             clearInterval(intervalId);
             element.textContent = content;
-            element.className = "btn btn--blue";
+            element.className = "c-button";
             element.disabled = false;
           }
         }, 1000);
