@@ -96,6 +96,8 @@ class UserInfo {
 			writeLog ( "Alipay User Id (OpenId) : $userId" );
 			$_SESSION['alipay_user_id'] = $userId;
 			return $userId;
+		} else {
+			exit("Fail to get user token");
 		}
 	}
 }
