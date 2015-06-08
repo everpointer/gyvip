@@ -1,0 +1,196 @@
+/* ===========================================================================
+   @COMPONENTS -> Modal
+   ========================================================================= */
+  
+/**
+ * Main Modal component with a bunch of modifiers.
+ *
+ * The base component class and all of its modifiers:
+ *
+ 
+   .c-modal
+     .c-modal--modifier
+ *
+ * @markup
+   <div class="c-modal">
+    <label for="modal-1">
+      <div class="modal-trigger">Click for Modal</div>
+    </label>
+    <input class="modal-state" id="modal-1" type="checkbox" />
+    <div class="modal-fade-screen">
+      <div class="modal-inner">
+        <div class="modal-close" for="modal-1"></div>
+        <h1>Modal Title</h1>
+        <p class="modal-intro">Intro text lorem ipsum dolor sit ametm, quas, eaque facilis aliquid cupiditate tempora cumque ipsum accusantium illo modi commodi  minima.</p>
+        <p class="modal-content">Body text lorem ipsum dolor ipsum dolor sit sit possimus amet, consectetur adipisicing elit. Itaque, placeat, explicabo, veniam quos aperiam molestias eriam molestias molestiae suscipit ipsum enim quasi sit possimus quod atque nobis voluptas earum odit accusamus quibusdam. Body text lorem ipsum dolor ipsum dolor sit sit possimus amet.</p>
+      </div>
+    </div>
+  </div>
+
+ *
+ * @dependency
+ * This component is dependent on the c-button component therefore it is
+ * `@extend`ed from this component.
+ */
+
+// Variables  
+// =============================================================================
+
+.c-modal {
+  $base-border-color: gainsboro !default;
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $base-font-size: 1em !default;
+  $base-line-height: 1.5em !default;
+  $action-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+  $base-font-color: $dark-gray !default;
+  $modal-padding: 3em;
+  $modal-background: $base-background-color;
+  $modal-close-color: $light-gray;
+  $modal-image-height: 135px;
+  $modal-image-width: $modal-image-height;
+  $modal-trigger-image-width: 300px;
+
+  label {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  label img {
+    border-radius: $modal-trigger-image-width / 2;
+    display: block;
+    max-width: $modal-trigger-image-width;
+  }
+
+  .modal-state {
+    display: none;
+  }
+
+  .modal-trigger {
+    // @include button(flat, $action-color);
+    // padding: 0.8em 1em;
+    @extend .c-button;
+  }
+
+  .modal-fade-screen { // overlay
+    transition: opacity 0.25s ease;
+    @include position(fixed, 0px 0px 0px 0px);
+    background: rgba(0,0,0, 0.85);
+    opacity: 0;
+    padding-top: 30%;
+    text-align: left;
+    visibility: hidden;
+    z-index: 99999999999;
+
+    @include respond-to(lap) {
+      padding-top: 10em;
+    }
+
+    .modal-bg {
+      @include position(absolute, 0px 0px 0px 0px);
+      cursor: pointer;
+    }
+  }
+
+  .modal-close {
+    @include position(absolute, ($modal-padding /6) ($modal-padding /8) null null);
+    @include size(1.6em);
+    background: $modal-background;
+    cursor: pointer;
+
+    &:hover,
+    &:hover {
+      color: darken($modal-close-color, 10%);
+    }
+    // &:after,
+    // &:before {
+    //   @include position(absolute, 3px 3px 0 50%);
+    //   transform: rotate(45deg);
+    //   @include size(0.15em 1.5em);
+    //   background: $modal-close-color;
+    //   content: '';
+    //   display: block;
+    //   margin: -3px 0 0 -1px;
+    // }
+
+    // &:hover:after,
+    // &:hover:before {
+    //   background: darken($modal-close-color, 10%);
+    // }
+
+    // &:before {
+    //   transform: rotate(-45deg);
+    // }
+  }
+
+  .modal-inner {
+    transition: opacity 0.25s ease;
+    background: $modal-background;
+    border-radius: $base-border-radius;
+    margin-top: 0;
+    margin: auto;
+    max-height: 95%;
+    overflow: auto;
+    padding: $modal-padding / 2;
+    position: relative;
+    width: 85%;
+
+    @include respond-to(lap) {
+      width: 50%;
+    }
+
+    h1 {
+      color: $base-font-color;
+      margin-bottom: 0 0 0.6em 0;
+      text-align: left;
+      text-transform: capitalize;
+    }
+
+    p {
+      color: $base-font-color;
+      line-height: $base-line-height;
+    }
+
+    .modal-intro {
+      font-weight: 800;
+    }
+
+    .modal-content {
+      color: $base-font-color;
+
+      // @include media($medium-screen) {
+      //   @include columns(2 8em);
+      // }
+    }
+
+    a.cta {
+      color: white;
+      display: inline-block;
+      margin-right: 0.5em;
+      margin-top: 1em;
+
+      &:last-child {
+        padding: 0 2em;
+      }
+    }
+  }
+
+  .modal-state:checked + .modal-fade-screen {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-state:checked + .modal-fade-screen .modal-inner {
+    top: 0.5em;
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+// Based on code by Kasper Mikiewicz

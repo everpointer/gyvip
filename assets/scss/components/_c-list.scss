@@ -1,0 +1,145 @@
+/**
+ * Lists
+ * --------------------------------------------------
+ */
+
+$c-list-item-border-width: $c-item-border-width !default;
+$c-list-header-color:               #222 !default;
+$c-list-header-bg:                  transparent !default;
+$c-list-header-padding: 5px 15px !default;
+$c-list-header-margin-top:          20px !default;
+$c-content-padding:                 10px !default;
+
+// Cards
+// -------------------------------
+
+$c-card-header-bg:                  #F5F5F5 !default;
+$c-card-body-bg:                    #fff !default;
+$c-card-footer-bg:                  #F5F5F5 !default;
+
+$c-card-padding:                    10px !default;
+$c-card-border-width:               1px !default;
+
+$c-card-border-color:               #ccc !default;
+$c-card-border-radius:              2px !default;
+$c-card-box-shadow:                 0 1px 3px rgba(0, 0, 0, .3) !default;
+
+.c-list {
+  position: relative;
+  padding-top: $c-list-item-border-width;
+  padding-bottom: $c-list-item-border-width;
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 20px;
+}
+.c-list:last-child {
+  margin-bottom: 0px;
+  &.c-card{
+    margin-bottom:40px;
+  }
+}
+
+
+/**
+ * List Header
+ * --------------------------------------------------
+ */
+
+.c-list-header {
+  margin-top: $c-list-header-margin-top;
+  padding: $c-list-header-padding;
+  background-color: $c-list-header-bg;
+  color: $c-list-header-color;
+  font-weight: bold;
+}
+
+// when its a card make sure it doesn't duplicate top and bottom borders
+.c-card.c-list .c-item {
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+
+/**
+ * Cards and Inset Lists
+ * --------------------------------------------------
+ * A card and list-inset are close to the same thing, except a card as a box shadow.
+ */
+
+.c-card,
+.c-list-inset {
+  overflow: hidden;
+  margin: ($c-content-padding * 2) $c-content-padding;
+  border-radius: $c-card-border-radius;
+  background-color: $c-card-body-bg;
+}
+
+.c-card {
+  padding-top: $c-list-item-border-width;
+  padding-bottom: $c-list-item-border-width;
+  box-shadow: $c-card-box-shadow;
+
+  .c-item {
+    border-left: 0;
+    border-right: 0;
+  }
+  .c-item:first-child {
+    border-top: 0;
+  }
+  .c-item:last-child {
+    border-bottom: 0;
+  }
+}
+
+.padding {
+  .c-card, .c-list-inset {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.c-card .c-item,
+.c-list-inset .c-item,
+.padding > .c-list .c-item
+{
+  &:first-child {
+    border-top-left-radius: $c-card-border-radius;
+    border-top-right-radius: $c-card-border-radius;
+
+    .c-item-content {
+      border-top-left-radius: $c-card-border-radius;
+      border-top-right-radius: $c-card-border-radius;
+    }
+  }
+  &:last-child {
+    border-bottom-right-radius: $c-card-border-radius;
+    border-bottom-left-radius: $c-card-border-radius;
+
+    .c-item-content {
+      border-bottom-right-radius: $c-card-border-radius;
+      border-bottom-left-radius: $c-card-border-radius;
+    }
+  }
+}
+
+.c-card .c-item:last-child,
+.c-list-inset .c-item:last-child {
+  margin-bottom: $c-list-item-border-width * -1;
+}
+
+.c-card .c-item,
+.c-list-inset .c-item,
+.padding > .c-list .c-item,
+.padding-horizontal > .c-list .c-item {
+  margin-right: 0;
+  margin-left: 0;
+
+  &.c-item-input input {
+    padding-right: 44px;
+  }
+}
+.padding-left > .c-list .c-item {
+  margin-left: 0;
+}
+.padding-right > .c-list .c-item {
+  margin-right: 0;
+}

@@ -40,7 +40,7 @@
   color: #ABABAB;
   text-shadow: 0 2px #000;
   font-family: "PT Sans";
-  font-size: 50px;
+  font-size: 2rem;
   font-style: bold;
 }
 .member-card .company {
@@ -60,7 +60,15 @@
   color: #ABABAB;
   text-shadow: 0 2px #000;
   font-family: "PT Sans";
-  font-size: 40px;
+  font-size: 1.6rem;
+}
+@media (min-width: 40em) {
+  .member-card .number {
+    font-size: 4rem;
+  }
+  .member-card .name {
+    font-size: 2rem;
+  }
 }
 .member-card .visa {
   bottom: 0;

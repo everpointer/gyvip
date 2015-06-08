@@ -1,68 +1,68 @@
 <?php
 require_once 'common.php';
+require_once 'checkMember.php';
 
-if (!isset($memberInfo)) exit("您还不是会员");
+if (!isset($memberInfo)) {
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="assets/css/member.css" media="all">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css" media="all">
-  <title>会员中心</title>
-  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  <!-- Mobile Devices Support @begin -->
-  <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
-  <meta content="no-cache" http-equiv="pragma">
-  <meta content="0" http-equiv="expires">
-  <meta content="telephone=no, address=no" name="format-detection">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- apple devices fullscreen -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Mobile Devices Support @end -->
-  <style type="text/css">
-    #barcode {
-      margin-left: 10%;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      text-align: center;
-      width: 80%;
-    }
-  </style>
-</head>
-<body onselectstart="return true;" ondragstart="return false;">
-    <div class="container card">
-      <header>
-        <div class="header card">
-          <div id="card" data-role="card">
-            <div class="front" style="background-image:url(assets/image/member-card.jpg);">
-              <span class="no" style="max-width: 280px; font-size:14px; color:#FFFFFF; top:145px; left:170px; bottom:inherit; right:inherit;">
-                <?php echo $memberInfo['cardNumber']; ?>
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-      <div class="body">
-        <div class="barcode-wrapper">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>会员中心</title>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+  </head>
+  <body class="u-color-bg-primary">
+    <div role="main">
+      <div class="bg-mask"></div>
+         <div class="member-card">
+           <img src="assets/images/gy-member-card.png"></img>
+           <p>使用时请向收银员出示此卡</p>
+           <span class="card-number">No. <?php echo $memberInfo['cardNumber'] ?></span>
+         </div>
+         <div class="barcode">
           <img id="barcode" />
         </div>
-        <ul class="list_ul">
-          <div>
-            <li class="li_i">
-              <a class="label" href="tel:<?php echo $memberInfo['mobile'] ?>">
-              <i>&nbsp;</i><?php echo $memberInfo['mobile'] ?><span> &nbsp;</span>
+
+         <div class="c-list c-list-inset u-s-ms-base">
+              <a href="articles/membercard.html" class="c-item">
+                会员卡使用说明
+                <div class="u-float-right"> > </div>
               </a>
-            </li>
-          </div>
-        </ul>
-      </div>
+              <a href="showBalance.php" class="c-item">
+                积分查询
+                <div class="u-float-right"> > </div>
+              </a>
+           </div>
+         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/JsBarcode.all.min.js"></script>
-    <script type="text/javascript">
-      $("#barcode").JsBarcode("<?php echo $memberInfo['cardNumber']; ?>",{height: 60, fontSize:20});
+    <script>
+      $(function() {
+        $("#modal-1").on("change", function() {
+          if ($(this).is(":checked")) {
+            $("body").addClass("modal-open");
+          } else {
+            $("body").removeClass("modal-open");
+          }
+        });
+      
+        $(".modal-fade-screen, .modal-close").on("click", function() {
+          $(".modal-state:checked").prop("checked", false).change();
+        });
+      
+        $(".modal-inner").on("click", function(e) {
+          e.stopPropagation();
+        });
+        
+        // barcode
+        $("#barcode").JsBarcode("<?php echo $memberInfo['cardNumber']; ?>",{height: 60, displayValue:true, fontSize:20});
+      });
+
     </script>
   </body>
 </html>
+
