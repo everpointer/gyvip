@@ -17,7 +17,9 @@ return array(
     'app_id' => getenv('pingxx_app_id'),  // ping++ app_id
     'test_key' => getenv('pingxx_test_key'), // ping++ 测试环境key
     'live_key' => getenv('pingxx_live_key'), // ping++ 正式环境key
-    'env_key' => getenv('pingxx_env_key') // 当前使用环境, 正式环境才可调用支付宝
+    'env_key' => getenv('pingxx_env_key'), // 当前使用环境, 正式环境才可调用支付宝
+    'success_url' => getenv('host') . '/finishPurchase.php',
+    'cancel_url' => getenv('host') . '/cancelPurchase.php',
    ),
    'leancloud' => array( // leancloud 配置
     'app_id' => getenv('leancloud_app_id'),

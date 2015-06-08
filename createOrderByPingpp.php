@@ -46,8 +46,8 @@ $ch = \Pingpp\Charge::create(
         'subject'   => '花果山会员卡一张',
         'body'      => '花果山电子会员卡，与普通会员卡功能一致',
         'extra'     => array(
-          "success_url" => "https://member-laoyufu.c9.io/finishPurchase.php",
-          "cancel_url"  => "https://member-laoyufu.c9.io/cancelPurchase.php"
+          "success_url" => $config['pingxx']['success_url'],
+          "cancel_url"  => $config['pingxx']['cancel_url']
         )
     )
 );
