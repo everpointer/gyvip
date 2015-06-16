@@ -1,4 +1,5 @@
 <?php
+require_once 'function.inc.php';
 // check environment variables
 if (!getenv('env')) {
   exit("Website wrongly setuped!");
@@ -27,7 +28,7 @@ return array(
    ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     'X-AVOSCloud-Application-Id: ' . getenv('leancloud_app_id'),
-    'X-AVOSCloud-Application-Key: ' . getenv('leancloud_app_key')
+    'X-AVOSCloud-Request-Sign: ' . genLeanCloudAppSign(getenv('leancloud_app_key'))
   ),
   'api' => array( // 接口列表，配置对应的url, params 和 optionParams
     /**

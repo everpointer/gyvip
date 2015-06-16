@@ -119,3 +119,14 @@ function fromKmtkRegisterMemberParams($params) {
     "registeredAt" => date('Y-m-d H:i:s')
   );
 }
+// get millisecond from microtime
+function getMillisecond() {
+    list($s1, $s2) = explode(' ', microtime());
+    return (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+}
+// generate LeanCloud App Sign
+function genLeanCloudAppSign($appKey) {
+	$timestamp = getMillisecond();
+	$sign = md5($timestamp . $appKey);
+	return "$sign,$timestamp";
+}
