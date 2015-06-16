@@ -59,6 +59,7 @@ if ($action == 'verifyMobile') {
   if($verifyResult && !isset($verifyResult->error)) {
     // create old member on leancloud
     $member['uid'] = $uid;
+    $member['platform'] = 'alipay';
     $member['from'] = 'store';  // 来自门店的老会员
     $newMember = $member;
     // $newMember['alipay_uid'] = $uid;

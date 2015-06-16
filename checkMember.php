@@ -9,13 +9,14 @@ if (isset($_SESSION['memberInfo'])) {
 } else {
   $api = new \LyfMember\Api();
   $membersStr = $api->call('getMemberInfo', array(
-    'where' => json_encode(array("uid" => $uid))
+    'where' => json_encode(array("uid" => $uid)),
+    'include' => 'member'
   ));
 
   $members = json_decode($membersStr);
   if ($members && !empty($members->results)) {
     $member = $members->results[0];
-    $memberInfo = memberToMemberInfo($member);
+    $memberInfo = memberToMemberInfo($member->member);
     $_SESSION['memberInfo'] = $memberInfo;
   }
 }

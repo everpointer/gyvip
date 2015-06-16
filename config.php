@@ -42,8 +42,8 @@ return array(
      */
     'registerMember' => array(
       'method' => 'post',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member',
-      'params' => array('mobile', 'cardNumber', 'uid'),
+      'url' => 'https://leancloud.cn/1.1/functions/registerMember',
+      'params' => array('mobile', 'cardNumber', 'uid', 'platform'),
       'optionParams' => array('name', 'sex', 'merchantId', 'registedAt', 'from')
     ),
     /**
@@ -58,7 +58,7 @@ return array(
     'bindMember' => array(
       'method' => 'post',
       'url' => 'https://leancloud.cn/1.1/functions/bindMember',
-      'params' => array('uid', 'mobile', 'password')
+      'params' => array('uid', 'mobile', 'password', 'platform')
     ),
     /**
      * 会员信息查询接口，支持通过支付宝用户ID 或 手机号和密码 来查询用户
@@ -74,9 +74,8 @@ return array(
      */
     'getMemberInfo' => array(
       'method' => 'get',
-      'url' => 'https://api.leancloud.cn/1.1/classes/Member',
-      'params' => array(),
-      'optionParams' => array('uid', 'where')
+      'url' => 'https://api.leancloud.cn/1.1/classes/MemberThird',
+      'params' => array('where', 'include')
     ),
     /**
      * 会员卡购买订单创建接口
