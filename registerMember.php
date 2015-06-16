@@ -41,10 +41,9 @@ if ($result) {
   // 开始创建会员卡, TODO: return member card ID
   // create member on leancloud
   $memberInfo = fromKmtkRegisterMemberParams($memberParams);
-  $memberInfo['uid'] = $uid;
-  $memberInfo['platform'] = 'alipay';
-  $memberInfo['from'] = 'alipay';
-  // $newMember['alipay_uid'] = $uid;
+  $memberInfo['uid'] = $_SESSION['uid'];
+  $memberInfo['platform'] = $_SESSION['platform'];
+  $memberInfo['from'] = $_SESSION['platform'];
   $result = $api->call('registerMember', $memberInfo);
   
   // 更新订单状态

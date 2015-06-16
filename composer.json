@@ -1,6 +1,7 @@
 {
   "require": {
     "pingplusplus/pingpp-php": "dev-master",
-    "twig/twig": "~1.0"
+    "twig/twig": "~1.0",
+    "henter/wechat-oauth": "dev-master"
   }
 }

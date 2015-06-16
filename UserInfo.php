@@ -87,14 +87,15 @@ class UserInfo {
 	}
 	public function getUserId($auth_code = "") {
 		@session_start();
-		if (isset($_SESSION['alipay_user_id'])) return $_SESSION['alipay_user_id'];
+		if (isset($_SESSION['uid'])) return $_SESSION['uid'];
 		if (empty($auth_code)) return null;
 
 		$token = $this->requestToken ( $auth_code );
 		if (isset ( $token->alipay_system_oauth_token_response )) {
 			$userId = $token->alipay_system_oauth_token_response->alipay_user_id;
 			writeLog ( "Alipay User Id (OpenId) : $userId" );
-			$_SESSION['alipay_user_id'] = $userId;
+			$_SESSION['uid'] = $userId;
+			$_SESSION['platform'] = "alipay";
 			return $userId;
 		} else {
 			exit("Fail to get user token");

@@ -6,7 +6,7 @@ require_once 'View.php';
 require_once 'model/Member.php';
 
 // session is really hard to control.(duplicated?)
-@session_start();
+// @session_start();
 
 if ((!isset($_GET['action']) && !isset($_REQUEST['mobile']))
     || !isset($uid))
@@ -55,14 +55,14 @@ if ($action == 'verifyMobile') {
   $api = new LyfMember\Api();
   $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $member['mobile']), $smsCode);
   $verifyResult = json_decode($verifyResultStr);
+  // $verifyResult = true;
   
   if($verifyResult && !isset($verifyResult->error)) {
     // create old member on leancloud
-    $member['uid'] = $uid;
-    $member['platform'] = 'alipay';
+    $member['uid'] = $_SESSION['uid'];
+    $member['platform'] = $_SESSION['platform'];
     $member['from'] = 'store';  // 来自门店的老会员
     $newMember = $member;
-    // $newMember['alipay_uid'] = $uid;
     $result = $api->call('registerMember', $newMember);
     if ($result) {
       $_SESSION['memberInfo'] = $member;

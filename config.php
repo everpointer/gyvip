@@ -14,6 +14,7 @@ return array(
   'partner_id' => getenv('alipay_partner_id'), // 商户partner id，支付宝后台查看
   'partner_name' => "果忆", // 商户名称
   'card_price' => 10,  // 会�卡单价，单位元
+  'host' => getenv('host'),
   'pingxx' => array( // ping++ 配置, ping++后台可查看
     'app_id' => getenv('pingxx_app_id'),  // ping++ app_id
     'test_key' => getenv('pingxx_test_key'), // ping++ 测试环境key
@@ -26,6 +27,10 @@ return array(
     'app_id' => getenv('leancloud_app_id'),
     'app_key' => getenv('leancloud_app_key')
    ),
+   'wechat' => array(
+      'app_id' => getenv('wechat_app_id'),
+      'app_secret' => getenv('wechat_app_secret')
+    ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     'X-AVOSCloud-Application-Id: ' . getenv('leancloud_app_id'),
     'X-AVOSCloud-Request-Sign: ' . genLeanCloudAppSign(getenv('leancloud_app_key'))

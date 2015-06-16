@@ -4,20 +4,71 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "457dd5726e79a2d59955cf09ccd5570c",
+    "hash": "c02bff2868f7c431392e1306afaa7ffb",
     "packages": [
+        {
+            "name": "henter/wechat-oauth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/henter/WeChat-OAuth.git",
+                "reference": "5fb441f63253b1089ee81aefda5d7374b26658c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/henter/WeChat-OAuth/zipball/5fb441f63253b1089ee81aefda5d7374b26658c3",
+                "reference": "5fb441f63253b1089ee81aefda5d7374b26658c3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Henter\\WeChat": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henter",
+                    "email": "henter@henter.me"
+                }
+            ],
+            "description": "WeChat OAuth SDK",
+            "keywords": [
+                "login",
+                "oauth",
+                "wechat",
+                "wechat-oauth",
+                "wechatlogin",
+                "wechatoauth",
+                "weixin",
+                "weixin-oauth",
+                "weixinlogin",
+                "weixinoauth"
+            ],
+            "time": "2015-05-14 11:04:05"
+        },
         {
             "name": "pingplusplus/pingpp-php",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PingPlusPlus/pingpp-php.git",
-                "reference": "d039ec96b5cb303bcf1789772b1827454d36c47f"
+                "reference": "6b1ec2ccae5f11c7186e552802955003b972141c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PingPlusPlus/pingpp-php/zipball/d039ec96b5cb303bcf1789772b1827454d36c47f",
-                "reference": "d039ec96b5cb303bcf1789772b1827454d36c47f",
+                "url": "https://api.github.com/repos/PingPlusPlus/pingpp-php/zipball/6b1ec2ccae5f11c7186e552802955003b972141c",
+                "reference": "6b1ec2ccae5f11c7186e552802955003b972141c",
                 "shasum": ""
             },
             "require": {
@@ -52,20 +103,20 @@
                 "mobile payment processing",
                 "pingpp"
             ],
-            "time": "2015-04-23 09:35:18"
+            "time": "2015-06-04 03:39:12"
         },
         {
             "name": "twig/twig",
-            "version": "v1.18.1",
+            "version": "v1.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f"
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9f70492f44398e276d1b81c1b43adfe6751c7b7f",
-                "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602",
                 "shasum": ""
             },
             "require": {
@@ -109,14 +160,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-04-19 08:30:27"
+            "time": "2015-06-06 23:31:24"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "pingplusplus/pingpp-php": 20
+        "pingplusplus/pingpp-php": 20,
+        "henter/wechat-oauth": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
