@@ -23,5 +23,18 @@ switch($notify->object)
     // 开发者在此处加入对退款异步通知的处理代码
     exit("success");
   default:
+    $where = array("orderId" => $notify->order_no);
+     $api = new \LyfMember\Api();
+    // 删除失败订单（不放在cancel_url里，支付宝可能不执行）
+    $responseStr = $api->call('getCardOrder', array(
+      'where' => json_encode($where)
+    ));
+    $response = json_decode($responseStr);
+    if ($response && !empty($response->results)) {
+      $cardOrder = $response->results[0];
+      $api->callExtUrl('deleteCardOrder', array(
+          "orderId" => $cardOrder->orderId
+      ), $cardOrder->objectId);
+    }
     exit("fail");
 }

@@ -10,11 +10,13 @@ require 'vendor/autoload.php';
 
 @session_start();
 $config = (require 'config.php');
+$api = new \LyfMember\Api();
+// $_SESSION['uid'] = 'oWFVzuPlWpI_z2LNot16KQP1wZ4I';
+// $_SESSION['platform'] = 'wechat';
 if (isset($_SESSION['uid'])) {
   $uid = $_SESSION['uid'];
 } else if (isset($_REQUEST['platform'])) {
   $platform = $_GET['platform'];
-  $api = new \LyfMember\Api();
   
   if ($platform == "alipay") {
     // $_REQUEST['auth_code'] = '123456';

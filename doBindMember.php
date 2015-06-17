@@ -9,7 +9,7 @@ require_once 'model/Member.php';
 // @session_start();
 
 if ((!isset($_GET['action']) && !isset($_REQUEST['mobile']))
-    || !isset($uid))
+    || !isset($_SESSION['uid']))
 {
   exit(500);  // malformed request
 }

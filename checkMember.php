@@ -2,6 +2,7 @@
 require_once 'Api.php';
 require_once 'function.inc.php';
 
+@session_start();
 $api = new \LyfMember\Api();
 $config = (require 'config.php');
 if (isset($_SESSION['memberInfo'])) {
@@ -9,7 +10,7 @@ if (isset($_SESSION['memberInfo'])) {
 } else {
   $api = new \LyfMember\Api();
   $membersStr = $api->call('getMemberInfo', array(
-    'where' => json_encode(array("uid" => $uid)),
+    'where' => json_encode(array("uid" => $_SESSION['uid'])),
     'include' => 'member'
   ));
 

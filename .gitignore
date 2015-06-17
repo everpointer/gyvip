@@ -9,7 +9,7 @@ templates/cache
 phpinfo.php
 oci8.php
 *.bak
-test*.html
+test*.*
 *.map
 oracle
 config/env.yml

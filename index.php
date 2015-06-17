@@ -2,7 +2,7 @@
 require_once 'common.php';
 require_once 'checkMember.php';
 
-if (!$uid) exit(500);
+if (!$_SESSION['uid']) exit(500);
 
 if (isset($memberInfo)) {
   header("Location: showMember.php");

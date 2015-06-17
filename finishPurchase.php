@@ -1,19 +1,26 @@
 <?php
 require_once 'common.php';
 
-$config = (require 'config.php');
-
-$where = array('uid' => $uid);
+$where = array('uid' => $_SESSION['uid']);
 if (isset($_GET['out_trade_no'])) {
   $orderId = $_GET['out_trade_no'];
   $where['orderId'] = $orderId;
+} else {
+  exit("Bad Request!");
 }
+// var_dump($where);
 $responseStr = $api->call('getCardOrder', array(
   'where' => json_encode($where)
 ));
+// var_dump($responseStr);exit;
 
 $response = json_decode($responseStr);
-if (!$response) exit("获取订单数据发生错误！");
+if (!$response) { 
+  exit("获取订单数据发生错误！"); 
+} else if(count($response->results) == 0) {
+  exit("订单不存在！");
+}
+
 
 $order = $response->results[0]; // only for leancloud
 if (!$order) exit("获取订单数据失败！");
@@ -52,7 +59,7 @@ if ($order->uid != $uid) exit("订单不属于您");
     <script type="text/javascript" src="assets/js/av-mini.js"></script>
     <script type="text/javascript">
       // Todo: limit api requester
-      AV.initialize("0s4hffciblz94hah0m63rsn0x970m2obrjthz0cwmqwsipdy", "0b7jsd5h44y4wcv6w4w0alomwmpwufx8odk3irmvk36q2g10");
+      AV.initialize("<?php echo $config['leancloud']['app_id']; ?>", "<?php echo $config['leancloud']['app_key']; ?>");
       
       document.getElementById('requestSmsCode').onclick = function(e) {
         e.preventDefault();
@@ -94,9 +101,9 @@ if ($order->uid != $uid) exit("订单不属于您");
             alert("注册成功");
             window.location = 'showMember.php';
           },
-          error: function() {
+          error: function(xhr, status, error) {
             spinner.stop();
-            alert("验证失败");
+            alert("验证失败: " + error);
           }
         });
       }); 
