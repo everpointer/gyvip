@@ -1,22 +1,22 @@
 <?php
 require_once 'common.php';
 
-// $api = new \LyfMember\Api();
+$api = new \LyfMember\Api();
 
-// $where = array('uid' => $_SESSION['uid']);
-// $responseStr = $api->call('getCardOrder', array(
-//   'where' => json_encode($where)
-// ));
-// $response = json_decode($responseStr);
-// if ($response && !empty($response->results)) {
-//   $cardOrder = $response->results[0];
-//   // 再次检查，删除没有支付成功的订单
-//   if (!$cardOrder->paid) {
-//     $api->callExtUrl('deleteCardOrder', array(
-//         "orderId" => $cardOrder->orderId
-//       ), $cardOrder->objectId);
-//   }
-// }
+$where = array('uid' => $_SESSION['uid']);
+$responseStr = $api->call('getCardOrder', array(
+  'where' => json_encode($where)
+));
+$response = json_decode($responseStr);
+if ($response && !empty($response->results)) {
+  $cardOrder = $response->results[0];
+  // 再次检查，删除没有支付成功的订单
+  if (!$cardOrder->paid) {
+    $api->callExtUrl('deleteCardOrder', array(
+        "orderId" => $cardOrder->orderId
+      ), $cardOrder->objectId);
+  }
+}
 ?>
 <!doctype html>
 <html>
