@@ -9,11 +9,11 @@ return array(
   'merchant_private_key_file' => dirname ( __FILE__ ) . "/key/rsa_private_key.pem", // 商户私钥文件路径
   'merchant_public_key_file' => dirname ( __FILE__ ) . "/key/rsa_public_key.pem", // 商户公钥文件路径
   'charset' => "GBK", // 字符集，支付宝接口需要GBK，无需改变
-  'gatewayUrl' => "https://openapi.alipay.com/gateway.do", // 支付宝接口�关地址, 无需改变
+  'gatewayUrl' => "https://openapi.alipay.com/gateway.do", // 支付宝接口网关地址, 无需改变
   'app_id' => getenv('alipay_app_id'), // 服务窗app id, 服务窗后台查看
   'partner_id' => getenv('alipay_partner_id'), // 商户partner id，支付宝后台查看
   'partner_name' => "果忆", // 商户名称
-  'card_price' => 10,  // 会�卡单价，单位元
+  'card_price' => 10,  // 会员卡单价，单位元
   'host' => getenv('host'),
   'pingxx' => array( // ping++ 配置, ping++后台可查看
     'app_id' => getenv('pingxx_app_id'),  // ping++ app_id
@@ -30,6 +30,10 @@ return array(
    'wechat' => array(
       'app_id' => getenv('wechat_app_id'),
       'app_secret' => getenv('wechat_app_secret')
+    ),
+    'kmtk' => array(
+      'pay_host' => getenv('kmtk_pay_host'),
+      'debug' => true
     ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     'X-AVOSCloud-Application-Id: ' . getenv('leancloud_app_id'),

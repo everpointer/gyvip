@@ -94,8 +94,8 @@ class UserInfo {
 		if (isset ( $token->alipay_system_oauth_token_response )) {
 			$userId = $token->alipay_system_oauth_token_response->alipay_user_id;
 			writeLog ( "Alipay User Id (OpenId) : $userId" );
-			$_SESSION['uid'] = $userId;
-			$_SESSION['platform'] = "alipay";
+			// $_SESSION['uid'] = $userId;
+			// $_SESSION['platform'] = "alipay";
 			return $userId;
 		} else {
 			exit("Fail to get user token");

@@ -11,20 +11,19 @@ require 'vendor/autoload.php';
 @session_start();
 $config = (require 'config.php');
 $api = new \LyfMember\Api();
-// $_SESSION['uid'] = 'oWFVzuPlWpI_z2LNot16KQP1wZ4I';
-// $_SESSION['platform'] = 'wechat';
-if (isset($_SESSION['uid'])) {
+// $_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
+// $_SESSION['platform'] = 'alipay'; // alipay, wechat
+if (isset($_SESSION['uid'])) { // other pages
   $uid = $_SESSION['uid'];
-} else if (isset($_REQUEST['platform'])) {
+} else if (isset($_REQUEST['platform'])) { // index entry point
   $platform = $_GET['platform'];
   
   if ($platform == "alipay") {
-    // $_REQUEST['auth_code'] = '123456';
     if (isset( $_REQUEST['auth_code'] )) {
       $userinfo = new UserInfo ();
-      $uid = $userinfo->getUserId ( $_REQUEST['auth_code'] );
-      // $_SESSION['uid'] = '20881016718708634955964451718217';
-      // $uid = '20881016718708634955964451718217';
+      $uid = $userinfo->getUserId ( $_REQUEST['auth_code'] ); // will set $_SESSION['uid']
+      $_SESSION['uid'] = $uid;
+      $_SESSION['platform'] = $platform;
     } else {
       exit('User unauthorized!');
     }
@@ -51,7 +50,7 @@ if (isset($_SESSION['uid'])) {
       }
     }
   }
-} else {
+} else { // other pages without uid, fail
   // 只能通过支付宝等平台登陆，还得通过Oauth
   exit('Wrong request');
 }
