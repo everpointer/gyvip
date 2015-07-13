@@ -10,6 +10,12 @@ class Api {
   public function __construct() {
     $this->config = (require 'config.php');
     $this->rest = new Rest(array("header" => $this->config["header"]));
+    if (isset($config['kmtk']['debug']) && $config['kmtk']['debug'] == true) {
+      $this->debug = true;   
+    } else {
+      $this->debug = false;
+    }
+
   }
   
   public function call($api_name, $params) {
@@ -17,6 +23,7 @@ class Api {
     if (!$api) {
       $this->throw_api_error($api_name, "API 没有配置");
     }
+    $api['name'] = $api_name;
     return $this->_call($api, $params);
   }
   // only for leancloud
@@ -27,6 +34,7 @@ class Api {
     }
     // url is a format string
     $api['url'] = sprintf($api['url'], $ext);
+    $api['name'] = $api_name;
     return $this->_call($api, $params);
   }
   
@@ -52,7 +60,7 @@ class Api {
   }
   
   private function _call($api, $params) {
-    $api_name = "";
+    $api_name = $api['name'];
     foreach ($api['params'] as $param) {
       if (!isset($params[$param])) {
         $this->throw_api_error($api_name, "参数 $param 缺失");

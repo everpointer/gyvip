@@ -22,5 +22,5 @@ if (isset($_SESSION['memberInfo'])) {
   }
 }
 // Todo: comment when production
-// unset($_SESSION['memberInfo']);
-// unset($memberInfo);
+//unset($_SESSION['memberInfo']);
+//unset($memberInfo);

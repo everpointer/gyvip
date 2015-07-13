@@ -107,7 +107,7 @@ return array(
      * @optionParams
      *    - outTradeNo string 支付宝等外部订单编号
      *    - paid bool 订单支付状态
-     *    －binded bool 订单绑定状�
+     *    －binded bool 订单绑定状态
      */
     'updateCardOrder' => array(
       'method' => 'put',
@@ -116,7 +116,7 @@ return array(
       'optionParams' => array('outTradeNo', 'paid', 'binded')
     ),
     /**
-     * ��员卡订单查询接口
+     * 会员卡订单查询接口
      * @optionParams
      *    - uid string 支付宝会员ID
      *    - orderId string 订单编号
@@ -155,6 +155,32 @@ return array(
       // 'optionParams' => array('smsCode')
     ),
     /**
+     * 创建会员参与活动日志
+     * @param code string 活动唯一标识，由大写字幕与数字组成，如MAS1000
+     * @param name string 活动名称，如“会员首次在线绑定会员赠送9积分”
+     * @param cardNumer string 会员卡�号
+     * @return
+     *    - status code: 200, successful
+     *    - otherwise: fail
+     */
+     'createMemberActivityLog' => array(
+      'method' => 'post',
+      'url' => 'https://api.leancloud.cn/1.1/classes/MemberActivityLog',
+      'params' => array('code', 'name', 'cardNumber')
+    ),
+    /**
+     * 查询会员指定活动参与纪录
+     * - status code: 200
+     *      json data: format
+     *        {'results': [{'code': '', 'name': , 'cardNumber': }] }
+     * - otherwise: false
+     */
+    'queryMemberActiviyLog' => array(
+      'method' => 'get',
+      'url' => 'https://api.leancloud.cn/1.1/classes/MemberActivityLog',
+      'params' => array('code', 'cardNumber', 'where')
+    ),
+    /**
      * 注册KMTK用户
      */
     'kmtkRegisterMember' => array(
@@ -174,5 +200,14 @@ return array(
       'url' => 'http://' . getenv('kmtk_pay_host') . '/api/Service/Balance',
       'params' => array('name', 'userType', 'accountType', 'businessId', 'sign')
     )
-  )
+  ),
+  /**
+   * KMTK用户积分充值
+   */
+   'kmtkDepositScore' => array(
+      'method' => 'get',
+      'url' => 'http://' . getenv('kmtk_pay_host') . 'api/Service/CLZDepositScore',
+      'params' => array('name', 'userType', 'amount', 'businessId', 'orderId',
+                        'merchantId', 'opId', 'opName', 'description', 'sign')
+    )
 );

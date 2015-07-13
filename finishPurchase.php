@@ -42,7 +42,7 @@ if ($order->uid != $uid) exit("订单不属于您");
       <section class="l-container">
         <form id="registerForm" action="registerMember.php" method="POST" class="form-horizontal c-form">
           <div class="c-form__header">完善会员信息</div>
-          <p class="c-form__desc">您已成功购买会员卡，请继续填写一下信息。</p>
+          <p class="c-form__desc">您已成功购买会员卡，还需绑定手机号码。</p>
           <div class="form-group">
             <input type="text" name="mobile" placeholder="请输入手机号" class="u-one-half u-four-fifths-from-lap"/>
             <a href="#" id="requestSmsCode" class="c-button">获取验证码</a>

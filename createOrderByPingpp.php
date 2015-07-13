@@ -15,7 +15,7 @@ if ($response && !empty($response->results)) {
   $cardOrder = $response->results[0];
   
   if ($cardOrder->paid && !$cardOrder->binded) {
-    header("Location: finishPurchase.php");
+    header("Location: finishPurchase.php?out_trade_no=$cardOrder->orderId");
     exit();
   } else if (!$cardOrder->paid) { // 删除未支付完成的订单
     $api->callExtUrl('deleteCardOrder', array(

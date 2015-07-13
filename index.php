@@ -51,10 +51,10 @@ if (isset($memberInfo)) {
               会员卡使用说明
               <div class="u-float-right"> > </div>
             </a>
-            <!--<a href="#" class="c-item">-->
-            <!--  余额查询-->
-            <!--  <div class="u-float-right"> > </div>-->
-            <!--</a>-->
+            <a href="continueBindingAfterPurchase.php" class="c-item">
+              支付成功，绑定失败用户（点这里）
+              <div class="u-float-right"> > </div>
+            </a>
          </div>
        </div>
     </div>
