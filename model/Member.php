@@ -80,7 +80,9 @@ class Member {
   
   // query mobile or telephone
   public function queryUserByMobile($mobile) {
-    $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\' or telephone=\''. $mobile .'\' and status=1';
+    // currently only telephone cause kmtk mis only support telephone
+    // $sql = 'SELECT * FROM "' . $this->tableName . '" where mobile=\''. $mobile .'\' or telephone=\''. $mobile .'\' and status=1';
+    $sql = 'SELECT * FROM "' . $this->tableName . '" where telephone=\''. $mobile .'\' and status=1';
     $result = $this->ora->select($sql);
     return $result;
   }

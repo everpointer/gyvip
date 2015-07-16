@@ -2,7 +2,10 @@
 require_once 'common.php';
 require_once 'checkMember.php';
 
-if (!$_SESSION['uid']) exit(500);
+if (!$_SESSION['uid']) {
+  header($_SERVER["SERVER_PROTOCOL"]." 500 Bad Request"); 
+  exit;
+}
 
 if (isset($memberInfo)) {
   header("Location: showMember.php");

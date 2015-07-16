@@ -29,7 +29,8 @@ return array(
    ),
    'wechat' => array(
       'app_id' => getenv('wechat_app_id'),
-      'app_secret' => getenv('wechat_app_secret')
+      // 'app_secret' => getenv('wechat_app_secret')
+      'app_secret' => '3231006417371b4776339eb58f55e4f9' //getenv('wechat_app_secret')
     ),
     'kmtk' => array(
       'pay_host' => getenv('kmtk_pay_host'),

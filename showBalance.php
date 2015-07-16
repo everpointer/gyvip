@@ -21,6 +21,8 @@ $result = json_decode($resultStr);
 if(!$result || isset($result->data->error)) {
   header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
   exit();
+} else if (!empty($result->message)) {
+  die("发生错误：$result->message");
 }
 ?>
 <!DOCTYPE html>

@@ -11,7 +11,8 @@ require_once 'model/Member.php';
 if ((!isset($_GET['action']) && !isset($_REQUEST['mobile']))
     || !isset($_SESSION['uid']))
 {
-  exit(500);  // malformed request
+  header($_SERVER["SERVER_PROTOCOL"]." 500 Bad Request"); 
+  exit;
 }
 
 // verify mobile user existed
