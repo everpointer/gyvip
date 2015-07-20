@@ -31,9 +31,9 @@ if (isset($memberInfo)) {
        <!--</div>-->
        <div class="c-modal">
           <label for="modal-membercard">
-            <div class="modal-trigger u-three-quarters u-s-ms-one-eighth">购买/绑定我的会员卡</div>
+            <div id="modal-trigger" class="modal-trigger u-three-quarters u-s-ms-one-eighth">购买/绑定我的会员卡</div>
           </label>
-          <input class="modal-state" id="modal-membercard" type="checkbox" />
+          <input class="modal-state" id="modal-checkbox" type="checkbox" />
           <div class="modal-fade-screen">
             <div class="modal-inner">
               <div class="modal-close" for="modal-membercard">X</div>
@@ -64,7 +64,10 @@ if (isset($memberInfo)) {
     <script type="text/javascript" src="assets/js/zepto.min.js"></script>
     <script>
       $(function() {
-        $("#modal-1").on("change", function() {
+        $("#modal-trigger").on("click", function() {
+           $("#modal-checkbox").prop("checked", true);
+        });
+        $("#modal-checkbox").on("change", function() {
           if ($(this).is(":checked")) {
             $("body").addClass("modal-open");
           } else {

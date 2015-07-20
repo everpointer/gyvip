@@ -2565,7 +2565,7 @@ input[type='submit'] {
   padding-top: 30%;
   text-align: left;
   visibility: hidden;
-  z-index: 99999999999; }
+  z-index: 9999; }
   @media (min-width: 40.0625em) {
     .c-modal .modal-fade-screen {
       padding-top: 10em; } }
@@ -2627,6 +2627,45 @@ input[type='submit'] {
 
 .modal-open {
   overflow: hidden; }
+
+/* ===========================================================================
+   @COMPONENTS -> Media
+   ========================================================================= */
+.c-media {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+  display: table;
+  margin-bottom: 1.5em;
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #cfcfcf;
+  background-color: white; }
+  .c-media .c-media-image,
+  .c-media .c-media-content {
+    display: table-cell;
+    vertical-align: top; }
+  .c-media .c-media-image {
+    padding-right: 1.4em; }
+    .c-media .c-media-image > img {
+      display: block;
+      height: auto;
+      max-width: none;
+      padding: none;
+      width: 100px; }
+    .c-media-reverse-order .c-media .c-media-image {
+      padding-right: 0;
+      padding-left: 10px; }
+  .c-media .c-media-content {
+    width: 100%; }
+    .c-media .c-media-content h1 {
+      font-size: 1em;
+      margin: 0 0 0.5em 0; }
+    .c-media .c-media-content p {
+      line-height: 1.5em;
+      margin-bottom: 0.5em; }
+    .c-media .c-media-content p.c-media-detail {
+      color: rgba(51, 51, 51, 0.5);
+      font-size: 0.9em;
+      font-style: italic; }
 
 /**
  * UTILITIES.
@@ -4846,5 +4885,31 @@ html, body {
 .c-form .c-form__desc {
   font-size: 1rem ;
   line-height: 1.5 ; }
+
+.spinner-box {
+  width: 100px;
+  height: 100px;
+  background: #7C7C7C;
+  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateY(-50%);
+  color: white;
+  border-radius: 6px; }
+
+.spinner-wrapper {
+  height: 70px; }
+
+.spinner-text {
+  text-align: center;
+  height: 30px; }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */

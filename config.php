@@ -29,8 +29,7 @@ return array(
    ),
    'wechat' => array(
       'app_id' => getenv('wechat_app_id'),
-      // 'app_secret' => getenv('wechat_app_secret')
-      'app_secret' => '3231006417371b4776339eb58f55e4f9' //getenv('wechat_app_secret')
+      'app_secret' => getenv('wechat_app_secret')
     ),
     'kmtk' => array(
       'pay_host' => getenv('kmtk_pay_host'),
@@ -159,7 +158,7 @@ return array(
      * 创建会员参与活动日志
      * @param code string 活动唯一标识，由大写字幕与数字组成，如MAS1000
      * @param name string 活动名称，如“会员首次在线绑定会员赠送9积分”
-     * @param cardNumer string 会员卡�号
+     * @param cardNumer string 会员卡号
      * @return
      *    - status code: 200, successful
      *    - otherwise: fail
@@ -200,15 +199,36 @@ return array(
       'method' => 'get',
       'url' => 'http://' . getenv('kmtk_pay_host') . '/api/Service/Balance',
       'params' => array('name', 'userType', 'accountType', 'businessId', 'sign')
-    )
-  ),
-  /**
-   * KMTK用户积分充值
-   */
-   'kmtkDepositScore' => array(
+    ),
+    /**
+     * KMTK用户积分充值
+     */
+     'kmtkDepositScore' => array(
+        'method' => 'get',
+        'url' => 'http://' . getenv('kmtk_pay_host') . '/api/Service/CLZDepositScore',
+        'params' => array('name', 'userType', 'amount', 'businessId', 'orderId',
+                          'merchantId', 'opId', 'opName', 'description', 'sign')
+      ),
+    /**
+     * KMTK 用户积分消费
+     * @param amount int 现金金额，积分消费，default 0
+     * @param amount1 int 积分金额，积分消费需填写
+     * @param orderId string 外部订单Id（奖品兑换Id），唯一
+     * @return
+     *  － status code: 200
+     *        success: { data: 交易流水号, code: 1}
+     *        failure: 
+     *          - message not null, 发生错误 (code: 0)
+     *          - code = 2, orderId 已存在
+     *          - code != (0 or 1 or 2), 未知错误  
+     *  - otherwise
+     *      Server Error
+     */
+    'kmtkPayScore' => array(
       'method' => 'get',
-      'url' => 'http://' . getenv('kmtk_pay_host') . 'api/Service/CLZDepositScore',
-      'params' => array('name', 'userType', 'amount', 'businessId', 'orderId',
-                        'merchantId', 'opId', 'opName', 'description', 'sign')
-    )
+      'url' => 'http://' . getenv('kmtk_pay_host') . '/api/Service/CLZPay',
+      'params' => array('name', 'userType', 'amount', 'amount1', 'businessId',
+                        'orderId', 'merchantId', 'opId', 'opName', 'description', 'sign')
+    ),
+  ),
 );

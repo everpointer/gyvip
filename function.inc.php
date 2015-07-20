@@ -48,9 +48,10 @@ function memberToMemberInfo($member) {
     'name'   => $member->name,
     'sex'		 => $member->sex,
     'merchantId' => $member->merchantId,
-    'registeredAt' => $member->registeredAt,
+    'registeredAt' => isset($member->registeredAt) ? $member->registeredAt : "",
     'createdAt' => $member->createdAt,
-    'from' => $member->from
+    'from' => $member->from,
+    'id' => $member->objectId
   );	
 }
 /**

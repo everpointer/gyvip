@@ -262,6 +262,7 @@
 @import "./components/_c-item.scss";
 @import "./components/_c-list.scss";
 @import "./components/_c-modal.scss";
+@import "./components/_c-media.scss";
 
 
 /**
@@ -377,4 +378,32 @@ html, body{
   .c-form__desc {
     @include font-size($font-size-heading-5);
   }
+}
+// spinner-box
+.spinner-box {
+  width: 100px;
+  height: 100px;
+  background: #7C7C7C;
+  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateY(-50%);
+  color: white;
+  border-radius: 6px;
+}
+.spinner-wrapper {
+  height: 70px;
+}
+.spinner-text {
+  text-align: center;
+  height: 30px;
+}
+// overlay (append to body)
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
