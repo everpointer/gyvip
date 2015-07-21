@@ -1,4 +1,5 @@
 <?php
+require_once (__DIR__ . '/View.php');
 function writeLog($text) {
 	// $text=iconv("GBK", "UTF-8//IGNORE", $text);
 	$text = characet ( $text );
@@ -48,9 +49,10 @@ function memberToMemberInfo($member) {
     'name'   => $member->name,
     'sex'		 => $member->sex,
     'merchantId' => $member->merchantId,
-    'registeredAt' => $member->registeredAt,
+    'registeredAt' => isset($member->registeredAt) ? $member->registeredAt : "",
     'createdAt' => $member->createdAt,
-    'from' => $member->from
+    'from' => $member->from,
+    'id' => $member->objectId
   );	
 }
 /**
@@ -129,4 +131,11 @@ function genLeanCloudAppSign($appKey) {
 	$timestamp = getMillisecond();
 	$sign = md5($timestamp . $appKey);
 	return "$sign,$timestamp";
+}
+// generate Error
+// View.php should be required
+function genError($msg) {
+  return $twig->render('message.html', array(
+    'msg' => $msg
+  ));
 }

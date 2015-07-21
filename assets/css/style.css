@@ -2628,6 +2628,45 @@ input[type='submit'] {
 .modal-open {
   overflow: hidden; }
 
+/* ===========================================================================
+   @COMPONENTS -> Media
+   ========================================================================= */
+.c-media {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+  display: table;
+  margin-bottom: 1.5em;
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #cfcfcf;
+  background-color: white; }
+  .c-media .c-media-image,
+  .c-media .c-media-content {
+    display: table-cell;
+    vertical-align: top; }
+  .c-media .c-media-image {
+    padding-right: 1.4em; }
+    .c-media .c-media-image > img {
+      display: block;
+      height: auto;
+      max-width: none;
+      padding: none;
+      width: 100px; }
+    .c-media-reverse-order .c-media .c-media-image {
+      padding-right: 0;
+      padding-left: 10px; }
+  .c-media .c-media-content {
+    width: 100%; }
+    .c-media .c-media-content h1 {
+      font-size: 1em;
+      margin: 0 0 0.5em 0; }
+    .c-media .c-media-content p {
+      line-height: 1.5em;
+      margin-bottom: 0.5em; }
+    .c-media .c-media-content p.c-media-detail {
+      color: rgba(51, 51, 51, 0.5);
+      font-size: 0.9em;
+      font-style: italic; }
+
 /**
  * UTILITIES.
  */
@@ -4755,6 +4794,96 @@ input[type='submit'] {
 /**
  * Generates all breakpoint classes.
  */
+/* ============================================================================
+   @UTILITIES -> HIDE
+   ========================================================================= */
+/**
+ * A utility for hiding (and showing) elements.
+ *
+ * All the utilities (available as silent placeholder selectors also):
+ *
+   .u-hide
+   .u-hide-invisible
+   .u-hide-visually
+   .u-hide-if-js-is-on
+   .u-hide-if-js-is-off
+   .u-show-for-print
+   .u-show-for-print-inline
+   .u-show-for-print-inline-block
+   .u-hide-for-print
+ */
+/**
+ * Apply at these breakpoints (turned off by default).
+ */
+/**
+ * Classes to detect if JavaScript is on or off.
+ */
+/**
+ * Hide elements from both screen readers and the document flow.
+ */
+.u-hide {
+  display: none !important; }
+
+/**
+ * Hide elements without affecting the document flow.
+ */
+.u-hide-invisible {
+  visibility: hidden !important; }
+
+/**
+ * Hide elements only visually but have it available for screen readers.
+ */
+.u-hide-visually {
+  position: absolute !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  /**
+   * Form `legend`s need different treatment.
+   */ }
+  .u-hide-visually.legend {
+    left: -9999px !important; }
+
+/**
+ * Hide elements for JavaScript users and non-JavaScript users, this is
+ * necessary when building accessible and progressively enhanced UI's. This
+ * will require functionality that can append a hook to an element
+ * (typically the `html` element) if JavaScript is on.
+ *
+ * N.B. it is okay to use `!important` here as we're doing it preemptively
+ * i.e. you know you will always want the rule it's applied too to take
+ * precedence.
+ */
+.js .u-hide-if-js-is-on {
+  display: none !important; }
+
+.no-js .u-hide-if-js-is-off {
+  display: none !important; }
+
+/**
+ * Hide/show elements for print media.
+ */
+.u-show-for-print,
+.u-show-for-print-inline,
+.u-show-for-print-inline-block {
+  display: none !important; }
+
+@media print {
+  .u-hide-for-print {
+    display: none !important; }
+
+  .u-show-for-print {
+    display: block !important; }
+
+  .u-show-for-print-inline {
+    display: inline !important; }
+
+  .u-show-for-print-inline-block {
+    display: inline-block !important; } }
 /**
  *  my utilities
  */
@@ -4768,6 +4897,11 @@ input[type='submit'] {
 .u-width--full-bleed {
   display: block !important;
   width: 100% !important; }
+
+.u-clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
 
 /* ===========================================================================
    @Utilities -> colors
@@ -4784,6 +4918,13 @@ input[type='submit'] {
 .u-color-error {
   background: #dc322f !important;
   color: #fff !important; }
+
+.u-color-success {
+  background: #31D408 !important;
+  color: #fff !important; }
+
+.u-color-enhance {
+  color: #dc322f !important; }
 
 /* Your styles
    ========================================================================= */
@@ -4846,5 +4987,57 @@ html, body {
 .c-form .c-form__desc {
   font-size: 1rem ;
   line-height: 1.5 ; }
+
+.spinner-box {
+  width: 100px;
+  height: 100px;
+  background: #7C7C7C;
+  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateY(-50%);
+  color: white;
+  border-radius: 6px; }
+
+.spinner-wrapper {
+  height: 70px; }
+
+.spinner-text {
+  text-align: center;
+  height: 30px; }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+.c-media.c-media--no-margin {
+  margin-bottom: 0px; }
+
+.prize-rule {
+  margin-bottom: 1.5em;
+  border: 1px solid #cfcfcf;
+  border-top: none;
+  border-bottom: none; }
+
+.prize-rule-toggle {
+  background: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+  border-bottom: 1px solid #cfcfcf; }
+
+.prize-rule-desc {
+  padding: 1em;
+  background: white;
+  border-bottom: 1px solid #cfcfcf; }
+
+.prize-usage {
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  background: white; }
 
 /*# sourceMappingURL=style.css.map */

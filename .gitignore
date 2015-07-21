@@ -15,3 +15,5 @@ oracle
 config/env.yml
 .env
 Dockerfile.local
+*.log
+env*.yaml

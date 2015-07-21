@@ -19,3 +19,11 @@
     box-sizing: border-box !important;
   }
 }
+// clearfix
+.u-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
