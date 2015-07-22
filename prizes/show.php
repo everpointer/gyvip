@@ -46,17 +46,28 @@ try {
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <div class="c-main-container">
+  <header class='c-navigation' role="banner">
+    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
+    <a href="/" class="c-navigation-nav-link c-navigation-nav-link--right">首页 ></a>
+    <div class="c-navigation-title">详情</div>
+  </header>
+  <div class="c-main-container c-main-container--header">
     <div class="l-container">
-      <h3 class="u-text-align-center"><?php echo $memberPrize->creditPrize->name ?></h3> 
       <div class="prize-usage">
-        <h4>奖品说明</h4>
-        <p>
+        <h4 class="u-text-align-center u-s-m-small"><?php echo $memberPrize->creditPrize->name ?></h3> 
+        <h5>奖品说明</h5>
+        <p class="u-s-mb-small">
           <?php echo $memberPrize->creditPrize->description ?>
         </p>
-        <h4>使用规则</h4>
-        <p>
+        <h5>使用规则</h5>
+        <p class="u-s-mb-small">
           <?php echo str_replace('\n', "<br />", $memberPrize->creditPrize->usageRule); ?>
+        </p>
+        <h5>适用门店</h5>
+        <p class="u-s-mb-small">
+          <?php if (!$memberPrize->creditPrize->availableStores || empty($memberPrize->creditPrize->availableStores)) { ?>
+            所有
+          <?php } else { echo implode("，", $memberPrize->creditPrize->availableStores); } ?>
         </p>
       </div>
       <!-- 收银员使用 -->

@@ -5,6 +5,7 @@ require_once '../sdk/leancloud/AV.php';
 
 if (!isset($memberInfo)) {
   header("Location: index.php");
+  exit;
 }
 
 $memberCreditPrizes = array();
@@ -26,20 +27,25 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>我的兑换</title>
+  <title>兑换记录</title>
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <div class="c-main-container">
+  <header class='c-navigation' role="banner">
+    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
+    <a href="/" class="c-navigation-nav-link c-navigation-nav-link--right">首页 ></a>
+    <div class="c-navigation-title">兑换纪录</div>
+  </header>
+  <div class="c-main-container c-main-container--header">
     <div class="l-container">
-      <h3 class="u-text-align-center">兑换明细</h3> 
+      <p class="u-text-align-center"><em>请点击查看，了解详情和使用方式</em></p>
       <div class="prize-list">
         <?php foreach ($memberCreditPrizes as $prize) { ?>
           <div class="c-media c-media--no-margin">
-            <!--100*70px 为最佳比例-->
+            <!--100*68px 为最佳比例-->
             <div class="c-media-image">
-                  <!-- todo: add image url -->
-                  <img src="http://www.quanmama.com/ImageUpload/20131223144849957.jpg" alt="Logo image">
+              <!-- todo: add image url -->
+              <img src="<?php echo $prize->creditPrize->imageUrl ?>" alt="Logo image">
             </div>
             <div class="c-media-content">
               <h5><?php echo $prize->creditPrize->name ?></h5>

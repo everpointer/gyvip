@@ -1,0 +1,113 @@
+/* ===========================================================================
+   @COMPONENTS -> Navigation
+   ========================================================================= */
+
+
+// Variables
+// =============================================================================
+$c-navigation-base-font-color: black !default;
+$c-navigation-height: 60px !default;
+$c-navigation-padding: 1em !default;
+$c-navigation-submenu-padding: 1em !default;
+$c-navigation-background: white !default;
+$c-navigation-color: transparentize($c-navigation-base-font-color, 0.3) !default;
+$c-navigation-color-hover: $c-navigation-base-font-color !default;
+
+// Mobile view
+// -----------------------------------------------------------------------------
+
+.c-navigation {
+  position: fixed;
+  background-color: $c-navigation-background;
+  border-bottom: 1px solid darken($c-navigation-background, 6%);
+  min-height: $c-navigation-height;
+  width: 100%;
+  z-index: 9999;
+  
+  .logo {
+    display: inline;
+    float: left;
+    max-height: $c-navigation-height;
+    padding-left: $c-navigation-padding;
+
+    img {
+      max-height: $c-navigation-height;
+      opacity: .6;
+      padding: .8em 0;
+    }
+  }
+  
+  .c-navigation-menu-link, .c-navigation-nav-link {
+    color: $c-navigation-color;
+    display: block;
+    font-weight: 700;
+    line-height: $c-navigation-height;
+    margin: 0;
+    text-decoration: none;
+    
+    &:focus,
+    &:hover {
+      color: $c-navigation-color-hover;
+    }
+  }
+  .c-navigation-menu-link--right, .c-navigation-nav-link--right {
+    float: right;
+    padding-right: $c-navigation-submenu-padding;
+    width: 25%;
+    text-align: right;
+  }
+  .c-navigation-menu-link--left, .c-navigation-nav-link--left {
+    float: left;
+    padding-left: $c-navigation-submenu-padding;
+    width: 25%;
+  }
+  .c-navigation-title {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.3em;
+    min-height: $c-navigation-height;
+    line-height: $c-navigation-height;
+  }
+  
+  .c-navigation-menu {
+    -webkit-transform-style: preserve-3d;
+    clear: both;
+    display: none;
+    margin: 0 auto;
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+    z-index: 99999;
+    
+    &:show {
+      display: block;
+    }
+  }
+  // The nav items☄
+  // -----------------------------------------------------------------------------
+  .c-navigation-link {
+    background-color: $c-navigation-background;
+    display: block;
+    line-height: $c-navigation-height;
+    overflow: hidden;
+    padding-right: $c-navigation-submenu-padding;
+    text-align: right;
+    width: 100%;
+    z-index: 9999;
+    
+    a {
+      color: $c-navigation-color;
+      display: inline-block;
+      outline: none;
+      text-decoration: none;
+      
+      &:focus,
+      &:hover {
+        color: $c-navigation-color-hover;
+      }
+    }
+  }
+
+
+}

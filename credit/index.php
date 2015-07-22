@@ -5,6 +5,7 @@ require_once '../sdk/leancloud/AV.php';
 
 if (!isset($memberInfo)) {
   header("Location: index.php");
+  exit;
 }
 // query member balance
 $api = new LyfMember\Api();
@@ -68,16 +69,23 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <div class="c-main-container">
+  <header class='c-navigation' role="banner">
+    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
+    <a href="/prizes" class="c-navigation-nav-link c-navigation-nav-link--right">去使用 ></a>
+    <div class="c-navigation-title">积分商城</div>
+  </header>
+  <div class="c-main-container c-main-container--header">
     <div class="l-container">
-      <h3 class="u-text-align-center">当前积分：<?php echo $currentBalance; ?></h3> 
+      <div class="u-text-align-center" style="font-weight: bold;margin-bottom: 1em;">
+        当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分
+      </div> 
       <div class="prize-list">
         <?php foreach ($orderedPrizes as $prize) { ?>
           <div class="c-media">
-            <!--100*70px 为最佳比例-->
+            <!--100*68px 为最佳比例-->
             <div class="c-media-image">
-                  <!-- todo: add image url -->
-                  <img src="http://www.quanmama.com/ImageUpload/20131223144849957.jpg" alt="Logo image">
+              <!-- todo: add image url -->
+              <img src="<?php echo $prize->imageUrl ?>" alt="Logo image">
             </div>
             <div class="c-media-content">
               <h5><?php echo $prize->name ?></h5>

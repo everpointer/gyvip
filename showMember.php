@@ -15,6 +15,10 @@ if (!isset($memberInfo)) {
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
   </head>
   <body class="u-color-bg-primary">
+    <div class="c-tabbar">
+      <a class="c-tabbar-item" href="/credit">积分商城</a>
+      <a class="c-tabbar-item" href="/prizes">兑换记录</a>
+    </div>
     <div role="main">
       <div class="bg-mask"></div>
          <div class="member-card">
@@ -31,10 +35,10 @@ if (!isset($memberInfo)) {
                 会员卡使用说明
                 <div class="u-float-right"> > </div>
               </a>
-              <a href="showBalance.php" class="c-item">
-                积分查询
-                <div class="u-float-right"> > </div>
-              </a>
+              <!--<a href="showBalance.php" class="c-item">-->
+              <!--  积分查询-->
+              <!--  <div class="u-float-right"> > </div>-->
+              <!--</a>-->
            </div>
          </div>
     </div>
