@@ -1,4 +1,5 @@
 <?php
+require_once (__DIR__ . '/View.php');
 function writeLog($text) {
 	// $text=iconv("GBK", "UTF-8//IGNORE", $text);
 	$text = characet ( $text );
@@ -130,4 +131,11 @@ function genLeanCloudAppSign($appKey) {
 	$timestamp = getMillisecond();
 	$sign = md5($timestamp . $appKey);
 	return "$sign,$timestamp";
+}
+// generate Error
+// View.php should be required
+function genError($msg) {
+  return $twig->render('message.html', array(
+    'msg' => $msg
+  ));
 }

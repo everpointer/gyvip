@@ -1,5 +1,5 @@
 <?php
-require './vendor/twig/twig/lib/Twig/Autoloader.php';
+require __DIR__ . '/vendor/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates/views');

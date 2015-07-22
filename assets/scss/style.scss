@@ -259,10 +259,19 @@
    @include to-rem(padding-top, $spacing-double);
    @include to-rem(padding-bottom, $spacing-triple);
 }
+.c-main-container--header {
+    // padding-top: 0.5em;
+    padding-top: 70px;
+}
+.c-main-container--tabbar {
+  padding-bottom: 50px;
+}
 @import "./components/_c-item.scss";
 @import "./components/_c-list.scss";
 @import "./components/_c-modal.scss";
 @import "./components/_c-media.scss";
+@import "./components/_c-navigation.scss";
+@import "./components/_c-tabbar.scss";
 
 
 /**
@@ -295,7 +304,7 @@
 
 // @import "../../bower_components/scally/utilities/u-overflow";
 
-// @import "../../bower_components/scally/utilities/u-hide";
+@import "../../bower_components/scally/utilities/u-hide";
 
 // My utilities
 // =============================================================================
@@ -406,4 +415,34 @@ html, body{
   left: 0;
   right: 0;
   bottom: 0;
+}
+//c-media extending
+.c-media.c-media--no-margin {
+  margin-bottom: 0px;
+}
+// prize rule
+$prize-rule-border: 1px solid #cfcfcf;
+.prize-rule {
+  margin-bottom: 1.5em;
+  border: $prize-rule-border;
+  border-top: none;
+  border-bottom: none;
+}
+.prize-rule-toggle {
+  background: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+  border-bottom: $prize-rule-border;
+}
+.prize-rule-desc {
+  padding: 1em;
+  background: white;
+  border-bottom: $prize-rule-border;
+}
+// prize-usage (member prize usage detail)
+.prize-usage {
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  background: white;
 }

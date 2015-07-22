@@ -1,0 +1,77 @@
+/* ===========================================================================
+   @COMPONENTS -> Media
+   ========================================================================= */
+// Variables
+// =============================================================================
+
+.c-media {
+  $base-border-radius: 3px !default;
+  $base-spacing: 1.5em !default;
+  $action-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $base-font-color: $dark-gray !default;
+  $c-media-gutter: 1.4em;
+  $c-media-image-padding: 0.7em;
+  $c-media-image-width: 100px; // 4em;
+  $c-media-color: $base-font-color;
+  $c-media-background: white; //lighten($action-color, 15%);
+  $c-media-detail-color: transparentize($c-media-color, 0.5);
+  $c-media-image-vert-alignment: top;
+
+  border-bottom: 1px solid transparentize($c-media-color, 0.9);
+  display: table;
+  margin-bottom: $base-spacing;
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid darken($color-bg-primary, 15%);
+  background-color: $c-media-background;
+
+  .c-media-image,
+  .c-media-content {
+    display: table-cell;
+    vertical-align: $c-media-image-vert-alignment;
+  }
+
+  .c-media-image {
+    padding-right: $c-media-gutter;
+
+    // 100*70 px 为最佳比例
+    > img {
+      // background: $c-media-background;
+      // border-radius: $base-border-radius;
+      display: block;
+      height: auto;
+      max-width: none;
+      // padding: $c-media-image-padding;
+      padding: none;
+      width: $c-media-image-width;
+    }
+
+    .c-media-reverse-order & {
+      padding-right: 0;
+      padding-left: 10px;
+    }
+  }
+
+  .c-media-content {
+    width: 100%;
+
+    h1 {
+      font-size: 1em;
+      margin: 0 0 0.5em 0;
+    }
+
+    p {
+      line-height: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    p.c-media-detail {
+      color: $c-media-detail-color;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+  }
+}
+
+

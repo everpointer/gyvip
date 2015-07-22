@@ -1,0 +1,53 @@
+/* ===========================================================================
+   @COMPONENTS -> Tabbar
+   ========================================================================= */
+
+// Variables
+// -----------------------------------------------------------------------------
+$c-tabbar-base-font-color: black !default;
+$c-tabbar-height: 40px !default;
+$c-tabbar-background: white !default;
+$c-tabbar-border-color: $color-bg-primary !default;
+$c-tabbar-font-weight: 700 !default;
+$c-tabbar-color: transparentize($c-tabbar-base-font-color, 0.3) !default;
+$c-tabbar-color-hover: $c-tabbar-base-font-color !default;
+
+// placeholders
+// -----------------------------------------------------------------------------
+
+%c-tabbar-item {
+  display: inline-block;
+  line-height: $c-tabbar-height;
+  text-align: center;
+  border-left: 1px solid $c-tabbar-border-color;
+  color: black;
+  font-weight: 700;
+  margin: 0;
+  text-decoration: none;
+}
+
+.c-tabbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  min-height: $c-tabbar-height;
+  width: 100%;
+  z-index: 9999;
+  background: $c-tabbar-background;
+  border-top: 1px solid $c-tabbar-border-color;
+  
+  .c-tabbar-item {
+    @extend %c-tabbar-item;
+    width: 49%;
+  }
+  
+  .c-tabbar-item--button {
+    width: 90%;
+    margin: 0.5em 5%;
+  }
+  
+  &:focus,
+  &:hover {
+    color: $c-tabbar-color-hover;
+  }
+}
