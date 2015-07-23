@@ -188,6 +188,9 @@
 // Placeholders
 @import "../../bower_components/scally/core/placeholders/bottom-spacing";
 
+// My placeholders
+@import "./placeholders/position";
+
 // My bases
 // =============================================================================
 @import "./base/forms";
@@ -390,14 +393,15 @@ html, body{
 }
 // spinner-box
 .spinner-box {
+  @extend %absolute-center;
   width: 100px;
   height: 100px;
   background: #7C7C7C;
   z-index: 99;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translateY(-50%);
+  // // position: absolute;
+  // top: 50%;
+  // left: 40%;
+  // transform: translateY(-50%);
   color: white;
   border-radius: 6px;
 }

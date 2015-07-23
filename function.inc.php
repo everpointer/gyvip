@@ -1,5 +1,7 @@
 <?php
+require_once (__DIR__ . '/sdk/leancloud/AV.php');
 require_once (__DIR__ . '/View.php');
+
 function writeLog($text) {
 	// $text=iconv("GBK", "UTF-8//IGNORE", $text);
 	$text = characet ( $text );
@@ -135,7 +137,46 @@ function genLeanCloudAppSign($appKey) {
 // generate Error
 // View.php should be required
 function genError($msg) {
-  return $twig->render('message.html', array(
+  return $GLOBALS["twig"]->render('message.html', array(
     'msg' => $msg
   ));
 }
+
+// leancloud helpers
+// -----------------------------------------------------------------------------
+// 查询第三方平台会员（包括基础会员数据）
+function queryMemberThird($uid, $platform) {
+	$member = null;
+	try {
+    $memberQuery = new leancloud\AVQuery('MemberThird');
+    $memberQuery->where('uid', $uid);
+    $memberQuery->where('platform', $platform);
+    $memberQuery->setLimit(1);
+    $memberQuery->whereInclude('member');
+    $memberResults = $memberQuery->find()->results;
+    if (!$memberResults || empty($memberResults)) {
+      throw new RuntimeException('Error 50002: Member not found');
+    }
+    $member = $memberResults[0];
+  } catch (Exception $e) {
+    throw new RuntimeException('Error 50001: fail to find member');
+  }
+  return $member;
+}
+
+// view helpers
+// -----------------------------------------------------------------------------
+function formatUsageRule($usageRule) {
+	$rules = split('<br>', $usageRule);
+  $rulesHtml = "";
+  if (!empty($rules)) {
+    $rulesHtml = "<ul>";
+    foreach ($rules as $rule) {
+      $rulesHtml .= "<li>$rule</li>";
+    }
+    $rulesHtml .= "</ul>";
+  }
+  return $rulesHtml;
+}
+
+?>

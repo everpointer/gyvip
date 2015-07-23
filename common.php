@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 @session_start();
 $config = (require 'config.php');
 $api = new \LyfMember\Api();
-$_SESSION['uid'] = '208810167187086349559644517182171'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
+$_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
 $_SESSION['platform'] = 'alipay'; // alipay, wechat
 if (isset($_SESSION['uid'])) { // other pages
   $uid = $_SESSION['uid'];

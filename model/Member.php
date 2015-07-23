@@ -10,19 +10,10 @@ class Oracle {
   private $dbCharset;
   private $conn;
   
-  // public function __construct() {
-  //   $this->dbUserName = 'PAY';
-  //   $this->dbPassword = 'pay123321';
-  //   $this->dbHost     = '218.244.128.178';
-  //   $this->dbPort     = '1521';
-  //   $this->dbServiceName = 'clz';
-  //   $this->charset    = 'utf8';
-  // }
-  
   public function __construct() {
     $this->dbUserName = getenv('kmtk_pay_username');
     $this->dbPassword = getenv('kmtk_pay_password');
-    $this->dbHost     =  getenv('kmtk_pay_host');
+    $this->dbHost     =  getenv('kmtk_db_host');
     $this->dbPort     = getenv('kmtk_pay_port');
     $this->dbServiceName = getenv('kmtk_pay_service_name');
     $this->charset    = 'utf8';

@@ -63,10 +63,8 @@ if ($action == 'verifyMobile') {
     $member['uid'] = $_SESSION['uid'];
     $member['platform'] = $_SESSION['platform'];
     $member['from'] = 'store';  // 来自门店的老会员
-    $newMember = $member;
-    $result = $api->call('registerMember', $newMember);
+    $result = $api->call('registerMember', $member);
     if ($result) {
-      $_SESSION['memberInfo'] = $member;
       unset($_SESSION['bindingMember']);
       echo "绑定成功";
     }

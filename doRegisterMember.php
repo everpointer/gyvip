@@ -74,7 +74,7 @@ if ($result) {
     header($_SERVER["SERVER_PROTOCOL"]." 501 Fail to update card order status"); 
     exit;
   }
-  $_SESSION['memberInfo'] = $memberInfo;
+  //$_SESSION['memberInfo'] = $memberInfo;
   
   // header("Location: showMember.php");
   //TODO:

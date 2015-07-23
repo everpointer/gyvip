@@ -5,9 +5,9 @@
 // Variables
 // -----------------------------------------------------------------------------
 $c-tabbar-base-font-color: black !default;
-$c-tabbar-height: 40px !default;
+$c-tabbar-height: 50px !default;
 $c-tabbar-background: white !default;
-$c-tabbar-border-color: $color-bg-primary !default;
+$c-tabbar-border-color: darken($color-bg-primary, 6%) !default;
 $c-tabbar-font-weight: 700 !default;
 $c-tabbar-color: transparentize($c-tabbar-base-font-color, 0.3) !default;
 $c-tabbar-color-hover: $c-tabbar-base-font-color !default;

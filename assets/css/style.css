@@ -1957,6 +1957,14 @@ h6:last-child,
 .h6:last-child {
   margin-bottom: 0; }
 
+.u-absolute-center, .spinner-box {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+
 input[type='text'],
 input[type='password'] {
   padding: 0.75rem 0.75rem; }
@@ -2750,9 +2758,9 @@ input[type='submit'] {
    ========================================================================= */
 .c-tabbar .c-tabbar-item {
   display: inline-block;
-  line-height: 40px;
+  line-height: 50px;
   text-align: center;
-  border-left: 1px solid #F5F5F5;
+  border-left: 1px solid #e6e6e6;
   color: black;
   font-weight: 700;
   margin: 0;
@@ -2762,11 +2770,11 @@ input[type='submit'] {
   position: fixed;
   left: 0;
   bottom: 0;
-  min-height: 40px;
+  min-height: 50px;
   width: 100%;
   z-index: 9999;
   background: white;
-  border-top: 1px solid #F5F5F5; }
+  border-top: 1px solid #e6e6e6; }
   .c-tabbar .c-tabbar-item {
     width: 49%; }
   .c-tabbar .c-tabbar-item--button {
@@ -5101,10 +5109,6 @@ html, body {
   height: 100px;
   background: #7C7C7C;
   z-index: 99;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translateY(-50%);
   color: white;
   border-radius: 6px; }
 

@@ -31,12 +31,11 @@ try {
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <header class='c-navigation' role="banner">
-    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
-    <a href="/" class="c-navigation-nav-link c-navigation-nav-link--right">首页 ></a>
-    <div class="c-navigation-title">兑换纪录</div>
-  </header>
-  <div class="c-main-container c-main-container--header">
+  <div class="c-tabbar">
+    <a href="/" class="c-tabbar-item">会员卡</a>
+    <a href="/credit" class="c-tabbar-item">积分商城</a>
+  </div>
+  <div class="c-main-container c-main-container--tabbar u-s-pt-small">
     <div class="l-container">
       <p class="u-text-align-center"><em>请点击查看，了解详情和使用方式</em></p>
       <div class="prize-list">
@@ -49,7 +48,7 @@ try {
             </div>
             <div class="c-media-content">
               <h5><?php echo $prize->creditPrize->name ?></h5>
-              <p>
+              <p class="u-text-size-xx-small">
                 兑换时间：<?php echo strftime('%Y-%m-%d', strtotime($prize->creditPrize->createdAt)); ?>
                 <?php if ($prize->status == "created") { ?>
                   <a href="show.php?member_prize_id=<?php echo $prize->objectId ?>"class="c-button c-button--small u-float-right modal-trigger" data-member-prize-id="<?php echo $prize->objectId ?> ">
@@ -67,7 +66,7 @@ try {
             <div class="prize-rule-toggle">
               <a href="#" class="btn-toggle-prize-rule">使用规则 v</a>
             </div>
-            <p class="prize-rule-desc u-hide"><?php echo str_replace('\n', "<br />", $prize->creditPrize->usageRule); ?></p>
+            <div class="prize-rule-desc u-hide"><?php echo formatUsageRule($prize->creditPrize->usageRule) ?></div> </div>
           </div>
         <?php } ?>
       </div>

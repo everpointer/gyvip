@@ -2,16 +2,13 @@
 require_once '../common.php';
 require_once '../checkMember.php';
 require_once '../sdk/leancloud/AV.php';
-require_once '../function.inc.php';
 
 if (!isset($memberInfo)) {
   header("Location: index.php");
 }
 
 if (!isset($_GET['member_prize_id'])) {
-  echo $twig->render('message.html', array(
-    'msg' => "Bad Request"
-  ));
+  echo genError('Bad Request');
   exit;
 }
 $memberPrizeId = $_GET['member_prize_id'];
@@ -24,16 +21,12 @@ try {
   $memberPrizeQuery->whereInclude('creditPrize');
   $memberPrizeResult = $memberPrizeQuery->find();
   if (empty($memberPrizeResult->results)) {
-    echo $twig->render('message.html', array(
-      'msg' => 'Server Error: Credit Prize not found'
-    ));
+    echo genError('Server Error: Credit Prize not found');
     exit;
   }
   $memberPrize = $memberPrizeResult->results[0];
 } catch (Exception $e) {
-  echo $twig->render('message.html', array(
-    'msg' => 'Server Error: Fail to query member prize'
-  ));
+  echo genError('Server Error: Fail to query member prize');
   exit;
 }
 ?>
@@ -46,16 +39,11 @@ try {
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <header class='c-navigation' role="banner">
-    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
-    <a href="/" class="c-navigation-nav-link c-navigation-nav-link--right">首页 ></a>
-    <div class="c-navigation-title">详情</div>
-  </header>
-  <div class="c-main-container c-main-container--header c-main-container--tabbar">
+  <div class="c-main-container u-s-pt-small">
     <div class="l-container">
        <?php if ($memberPrize->status == 'used') { ?>
         <div class='u-color-success u-text-align-center' style='padding:0.5em 1em;'>
-          <div class='u-text-size-xxx-large'>✔ 已成功使用</div>
+          <div class='u-text-size-xxx-large'>已成功使用</div>
           <div>使用时间：<?php echo strftime('%Y-%m-%d %H:%M:%S', strtotime($memberPrize->usedAt)) ?></div>
         </div>
       <?php } ?>
@@ -67,7 +55,7 @@ try {
         </p>
         <h5>使用规则</h5>
         <p class="u-s-mb-small">
-          <?php echo str_replace('\n', "<br />", $memberPrize->creditPrize->usageRule); ?>
+          <?php echo formatUsageRule($memberPrize->creditPrize->usageRule); ?>
         </p>
         <h5>适用门店</h5>
         <p class="u-s-mb-small">
@@ -82,6 +70,10 @@ try {
       <?php if ($memberPrize->creditPrize->type == 'used_by_cashier' && $memberPrize->status == 'created') { ?>
         <a href="#" id="btn_use_prize" data-member-prize-id="<?php echo $memberPrize->objectId ?>" class="c-button c-tabbar-item--button">
           使用（收银员点击）
+        </a>
+      <?php } else if ($memberPrize->status == 'used') { ?>
+        <a href="/prizes" class="c-button c-tabbar-item--button">
+          使用完毕，返回
         </a>
       <?php } ?>
     </div>
@@ -101,6 +93,8 @@ try {
         event.preventDefault();
         if (!window.confirm('确定要使用吗？')) {
           return false; 
+        } else {
+          $(this)
         }
         
         var prize_id = $(this).attr('data-member-prize-id');

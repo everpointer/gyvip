@@ -35,6 +35,7 @@ try {
   $creditPrizeResult = $prizeQuery->find();
   $creditPrizes = $creditPrizeResult->results;
   $memberPrizeQuery = new leancloud\AVQuery("MemberCreditPrize");
+  $memberPrizeQuery->wherePointer('member', 'Member', $memberInfo['id']);
   $memberCreditPrizeResult = $memberPrizeQuery->find();
   $memberCreditPrizes = $memberCreditPrizeResult->results;
 } catch (Exception $e) {
@@ -69,12 +70,11 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
-  <header class='c-navigation' role="banner">
-    <a href="javascript:history.back();" class="c-navigation-nav-link c-navigation-nav-link--left">< 返回</a>
-    <a href="/prizes" class="c-navigation-nav-link c-navigation-nav-link--right">去使用 ></a>
-    <div class="c-navigation-title">积分商城</div>
-  </header>
-  <div class="c-main-container c-main-container--header">
+  <div class="c-tabbar">
+    <a href="/" class="c-tabbar-item">会员卡</a>
+    <a href="/prizes" class="c-tabbar-item">使用商品</a>
+  </div>
+  <div class="c-main-container c-main-container--tabbar u-s-pt-small">
     <div class="l-container">
       <div class="u-text-align-center" style="font-weight: bold;margin-bottom: 1em;">
         当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分
@@ -178,7 +178,7 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
               $(_this).text("确定").data('disabled', 'false');
               if (result.success == true) {
                 alert("兑换成功");
-                window.location.reload();
+                window.location.href="/prizes";
               } else {
                 alert("兑换失败，原因" + result.errMsg);
               }
