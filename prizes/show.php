@@ -8,7 +8,7 @@ if (!isset($memberInfo)) {
 }
 
 if (!isset($_GET['member_prize_id'])) {
-  echo genError('Bad Request');
+  echo genErrorPage('Bad Request');
   exit;
 }
 $memberPrizeId = $_GET['member_prize_id'];
@@ -21,12 +21,12 @@ try {
   $memberPrizeQuery->whereInclude('creditPrize');
   $memberPrizeResult = $memberPrizeQuery->find();
   if (empty($memberPrizeResult->results)) {
-    echo genError('Server Error: Credit Prize not found');
+    echo genErrorPage('Server Error: Credit Prize not found');
     exit;
   }
   $memberPrize = $memberPrizeResult->results[0];
 } catch (Exception $e) {
-  echo genError('Server Error: Fail to query member prize');
+  echo genErrorPage('Server Error: Fail to query member prize');
   exit;
 }
 ?>

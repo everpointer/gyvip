@@ -9,7 +9,7 @@ if (isset($_SESSION['memberInfo'])) {
   try {
     $member = queryMemberThird( $_SESSION['uid'], $_SESSION['platform'] );
   } catch (Exception $e) {
-   die( genError($e->getMessage()) );
+   die( genErrorPage($e->getMessage()) );
   }
   $memberInfo = memberToMemberInfo($member->member);
   $_SESSION['memberInfo'] = $memberInfo;

@@ -78,7 +78,7 @@ if (!$updateResult) {
 // 创建用户奖品纪录 (leancloud)
 try {
   $memberCreditPrize = new leancloud\AVObject("MemberCreditPrize");
-  $memberCreditPrize->content = "123456789"; //todo: figure content setting and configure
+  $memberCreditPrize->content = ""; //todo: figure content setting and configure
   $memberCreditPrize->creditPrize = toAVPointer('CreditPrize', $prize->objectId);
   $memberCreditPrize->creditOrder = toAVPointer('CreditOrder', $creditOrderId);
   $memberCreditPrize->member = toAVPointer('Member', $memberInfo["id"]);

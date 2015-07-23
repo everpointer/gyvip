@@ -70,15 +70,19 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
   <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 <body class="u-color-bg-primary">
+  <div style="position:fixed; height: 50px;width: 100%;text-align: center;background: white;line-height: 50px;">
+    当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分
+  </div>
+  </header>
   <div class="c-tabbar">
     <a href="/" class="c-tabbar-item">会员卡</a>
     <a href="/prizes" class="c-tabbar-item">使用商品</a>
   </div>
-  <div class="c-main-container c-main-container--tabbar u-s-pt-small">
+  <div class="c-main-container c-main-container--tabbar c-main-container--header">
     <div class="l-container">
-      <div class="u-text-align-center" style="font-weight: bold;margin-bottom: 1em;">
-        当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分
-      </div> 
+      <!--<div class="u-text-align-center" style="font-weight: bold;margin-bottom: 1em;">-->
+      <!--  当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分-->
+      <!--</div> -->
       <div class="prize-list">
         <?php foreach ($orderedPrizes as $prize) { ?>
           <div class="c-media">

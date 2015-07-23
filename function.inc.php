@@ -136,8 +136,8 @@ function genLeanCloudAppSign($appKey) {
 }
 // generate Error
 // View.php should be required
-function genError($msg) {
-  return $GLOBALS["twig"]->render('message.html', array(
+function genErrorPage($msg) {
+  return $GLOBALS["twig"]->render('pages/error.html', array(
     'msg' => $msg
   ));
 }

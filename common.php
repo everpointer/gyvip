@@ -17,7 +17,7 @@ if (isset($_SESSION['uid'])) { // other pages
   $uid = $_SESSION['uid'];
 } else if (isset($_REQUEST['platform'])) { // index entry point
   $platform = $_GET['platform'];
-  
+  // 平台OAuth，获取uid
   if ($platform == "alipay") {
     if (isset( $_REQUEST['auth_code'] )) {
       $userinfo = new UserInfo ();
