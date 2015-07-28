@@ -258,6 +258,13 @@
 // My Components
 // =============================================================================
 // c-main-container
+@import "./components/_c-item.scss";
+@import "./components/_c-list.scss";
+@import "./components/_c-modal.scss";
+@import "./components/_c-media.scss";
+@import "./components/_c-navigation.scss";
+@import "./components/_c-tabbar.scss";
+
 .c-main-container {
    @include to-rem(padding-top, $spacing-double);
    @include to-rem(padding-bottom, $spacing-triple);
@@ -269,13 +276,17 @@
 .c-main-container--tabbar {
   padding-bottom: 50px;
 }
-@import "./components/_c-item.scss";
-@import "./components/_c-list.scss";
-@import "./components/_c-modal.scss";
-@import "./components/_c-media.scss";
-@import "./components/_c-navigation.scss";
-@import "./components/_c-tabbar.scss";
 
+.c-infobox {
+  background: white;
+  text-align: center;
+  padding: 5em 1em;
+  min-height: 200px;
+
+  &--info {
+    color: rgb(253, 143, 38);
+  }
+}
 
 /**
  * UTILITIES.

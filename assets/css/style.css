@@ -2353,16 +2353,6 @@ input[type='submit'] {
  * i.e. with no gap between the buttons. To differentiate between the buttons
  * a border is added.
  */
-.c-main-container {
-  padding-top: 3rem;
-  padding-bottom: 4.5rem; }
-
-.c-main-container--header {
-  padding-top: 70px; }
-
-.c-main-container--tabbar {
-  padding-bottom: 50px; }
-
 /**
  * Items
  * --------------------------------------------------
@@ -2782,6 +2772,24 @@ input[type='submit'] {
     margin: 0.5em 5%; }
   .c-tabbar:focus, .c-tabbar:hover {
     color: black; }
+
+.c-main-container {
+  padding-top: 3rem;
+  padding-bottom: 4.5rem; }
+
+.c-main-container--header {
+  padding-top: 70px; }
+
+.c-main-container--tabbar {
+  padding-bottom: 50px; }
+
+.c-infobox {
+  background: white;
+  text-align: center;
+  padding: 5em 1em;
+  min-height: 200px; }
+  .c-infobox--info {
+    color: #fd8f26; }
 
 /**
  * UTILITIES.

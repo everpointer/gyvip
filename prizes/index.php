@@ -37,6 +37,11 @@ try {
   </div>
   <div class="c-main-container c-main-container--tabbar u-s-pt-small">
     <div class="l-container">
+      <?php if (empty($memberCreditPrizes)) { ?>
+        <div class="c-infobox c-infobox--info">
+          尚未兑换任何奖品！
+        </div>
+      <?php } else { ?>
       <p class="u-text-align-center"><em>请点击查看，了解详情和使用方式</em></p>
       <div class="prize-list">
         <?php foreach ($memberCreditPrizes as $prize) { ?>
@@ -66,10 +71,11 @@ try {
             <div class="prize-rule-toggle">
               <a href="#" class="btn-toggle-prize-rule">使用规则 v</a>
             </div>
-            <div class="prize-rule-desc u-hide"><?php echo formatUsageRule($prize->creditPrize->usageRule) ?></div> </div>
+            <div class="prize-rule-desc u-hide"><?php echo formatUsageRule($prize->creditPrize->usageRule) ?></div>
           </div>
         <?php } ?>
       </div>
+      <?php } ?>
     </div>  
   </div>
   <script type="text/javascript" src="../assets/js/zepto.min.js"></script>

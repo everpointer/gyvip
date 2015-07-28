@@ -46,7 +46,7 @@ try {
 $normalPrizes = array();
 $redeemedPrizes = array();
 foreach ($creditPrizes as $creditPrize) {
-  $creditPrize->status = "normal";
+  // $creditPrize->status = "normal";
   foreach($memberCreditPrizes as $memberCreditPrize) {
     if ($memberCreditPrize->creditPrize->objectId == $creditPrize->objectId) {
       $creditPrize->status = "redeemed";
@@ -76,13 +76,15 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
   </header>
   <div class="c-tabbar">
     <a href="/" class="c-tabbar-item">会员卡</a>
-    <a href="/prizes" class="c-tabbar-item">使用商品</a>
+    <a href="/prizes" class="c-tabbar-item">兑换记录</a>
   </div>
   <div class="c-main-container c-main-container--tabbar c-main-container--header">
     <div class="l-container">
-      <!--<div class="u-text-align-center" style="font-weight: bold;margin-bottom: 1em;">-->
-      <!--  当前积分：<span style="font-size: 1.5em; color: rgb(255, 171, 90);"><?php echo $currentBalance; ?></span> 分-->
-      <!--</div> -->
+      <?php if (empty($normalPrizes) && empty($redeemedPrizes)) { ?>
+        <div class="c-infobox c-infobox--info">
+          暂无可兑换的商品，敬请期待！
+        </div>  
+      <?php } else { ?>
       <div class="prize-list">
         <?php foreach ($orderedPrizes as $prize) { ?>
           <div class="c-media">
@@ -109,6 +111,7 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
           </div>
         <?php } ?>
       </div>
+      <?php } ?>
     </div>  
   </div>
    <div class="c-modal">
