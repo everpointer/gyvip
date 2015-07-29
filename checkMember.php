@@ -5,14 +5,11 @@ require_once 'function.inc.php';
 if (isset($_SESSION['memberInfo'])) {
   $memberInfo = $_SESSION['memberInfo'];
 } else {
-  $member = null;
-  try {
-    $member = queryMemberThird( $_SESSION['uid'], $_SESSION['platform'] );
-  } catch (Exception $e) {
-   die( genErrorPage($e->getMessage()) );
+  $member = queryMemberThird( $_SESSION['uid'], $_SESSION['platform'] );
+  if ($member) {
+    $memberInfo = memberToMemberInfo($member->member);
+    $_SESSION['memberInfo'] = $memberInfo;
   }
-  $memberInfo = memberToMemberInfo($member->member);
-  $_SESSION['memberInfo'] = $memberInfo;
 }
 // Todo: comment when production
 // unset($_SESSION['memberInfo']);

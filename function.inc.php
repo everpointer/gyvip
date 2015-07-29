@@ -147,19 +147,14 @@ function genErrorPage($msg) {
 // 查询第三方平台会员（包括基础会员数据）
 function queryMemberThird($uid, $platform) {
 	$member = null;
-	try {
-    $memberQuery = new leancloud\AVQuery('MemberThird');
-    $memberQuery->where('uid', $uid);
-    $memberQuery->where('platform', $platform);
-    $memberQuery->setLimit(1);
-    $memberQuery->whereInclude('member');
-    $memberResults = $memberQuery->find()->results;
-    if (!$memberResults || empty($memberResults)) {
-      throw new RuntimeException('Error 50002: Member not found');
-    }
-    $member = $memberResults[0];
-  } catch (Exception $e) {
-    throw new RuntimeException('Error 50001: fail to find member');
+  $memberQuery = new leancloud\AVQuery('MemberThird');
+  $memberQuery->where('uid', $uid);
+  $memberQuery->where('platform', $platform);
+  $memberQuery->setLimit(1);
+  $memberQuery->whereInclude('member');
+  $memberResults = $memberQuery->find()->results;
+  if ($memberResults && !empty($memberResults)) {
+  	$member = $memberResults[0];
   }
   return $member;
 }
