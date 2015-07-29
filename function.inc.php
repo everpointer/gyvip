@@ -62,10 +62,12 @@ function memberToMemberInfo($member) {
  */
 // kmtk member
 function fromKmtkMember($member) {
-	$mobile = $member['MOBILE'];
-	if (empty($mobile) && !empty($member['TELEPHONE'])) {
-		$mobile = $member['TELEPHONE'];
-	}
+	// $mobile = $member['MOBILE'];
+	// if (empty($mobile) && !empty($member['TELEPHONE'])) {
+	// 	$mobile = $member['TELEPHONE'];
+	// }
+	// telephone is mobile (cause only update telephone on MIS)
+	$mobile = $member['TELEPHONE'];
 	return array(
     "cardNumber" => $member['CARDNO'],
     "mobile" => $mobile,
