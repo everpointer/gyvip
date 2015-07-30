@@ -55,7 +55,7 @@ try {
               <h5><?php echo $prize->creditPrize->name ?></h5>
               <p class="u-text-size-xx-small">
                 兑换时间：<?php echo strftime('%Y-%m-%d', strtotime($prize->creditPrize->createdAt)); ?>
-                <?php if ($prize->status == "created") { ?>
+                <?php if ($prize->status == "normal") { ?>
                   <a href="show.php?member_prize_id=<?php echo $prize->objectId ?>"class="c-button c-button--small u-float-right modal-trigger" data-member-prize-id="<?php echo $prize->objectId ?> ">
                     查看
                   </a>

@@ -34,7 +34,7 @@ try {
   exit;
 }
 // 奖品可能已使用
-if ($memberPrize->status != 'created') {
+if ($memberPrize->status != 'normal') {
   echo apiJsonResult(false, array(), '奖品状态异常，无法使用');
   exit;
 }
@@ -50,7 +50,7 @@ try {
   }
 } catch (Exception $e) {
   // testing write errors into php_error.log file (best practice when for debug production)
-  error_log("更新会员兑换的奖品时发生异常," + var_export($e));
+  error_log("更新会员兑换的奖品时发生异常, 详情：" + $e->getMessage());
   echo apiJsonResult(false, array(), '内部错误，更新会员兑换的奖品时发生异常');
   exit;
 }

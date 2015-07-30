@@ -67,7 +67,7 @@ try {
     </div>  
     <div class="c-tabbar">
       <!-- 收银员使用 -->
-      <?php if ($memberPrize->creditPrize->type == 'used_by_cashier' && $memberPrize->status == 'created') { ?>
+      <?php if ($memberPrize->creditPrize->type == 'used_by_cashier' && $memberPrize->status == 'normal') { ?>
         <a href="#" id="btn_use_prize" data-member-prize-id="<?php echo $memberPrize->objectId ?>" class="c-button c-tabbar-item--button">
           使用（收银员点击）
         </a>
@@ -119,7 +119,7 @@ try {
           },
           error: function(xhr, status, error) {
             // spinner.stop();
-            alert("兑换失败，错误代码：" + error.code + "，错误信息: " + error.message + "，请稍后再试。.");
+            alert("兑换失败，错误信息: " + error.message + "，请稍后再试。.");
           },
           complete: function() {
             hideSpinnerBox();
