@@ -49,6 +49,8 @@ try {
     exit;
   }
 } catch (Exception $e) {
+  // testing write errors into php_error.log file (best practice when for debug production)
+  error_log("更新会员兑换的奖品时发生异常," + var_export($e));
   echo apiJsonResult(false, array(), '内部错误，更新会员兑换的奖品时发生异常');
   exit;
 }

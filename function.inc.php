@@ -50,7 +50,7 @@ function memberToMemberInfo($member) {
     'mobile' => $member->mobile,
     'name'   => $member->name,
     'sex'		 => $member->sex,
-    'merchantId' => $member->merchantId,
+    'merchantId' => isset($member->merchantId) ? $member->merchantId : "ZB001",
     'registeredAt' => isset($member->registeredAt) ? $member->registeredAt : "",
     'createdAt' => $member->createdAt,
     'from' => $member->from,
