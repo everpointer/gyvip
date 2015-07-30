@@ -114,13 +114,12 @@ try {
             if (result.success == true) {
               window.location.reload();
             } else {
-              alert("兑换失败，原因" + result.errMsg);
+              alert("兑换失败，失败原因" + result.errMsg + "，请稍后再试");
             }
           },
           error: function(xhr, status, error) {
             // spinner.stop();
-            alert("兑换失败");
-            console.log("兑换失败: " + error);
+            alert("兑换失败，错误代码：" + error.code + "，错误信息: " + error.message + "，请稍后再试。.");
           },
           complete: function() {
             hideSpinnerBox();

@@ -6,12 +6,12 @@ require_once '../sdk/leancloud/AV.php';
 
 if (!isset($_SESSION['uid']) || !isset($_POST['member_prize_id']))
 {
-  header($_SERVER["SERVER_PROTOCOL"]." 500 Bad Request"); 
+  echo apiJsonResult(false, array(), '内部错误，请求参数错误');
   exit;
 }
 
 if (!isset($memberInfo)) {
-  header($_SERVER["SERVER_PROTOCOL"]." 501 Not Member"); 
+  echo apiJsonResult(false, array(), '内部错误，非会员请求');
   exit;
 }
 
@@ -25,12 +25,12 @@ try {
   $memberPrizeQuery->whereInclude('creditPrize');
   $memberPrizeResult = $memberPrizeQuery->find();
   if (empty($memberPrizeResult->results)) {
-    header($_SERVER["SERVER_PROTOCOL"]." 503 Member credit prize not found"); 
+    echo apiJsonResult(false, array(), '内部错误，未找到会员兑换的商品');
     exit;
   }
   $memberPrize = $memberPrizeResult->results[0];
 } catch (Exception $e) {
-  header($_SERVER["SERVER_PROTOCOL"]." 502 Fail to query member credit prize"); 
+  echo apiJsonResult(false, array(), '内部错误，查询会员兑换的奖品时发生异常');
   exit;
 }
 // 奖品可能已使用
@@ -49,7 +49,7 @@ try {
     exit;
   }
 } catch (Exception $e) {
-  header($_SERVER["SERVER_PROTOCOL"]." 503 Fail to update member credit prize"); 
+  echo apiJsonResult(false, array(), '内部错误，更新会员兑换的奖品时发生异常');
   exit;
 }
 
