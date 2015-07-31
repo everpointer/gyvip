@@ -32,7 +32,7 @@ $responseStr = $api->call('getCardOrder', array("uid" => $_SESSION['uid']));
 $response = json_decode($responseStr);
 $userOrder = $response->results[0];
 
-error_log("Error: 订单未成功支付, 订单信息" + var_export($userOrder, true));
+error_log("Error: 订单未成功支付, 订单信息" . var_export($userOrder, true));
 
 if (!$userOrder) {
   echo apiJsonResult(false, array(), '内部错误，获取订单数据失败');
