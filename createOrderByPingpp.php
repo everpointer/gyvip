@@ -61,7 +61,8 @@ $ch = \Pingpp\Charge::create(
         'order_no'  => $orderId,  // should be orderId
         'app'       => array('id' => $appId),
         'channel'   => $chargeParams['channel'],
-        'amount'    => $config['card_price'] * 100,
+        'amount'    => $config['card_price'],
+        // 'amount'    => $config['card_price'] * 100,
         'client_ip' => '127.0.0.1',
         'currency'  => 'cny',
         'subject'   => '花果山会员卡一张',

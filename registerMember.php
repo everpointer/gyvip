@@ -55,8 +55,8 @@ if ($order->uid != $uid) exit("订单不属于您");
       </section>
     </div>
     <script type="text/javascript" src="assets/js/zepto.min.js"></script>
-    <script type="text/javascript" src="assets/js/spin.min.js"></script>
     <script type="text/javascript" src="assets/js/av-mini.js"></script>
+    <script type="text/javascript" src="assets/js/spin.min.js"></script>
     <script type="text/javascript">
       // Todo: limit api requester
       AV.initialize("<?php echo $config['leancloud']['app_id']; ?>", "<?php echo $config['leancloud']['app_key']; ?>");
@@ -90,24 +90,25 @@ if ($order->uid != $uid) exit("订单不属于您");
           return false;
         }
         
-        var spinner = new Spinner({color:'#545454', lines: 12}).spin(document.body);
-        $("body").addClass("bg--off-white").css("opaticy", 0.6);
+        showSpinnerBox();
         $.ajax({
           type: 'POST',
           url: 'doRegisterMember.php',
           data: $("#registerForm").serialize(),
+          dataType: 'json',
           success: function(result) {
-            spinner.stop();
             if (result.success == true) {
               alert("注册成功");
               window.location = 'showMember.php';
             } else {
-              alert("兑换失败，失败原因：" + result.errMsg + "，请联系客服咨询");
+              alert("注册失败，失败原因：" + result.errMsg + "，请联系客服咨询");
             }
           },
           error: function(xhr, status, error) {
-            spinner.stop();
-            alert("兑换失败，发生未知错误，请联系客服咨询");
+            alert("注册失败，发生未知错误，请联系客服咨询");
+          },
+          complete: function() {
+            hideSpinnerBox();
           }
         });
       }); 
@@ -130,6 +131,31 @@ if ($order->uid != $uid) exit("订单不属于您");
             element.disabled = false;
           }
         }, 1000);
+      }
+      
+      // functions
+      function showSpinnerBox(parent) {
+        // add overlay
+        var overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+        
+        var div = document.createElement('div');
+        var spinnerHtml = "<div id='spinner_box' class='spinner-box'><div class='spinner-wrapper'></div><div class='spinner-text'>加载中...</div></div>";
+        if (typeof parent == "undefined") {
+          parent = document.body;
+        }
+        parent.appendChild(div).innerHTML = spinnerHtml;
+        var spinnerWrapper = document.querySelector('#spinner_box .spinner-wrapper');
+        // setting spin.js
+        new Spinner({color:'white', lines: 17, width: 2, length: 4, radius: 8, scale: 0.5}).spin(spinnerWrapper);
+      }
+      function hideSpinnerBox() {
+        var spinnerBox = document.getElementById('spinner_box');
+        if (spinnerBox) {
+          spinnerBox.remove();
+          document.querySelector('.overlay').remove();
+        }
       }
     </script>
   </body>

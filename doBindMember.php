@@ -5,8 +5,13 @@ require_once 'function.inc.php';
 require_once 'View.php';
 require_once 'model/Member.php';
 
-// session is really hard to control.(duplicated?)
-// @session_start();
+function exception_handler($e) {
+  error_log('[Exception] in ' . $e->getFile() . ' on line ' . $e->getLine() . "\n" .
+            "错误详情：" . $e->getMessage() ); 
+  echo apiJsonResult(false, array(), '系统异常，发生未知错误');
+  exit;
+}
+set_exception_handler("exception_handler");
 
 if ((!isset($_GET['action']) && !isset($_REQUEST['mobile']))
     || !isset($_SESSION['uid']))
@@ -66,12 +71,24 @@ if ($action == 'verifyMobile') {
     $result = $api->call('registerMember', $member);
     if ($result) {
       unset($_SESSION['bindingMember']);
-      echo "绑定成功";
+      echo apiJsonResult(true, array());
+      exit;
     }
   } else {
     // header code 501
-    header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+    echo apiJsonResult(false, array(), '内部错误，手机号码验证失败');
+    exit;
   }
 } else {
   exit("No resources founded");
+}
+
+// ----------------------------------------------------------------------------
+// functoins
+function apiJsonResult($success, $data, $errMsg = "") {
+  return json_encode(array(
+    "success" => $success,
+    "data" => $data,
+    "errMsg" => $errMsg
+  )); 
 }
