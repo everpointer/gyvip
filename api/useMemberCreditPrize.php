@@ -11,7 +11,7 @@ function exception_handler($exception) {
 }
 set_exception_handler("exception_handler");
 
-if (!isset($_SESSION['uid']) || isset($_POST['member_prize_id']))
+if (!isset($_SESSION['uid']) || !isset($_POST['member_prize_id']))
 {
   echo apiJsonResult(false, array(), '内部错误，错误的请求参数');
   exit;
