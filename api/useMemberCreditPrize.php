@@ -49,7 +49,8 @@ if ($memberPrize->status != 'normal') {
 try {
   $memberPrizeObject = new leancloud\AVObject('MemberCreditPrize');
   $memberPrizeObject->status = 'used';
-  $memberPrizeObject->usedAt = strftime('%Y-%m-%d %H:%M:%S');
+  $memberPrizeObject->usedAt = toAVDate("now");
+    // "iso" => JutransDate("now")
   $updateResult = $memberPrizeObject->update($memberPrize->objectId);
   if (!$updateResult) {
     echo apiJsonResult(false, array(), '奖品使用失败，请联系客服处理');
@@ -57,7 +58,8 @@ try {
   }
 } catch (Exception $e) {
   // testing write errors into php_error.log file (best practice when for debug production)
-  error_log("更新会员兑换的奖品时发生异常, 详情：" . $e->getMessage());
+  error_log('[Exception]' . $e->getFile() . 'on line ' . $e->getLine() . "\n" .
+            "更新会员兑换的奖品时发生异常, 详情：" . $e->getMessage());
   echo apiJsonResult(false, array(), '内部错误，更新会员兑换的奖品时发生异常');
   exit;
 }

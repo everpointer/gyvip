@@ -44,7 +44,7 @@ try {
        <?php if ($memberPrize->status == 'used') { ?>
         <div class='u-color-success u-text-align-center' style='padding:0.5em 1em;'>
           <div class='u-text-size-xxx-large'>已成功使用</div>
-          <div>使用时间：<?php echo strftime('%Y-%m-%d %H:%M:%S', strtotime($memberPrize->usedAt)) ?></div>
+          <div>使用时间：<?php echo fromAVDate($memberPrize->usedAt) ?></div>
         </div>
       <?php } ?>
       <div class="prize-usage">
@@ -119,7 +119,8 @@ try {
           },
           error: function(xhr, status, error) {
             // spinner.stop();
-            alert("兑换失败，错误信息: " + error.message + "，请稍后再试。.");
+            var message = error ? error.message : "未知错误";
+            alert("兑换失败，错误信息: " + message + "，请稍后再试");
           },
           complete: function() {
             hideSpinnerBox();

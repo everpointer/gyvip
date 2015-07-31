@@ -161,6 +161,51 @@ function queryMemberThird($uid, $platform) {
   return $member;
 }
 
+
+// 把obj对象转换为数组
+// 解析日期格式的数据，转成array
+function JutransToArray($obj=''){
+    $array = array();
+    foreach ($obj as $field => $value) {
+        if(is_object($value)){
+            if ($value->__type == "Date") {
+                $array[$field] = JutransDate($value->iso);
+            }else{
+                $array[$field] = $value->iso;
+            }
+        }else{
+            $array[$field] = $value;
+        }
+
+    }
+    return $array;
+}
+
+// 日期转换
+// 返回AV 需要的Date 格式的日期格式
+//array(
+// "__type" => "Date",
+// "iso" => "2011-08-21T18:02:52.248Z"
+// );
+// .000 php不支持到毫秒，但格式要求必须加
+function JutransDate($date){
+  return date("Y-m-d\TH:i:s.000\Z",strtotime($date) - 3600*8); // 需要与上文的 -3600*8 配合使用，不适用PRC，PRC经测试，还差了1个时区
+}
+
+function toAVDate($strDate) {
+  return array(
+    "__type" => "Date",
+    "iso" => JutransDate($strDate));
+}
+// only for custom date field without createdAt and updatedAt
+function fromAVDate($date) {
+	if (isset($date->__type) && $date->__type == "Date") {
+		return date("Y-m-d H:i:s", strtotime(substr($date->iso, 0, -5)) + 3600*8); // 0, -5 去处 .000Z
+	} else {
+		return null;
+	}
+}
+
 // view helpers
 // -----------------------------------------------------------------------------
 function formatUsageRule($usageRule) {
@@ -175,5 +220,6 @@ function formatUsageRule($usageRule) {
   }
   return $rulesHtml;
 }
+
 
 ?>
