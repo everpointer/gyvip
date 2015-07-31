@@ -114,7 +114,7 @@ try {
             if (result.success == true) {
               window.location.reload();
             } else {
-              alert("兑换失败，失败原因" + result.errMsg + "，请稍后再试");
+              alert("兑换失败，失败原因：" + result.errMsg + "，请稍后再试");
             }
           },
           error: function(xhr, status, error) {

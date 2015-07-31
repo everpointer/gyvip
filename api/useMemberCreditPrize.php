@@ -4,9 +4,16 @@ require_once '../function.inc.php';
 require_once '../checkMember.php';
 require_once '../sdk/leancloud/AV.php';
 
-if (!isset($_SESSION['uid']) || !isset($_POST['member_prize_id']))
+// 所有异常处理
+function exception_handler($exception) {
+  error_log('Uncaught exception: ' . $exception->getMessage());
+  echo apiJsonResult(false, array(), '未知错误');
+}
+set_exception_handler("exception_handler");
+
+if (!isset($_SESSION['uid']) || isset($_POST['member_prize_id']))
 {
-  echo apiJsonResult(false, array(), '内部错误，请求参数错误');
+  echo apiJsonResult(false, array(), '内部错误，错误的请求参数');
   exit;
 }
 
@@ -50,7 +57,7 @@ try {
   }
 } catch (Exception $e) {
   // testing write errors into php_error.log file (best practice when for debug production)
-  error_log("更新会员兑换的奖品时发生异常, 详情：" + $e->getMessage());
+  error_log("更新会员兑换的奖品时发生异常, 详情：" . $e->getMessage());
   echo apiJsonResult(false, array(), '内部错误，更新会员兑换的奖品时发生异常');
   exit;
 }
