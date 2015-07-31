@@ -119,8 +119,7 @@ try {
           },
           error: function(xhr, status, error) {
             // spinner.stop();
-            var message = error ? error.message : "未知错误";
-            alert("兑换失败，错误信息: " + message + "，请稍后再试");
+            alert("兑换失败，发生未知错误，可联系客服咨询");
           },
           complete: function() {
             hideSpinnerBox();

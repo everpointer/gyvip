@@ -4,11 +4,22 @@ require_once 'UserInfo.php';
 require_once 'function.inc.php';
 require_once 'model/Member.php';
 
+function exception_handler($e) {
+  error_log("已购买会员创建失败，uid: " . $_SESSION['uid'] .
+            ", platform: " . $_SESSION['platform'] . ", mobile: $mobile \n".
+            '[Exception] in ' . $e->getFile() . ' on line ' . $e->getLine() . "\n" .
+            "错误详情：" . $e->getMessage() ); 
+  echo apiJsonResult(false, array(), '系统异常，发生未知错误');
+  exit;
+}
+
+set_exception_handler("exception_handler");
+
 if (!isset($_POST['mobile']) ||
     !isset($_POST['smsCode']) ||
     !isset($_SESSION['uid']))
 {
-  header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+  echo apiJsonResult(false, array(), '内部错误，错误的请求参数');
   exit;
 } 
 
@@ -21,9 +32,18 @@ $responseStr = $api->call('getCardOrder', array("uid" => $_SESSION['uid']));
 $response = json_decode($responseStr);
 $userOrder = $response->results[0];
 
-if (!$userOrder) { header($_SERVER["SERVER_PROTOCOL"]." 502 获取订单数据失败！"); exit; }
-if (!$userOrder->paid) { header($_SERVER["SERVER_PROTOCOL"]." 503 订单未成功支付！"); exit; }
-if ($userOrder->binded) { header($_SERVER["SERVER_PROTOCOL"]." 504 订单已绑定会员卡! "); exit; }
+if (!$userOrder) {
+  echo apiJsonResult(false, array(), '内部错误，获取订单数据失败');
+  exit;
+}
+if (!$userOrder->paid) {
+  echo apiJsonResult(false, array(), '内部错误，订单未成功支付！');
+  exit;
+}
+if ($userOrder->binded) {
+  echo apiJsonResult(false, array(), '内部错误，订单已绑定会员卡');
+  exit;
+}
 
 // verify mobile smsCode
 $api = new LyfMember\Api();
@@ -32,7 +52,7 @@ $verifyResult = json_decode($verifyResultStr);
 // $verifyResult = true;
 
 if(!$verifyResult || isset($verifyResult->error)) {
-  header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+  echo apiJsonResult(false, array(), '内部错误，手机号码验证失败');
   exit;
 }
 
@@ -41,7 +61,7 @@ $mobile = $_REQUEST['mobile'];
 $member = new KMTK\Member();
 $result = $member->queryUserByMobile($mobile);
 if ($result && !empty($result)) {
-  header($_SERVER["SERVER_PROTOCOL"]." 502 该手机号码已绑定了一个会员"); 
+  echo apiJsonResult(false, array(), '内部错误，该手机号码已绑定了一个会员');
   exit;
 }
 
@@ -60,7 +80,7 @@ if ($result) {
   $result = $api->call('registerMember', $memberInfo);
   
   if (!$result) {
-    header($_SERVER["SERVER_PROTOCOL"]." 501 Fail to register member"); 
+    echo apiJsonResult(false, array(), '保存注册会员失败');
     exit;
   }
   // 更新订单状态
@@ -71,7 +91,7 @@ if ($result) {
     $userOrder->orderId
   );
   if (!$result) {
-    header($_SERVER["SERVER_PROTOCOL"]." 501 Fail to update card order status"); 
+    echo apiJsonResult(false, array(), '内部错误，更新会员卡订单失败');
     exit;
   }
   //$_SESSION['memberInfo'] = $memberInfo;
@@ -80,9 +100,22 @@ if ($result) {
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page
-  echo "会员创建成功";
+  echo apiJsonResult(true, array());
+  exit;
 } else {
   // echo "会员创建失败";
-  header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+  error_log("已购买会员创建失败，uid: " . $_SESSION['uid'] .
+            ", platform: " . $_SESSION['platform'] . ", mobile: $mobile");
+  echo apiJsonResult(false, array(), '内部错误，注册会员失败');
   exit;
+}
+
+// ----------------------------------------------------------------------------
+// functoins
+function apiJsonResult($success, $data, $errMsg = "") {
+  return json_encode(array(
+    "success" => $success,
+    "data" => $data,
+    "errMsg" => $errMsg
+  )); 
 }

@@ -221,5 +221,11 @@ function formatUsageRule($usageRule) {
   return $rulesHtml;
 }
 
+// Logs
+// -----------------------------------------------------------------------------
+function logException($e) {
+	error_log('[Exception] in ' . $e->getFile() . ' on line ' . $e->getLine() . "\n" .
+            "错误详情：" . $e->getMessage());
+}
 
 ?>

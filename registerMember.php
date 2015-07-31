@@ -98,13 +98,16 @@ if ($order->uid != $uid) exit("订单不属于您");
           data: $("#registerForm").serialize(),
           success: function(result) {
             spinner.stop();
-            console.log(result);
-            alert("注册成功");
-            window.location = 'showMember.php';
+            if (result.success == true) {
+              alert("注册成功");
+              window.location = 'showMember.php';
+            } else {
+              alert("兑换失败，失败原因：" + result.errMsg + "，请联系客服咨询");
+            }
           },
           error: function(xhr, status, error) {
             spinner.stop();
-            alert("验证失败: " + error);
+            alert("兑换失败，发生未知错误，请联系客服咨询");
           }
         });
       }); 
