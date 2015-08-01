@@ -62,10 +62,9 @@ if ($order->uid != $uid) exit("订单不属于您");
             return false;
           }
           
-          var spinner = new Spinner({color:'#545454', lines: 12}).spin(document.body);
-          $("body").addClass("bg--off-white").css("opaticy", 0.6);
+          showSpinnerBox();
           $.post('api/isMember.php', $("#isMemberForm").serialize(), function(response) {
-            spinner.stop();
+            hideSpinnerBox();
             if (response == "true") {
               $("#isMemberForm")[0].reset();
               alert("发生错误：该手机号码已绑定会员卡。");
@@ -77,6 +76,31 @@ if ($order->uid != $uid) exit("订单不属于您");
             }
           });
         });
+        
+      // functions
+      function showSpinnerBox(parent) {
+        // add overlay
+        var overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+        
+        var div = document.createElement('div');
+        var spinnerHtml = "<div id='spinner_box' class='spinner-box'><div class='spinner-wrapper'></div><div class='spinner-text'>加载中...</div></div>";
+        if (typeof parent == "undefined") {
+          parent = document.body;
+        }
+        parent.appendChild(div).innerHTML = spinnerHtml;
+        var spinnerWrapper = document.querySelector('#spinner_box .spinner-wrapper');
+        // setting spin.js
+        new Spinner({color:'white', lines: 17, width: 2, length: 4, radius: 8, scale: 0.5}).spin(spinnerWrapper);
+      }
+      function hideSpinnerBox() {
+        var spinnerBox = document.getElementById('spinner_box');
+        if (spinnerBox) {
+          spinnerBox.remove();
+          document.querySelector('.overlay').remove();
+        }
+      }
       });
     </script>
   </body>

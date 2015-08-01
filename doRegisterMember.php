@@ -28,21 +28,31 @@ $config = (require 'config.php');
 $mobile = $_POST['mobile'];
 $smsCode = $_POST['smsCode'];
 
-$responseStr = $api->call('getCardOrder', array("uid" => $_SESSION['uid']));
-$response = json_decode($responseStr);
-$userOrder = $response->results[0];
+try {
+  $cardOrderQuery = new leancloud\AVQuery('CardOrder');
+  $cardOrderQuery->where('uid', $_SESSION['uid']);
+  $cardOrderQuery->setLimit(1);
+  $cardOrderResult = $cardOrderQuery->find();
+  if (empty($cardOrderResult->results)) {
+    echo apiJsonResult(false, array(), '内部错误，未找到会员购买订单');
+    exit;
+  }
+  $cardOrder = $cardOrderResult->results[0];
+} catch (Exception $e) {
+  echo apiJsonResult(false, array(), '内部错误，查询会员购买订单时发生异常');
+  exit;
+}
 
-error_log("订单错误：" . var_export($userOrder, true), 3, "php_errors.log");
-
-if (!$userOrder) {
+if (!$cardOrder) {
   echo apiJsonResult(false, array(), '内部错误，获取订单数据失败');
   exit;
 }
-if (!$userOrder->paid) {
+if (!$cardOrder->paid) {
+  error_log("订单错误：" . var_export($cardOrder, true), 3, "php_errors.log");
   echo apiJsonResult(false, array(), '内部错误，订单未成功支付');
   exit;
 }
-if ($userOrder->binded) {
+if ($cardOrder->binded) {
   echo apiJsonResult(false, array(), '内部错误，订单已绑定会员卡');
   exit;
 }
@@ -88,9 +98,9 @@ if ($result) {
   // 更新订单状态
   $result = $api->callExtUrl('updateCardOrder', array(
       "binded" => true,
-      "orderId" => $userOrder->orderId
+      "orderId" => $cardOrder->orderId
     ),
-    $userOrder->orderId
+    $cardOrder->orderId
   );
   if (!$result) {
     echo apiJsonResult(false, array(), '内部错误，更新会员卡订单失败');
