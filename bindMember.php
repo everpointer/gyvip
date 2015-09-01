@@ -32,9 +32,9 @@
           }
           
           showSpinnerBox();
-          $.post('doBindMember.php', $("#bindForm").serialize(), function(response) {
+          $.post('doBindMember.php', $("#bindForm").serialize(), function(data, status, xhr) {
             hideSpinnerBox();
-            $("body").html(response);
+            $("body").html(data);
           });
         });
         
@@ -58,8 +58,9 @@
         function hideSpinnerBox() {
           var spinnerBox = document.getElementById('spinner_box');
           if (spinnerBox) {
-            spinnerBox.remove();
-            document.querySelector('.overlay').remove();
+            $(spinnerBox).remove();
+            // document.querySelector('.overlay').remove();
+            $(".overlay").remove();
           }
         }
       });
