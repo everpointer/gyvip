@@ -376,6 +376,7 @@ h6,
 /** c-modal fix
 */
 .modal-content {
-  font-size: 20px;
+  font-size: 18px;
   padding: 10px;
+  text-align: center;
 }

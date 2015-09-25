@@ -114,9 +114,9 @@ jsApiList: [
 wx.ready(function(){
 // 朋友圈
 wx.onMenuShareTimeline({
-  title: "花果山果忆No.23集仕港店盛大开业",
+  title: "花果山果忆No.23集仕港店盛大开业活动，26～28号，等你来抢！",
   link: url,
-  imgUrl: "https://dn-kdt-img.qbox.me/upload_files/2015/09/22/Frg7qECk0_XrbF_kHYoXZNdGvbGS.png",
+  imgUrl: "http://7xlyq1.com1.z0.glb.clouddn.com/images/logo.jpg",
   success: function() {
     // loading
     showSpinnerBox();
@@ -282,7 +282,7 @@ if(typeof object === 'undefined') {
   return;
 }
 if (object.get('status') === "used") {
-  $(".c-modal .modal-content").html("<div style='color:red;'>您已兑换过奖品<br/>领取时间：" + object.get('usedAt') + "</div>");
+  $(".c-modal .modal-content").html("<div style='color:red;'>您已兑换过奖品<br/>兑换时间：" + object.get('usedAt') + "</div>");
   $("#modal-checkbox").prop("checked", true);
 } else if (object.get('status') === "normal") {
   $(".c-modal .modal-content").html( 
