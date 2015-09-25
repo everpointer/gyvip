@@ -1,5 +1,6 @@
 <?php
 // 设置时区
+require '../vendor/autoload.php';
 date_default_timezone_set("PRC");
 @session_start();
 $config = (require '../config.php');
@@ -8,7 +9,7 @@ if (!isset($_SESSION['uid'])) {
   // wechat oauth using wechat-oauth package
   $oauth = new \Henter\WeChat\OAuth($config['wechat']['app_id'], $config['wechat']['app_secret']);
   if (!isset($_GET['code'])) {
-    $callback_url = $config['host'] . "/jsg?platform=wechat";
+    $callback_url = $config['host'] . "/jsg";
     $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo');
     header("Location: $url");
     exit;
@@ -19,7 +20,6 @@ if (!isset($_SESSION['uid'])) {
       $expires_in = $oauth->getExpiresIn();
       $openid = $oauth->getOpenid();
       $_SESSION['uid'] = $openid;
-      $_SESSION['platform'] = $platform;
     }else{
       // echo $oauth->error();
       exit("User fail to authorized!");
