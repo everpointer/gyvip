@@ -1,0 +1,381 @@
+/*body {
+  font: 2vw "Microsoft YaHei",微软雅黑,Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #333;
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: top;
+}
+
+ul,
+ol {
+  list-style: none;
+}*/
+
+/*img {
+  display: block;
+  vertical-align: top;
+  border: 0;
+  width: 100%;
+}*/
+/*a {
+  text-decoration: none;
+}
+
+.category-product-list {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 6px;
+}
+
+.category-product-list ul {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  margin: 0 3px;
+}
+
+.category-product-list-box {
+  margin: 3px;
+  background: #f8f6f7;
+}
+
+.category-product-list ul li {
+  float: left;
+  width: 50%;
+}
+
+.category-product-list ul li h1 {
+  font-size: .9rem;
+  letter-spacing: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 220%;
+  padding: 0 0 0 .4rem;
+}
+.category-product-list ul li .product-name {
+  color: #333;
+  font-size: .9rem;
+  padding: .3rem 0 .3rem .4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-product-list ul li .product-price {
+  color: #e61f19;
+  font-size: 1.33rem;
+  padding: .4rem 0 .4rem .2rem;
+  position: relative;
+  background: rgb(252, 250, 205);
+  padding-left: 6px;
+}
+.question {
+  background: red;
+  color: white;
+  font-size: 28px;
+  border-radius: 15px;
+  padding: 0 6px;
+  margin-right: 4px;
+}
+.section-header {
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  background: #473134;
+  color: #F36A3F;
+  padding: 4px 0;
+}*/
+*
+ * c-modal
+ */
+.c-modal label {
+  cursor: pointer;
+  margin-bottom: 0; }
+.c-modal label img {
+  border-radius: 150px;
+  display: block;
+  max-width: 300px; }
+.c-modal .modal-state {
+  display: none; }
+.c-modal .modal-fade-screen {
+  transition: opacity 0.25s ease;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  padding-top: 30%;
+  text-align: left;
+  visibility: hidden;
+  z-index: 9999; }
+  @media (min-width: 40.0625em) {
+    .c-modal .modal-fade-screen {
+      padding-top: 10em; } }
+  .c-modal .modal-fade-screen .modal-bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    cursor: pointer; }
+.c-modal .modal-close {
+  position: absolute;
+  top: 0.5em;
+  right: 0.375em;
+  height: 1.6em;
+  width: 1.6em;
+  background: white;
+  cursor: pointer; }
+  .c-modal .modal-close:hover, .c-modal .modal-close:hover {
+    color: #c4c4c4; }
+.c-modal .modal-inner {
+  transition: opacity 0.25s ease;
+  background: white;
+  border-radius: 3px;
+  margin-top: 0;
+  margin: auto;
+  max-height: 95%;
+  overflow: auto;
+  padding: 1.5em;
+  position: relative;
+  width: 85%; }
+  @media (min-width: 40.0625em) {
+    .c-modal .modal-inner {
+      width: 50%; } }
+  .c-modal .modal-inner h1 {
+    color: #333;
+    margin-bottom: 0 0 0.6em 0;
+    text-align: left;
+    text-transform: capitalize; }
+  .c-modal .modal-inner p {
+    color: #333;
+    line-height: 1.5em; }
+  .c-modal .modal-inner .modal-intro {
+    font-weight: 800; }
+  .c-modal .modal-inner .modal-content {
+    color: #333; }
+  .c-modal .modal-inner a.cta {
+    color: white;
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-top: 1em; }
+    .c-modal .modal-inner a.cta:last-child {
+      padding: 0 2em; }
+.c-modal .modal-state:checked + .modal-fade-screen {
+  opacity: 1;
+  visibility: visible; }
+.c-modal .modal-state:checked + .modal-fade-screen .modal-inner {
+  top: 0.5em; }
+
+.modal-open {
+  overflow: hidden; }
+
+/** button */
+.c-button, .c-modal .modal-trigger,
+.o-button {
+  user-select: none;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+  font-family: inherit;
+  /*font-size: 100%;*/
+  font-size: 16px;
+  line-height: normal;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent; }
+  .c-button, .c-modal .modal-trigger, .c-button:hover, .c-modal .modal-trigger:hover, .c-button:focus, .c-modal .modal-trigger:focus, .c-button:active, .c-modal .modal-trigger:active,
+  .o-button,
+  .o-button:hover,
+  .o-button:focus,
+  .o-button:active {
+    text-decoration: none; }
+/**
+ * Hover/focus styles, simple fade out effect via `opacity`
+ */
+.c-button, .c-modal .modal-trigger {
+  text-align: center;
+  background-color: #17AB57;
+  padding: 0.75rem 1.5rem;
+  transition: opacity 0.15s linear; }
+  html .c-button, html .c-modal .modal-trigger, .c-modal html .modal-trigger {
+    border-radius: 4px; }
+  .c-button, .c-modal .modal-trigger, .c-button:hover, .c-modal .modal-trigger:hover, .c-button:focus, .c-modal .modal-trigger:focus, .c-button:active, .c-modal .modal-trigger:active {
+    color: #fff; }
+  .c-button:hover, .c-modal .modal-trigger:hover, .c-button:focus, .c-modal .modal-trigger:focus {
+    opacity: 0.7; }
+
+/**
+ * Modifier: secondary colour.
+ */
+.c-button--secondary {
+  background-color: #35c9be; }
+  .c-button--secondary, .c-button--secondary:hover, .c-button--secondary:focus, .c-button--secondary:active {
+    color: #fff; }
+
+/**
+ * Modifier: tiny padding.
+ */
+.c-button--tiny {
+  padding: 0.25rem 0.5rem; }
+
+/**
+ * Modifier: small padding.
+ */
+.c-button--small {
+  padding: 0.375rem 0.75rem; }
+
+/**
+ * Modifier: large padding.
+ */
+.c-button--large {
+  padding: 1.125rem 2.25rem; }
+
+/**
+ * Modifier: huge padding.
+ */
+.c-button--huge {
+  padding: 1.5rem 3rem; }
+
+/**
+ * Modifier: full bleed.
+ */
+.c-button--full-bleed {
+  display: block;
+  /*width: 100%;*/
+}
+.c-button--center {
+  margin: auto;
+  width: 82%;
+  margin-top: 4px;
+  margin-left: 2%;
+}
+/**
+ * spinner
+ */
+.spinner-box {
+  width: 100px;
+  height: 100px;
+  background: #7C7C7C;
+  z-index: 99;
+  color: white;
+  border-radius: 6px;
+  /** .u-absolute-center, .spinner-box */
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.spinner-wrapper {
+  height: 70px; }
+
+.spinner-text {
+  text-align: center;
+  height: 30px; }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+.overlay-black {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background: black;
+}
+.overlay-tips {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.overlay-tips img{
+  max-width: 90%;
+  margin-left: 10%;
+}
+.u-text-align-center {
+  text-align: center !important; }
+/**
+ * Apply font family.
+ */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: Arial, sans-serif; }
+
+/**
+ * Set margins but make optional.
+ */
+/**
+ * H1.
+ */
+h1,
+.h1 {
+  font-size: 2.25rem ;
+  line-height: 1.33333 ;
+  margin-top: 0; }
+
+/**
+ * H2.
+ */
+h2,
+.h2 {
+  font-size: 1.875rem ;
+  line-height: 1.6 ; }
+
+/**
+ * H3.
+ */
+h3,
+.h3 {
+  font-size: 1.5rem ;
+  line-height: 1 ; }
+
+/**
+ * H4.
+ */
+h4,
+.h4 {
+  font-size: 1.25rem ;
+  line-height: 1.2 ; }
+
+/**
+ * H5.
+ */
+h5,
+.h5 {
+  font-size: 1rem ;
+  line-height: 1.5 ; }
+
+/**
+ * H6.
+ */
+h6,
+.h6 {
+  font-size: 0.875rem ;
+  line-height: 1.71429 ; }
+
+/** c-modal fix
+*/
+.modal-content {
+  font-size: 20px;
+  padding: 10px;
+}
