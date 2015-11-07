@@ -17,3 +17,4 @@ config/env.yml
 Dockerfile.local
 *.log
 env*.yaml
+test

@@ -35,6 +35,11 @@ return array(
       'pay_host' => getenv('kmtk_pay_host'),
       'debug' => true
     ),
+    // change value when testing
+    'duiba' => array(
+      'app_key' => getenv('duiba_app_key'),
+      'app_secret' => getenv('duiba_app_secret')
+    ),
   'header' => array( // 调用Rest API时，需要额外传入的请求头部信息, 没有就保持空
     'X-AVOSCloud-Application-Id: ' . getenv('leancloud_app_id'),
     'X-AVOSCloud-Request-Sign: ' . genLeanCloudAppSign(getenv('leancloud_app_key'))
