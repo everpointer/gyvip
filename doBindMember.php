@@ -68,12 +68,43 @@ if ($action == 'verifyMobile') {
     $member['uid'] = $_SESSION['uid'];
     $member['platform'] = $_SESSION['platform'];
     $member['from'] = 'store';  // 来自门店的老会员
-    $result = $api->call('registerMember', $member);
-    if ($result) {
-      unset($_SESSION['bindingMember']);
-      echo apiJsonResult(true, array());
-      exit;
+    $resultStr = $api->call('registerMember', $member);
+    $result = json_decode($resultStr);
+    if(!$result || isset($result->data->error)) {
+      header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+      error_log('Api: registerMember 调用失败，原因：' . $result->data->message);
+      exit();
+    } else if (!empty($result->message)) {
+      die("发生错误：$result->message");
     }
+    // todo：赠送9积分，纪录云平台, 先不做重复判断
+    // 用户积分充值
+    if (isset($config['credit_gift']) && $config['credit_gift'] > 0) {
+      $apiParams = array(
+        'name' => $member['cardNumber'],
+        'userType' => 2, // member card
+        'amount' => $config['credit_gift'], // 9积分
+        'businessId' => 1,
+        'orderId' => '',  // temply
+        'merchantId' => 'ZB001',
+        'opId' => 'gyvip',
+        'opName'=> '果忆会员系统',
+        'description' => '电子会员系统首次绑定积分赠送'
+      );
+      $apiParams['sign'] = genKmtkApiSign($apiParams);
+      $resultStr = $api->call('kmtkDepositScore', $apiParams);
+      $result = json_decode($resultStr);
+      if(!$result || isset($result->data->error)) {
+        header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
+        exit();
+      } else if (!empty($result->message)) {
+        die("发生错误：$result->message");
+      }
+    }
+    
+    unset($_SESSION['bindingMember']);
+    echo apiJsonResult(true, array());
+    exit;
   } else {
     // header code 501
     echo apiJsonResult(false, array(), '内部错误，手机号码验证失败');
