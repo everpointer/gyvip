@@ -15,7 +15,7 @@ return array(
   'partner_name' => "果忆", // 商户名称
   'card_price' => 10,  // 会员卡单价，单位元
   'host' => getenv('host'),
-  'credit_gift' => 9, // getenv('credit_gift') //首次绑定赠送积分
+  'credit_gift' => getenv('credit_gift'), //首次绑定赠送积分
   'pingxx' => array( // ping++ 配置, ping++后台可查看
     'app_id' => getenv('pingxx_app_id'),  // ping++ app_id
     'test_key' => getenv('pingxx_test_key'), // ping++ 测试环境key
