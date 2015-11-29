@@ -16,7 +16,6 @@ class Oracle {
     $this->dbHost     =  getenv('kmtk_db_host');
     $this->dbPort     = getenv('kmtk_pay_port');
     $this->dbServiceName = getenv('kmtk_pay_service_name');
-    $this->charset    = 'utf8';
   }
   
   public function __destruct() {

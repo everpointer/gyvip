@@ -13,79 +13,79 @@ if (isset($memberInfo)) {
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>会员中心</title>
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-  </head>
-  <body class="u-color-bg-primary">
-    <div role="main">
-      <div class="bg-mask"></div>
-       <div class="member-card">
-         <img src="assets/images/gy-member-card.png" />
-         <div class="img-line-mask"></div>
-       </div>
-       <!--<div class="c-button u-three-quarters u-s-ms-one-eighth">-->
-       <!--  购买/绑定我的会员卡-->
-       <!--</div>-->
-       <div class="c-modal">
-          <label for="modal-membercard">
-            <div id="modal-trigger" class="modal-trigger u-three-quarters u-s-ms-one-eighth">购买/绑定我的会员卡</div>
-          </label>
-          <input class="modal-state" id="modal-checkbox" type="checkbox" />
-          <div class="modal-fade-screen">
-            <div class="modal-inner">
-              <div class="modal-close" for="modal-membercard">X</div>
-              <!--<h1>Modal Title</h1>-->
-              <p class="modal-intro">
-                "老会员，请点击绑定会员卡；新会员，请购买会员卡。"
-              </p>
-              <p class="modal-content">
-                <a href="bindMember.php" class="c-button c-button-small c-button--full-bleed u-s-mb-small">绑定会员卡</a>
-                <a href="purchase.php" class="c-button c-button-small c-button--full-bleed c-button--secondary">购买会员卡</a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-       <div class="c-list c-list-inset u-s-ms-base">
-            <a href="articles/membercard.html" class="c-item">
-              会员卡使用说明
-              <div class="u-float-right"> > </div>
-            </a>
-            <a href="continueBindingAfterPurchase.php" class="c-item">
-              支付成功，绑定失败用户（点这里）
-              <div class="u-float-right"> > </div>
-            </a>
-         </div>
-       </div>
-    </div>
-    <script type="text/javascript" src="assets/js/zepto.min.js"></script>
-    <script>
-      $(function() {
-        $("#modal-trigger").on("click", function() {
-           $("#modal-checkbox").prop("checked", true);
-        });
-        $("#modal-checkbox").on("change", function() {
-          if ($(this).is(":checked")) {
-            $("body").addClass("modal-open");
-          } else {
-            $("body").removeClass("modal-open");
-          }
-        });
-      
-        $(".modal-fade-screen, .modal-close").on("click", function() {
-          $(".modal-state:checked").prop("checked", false).change();
-        });
-      
-        $(".modal-inner").on("click", function(e) {
-          e.stopPropagation();
-        });
-      });
-
-    </script>
-  </body>
+    <!--<script src="assets/js/mui.min.js"></script>-->
+    <link href="assets/css/iconfont.css" rel="stylesheet"> 
+    <link href="assets/css/mui.min.css" rel="stylesheet"/>
+    <link href="assets/css/ny-style.css" rel="stylesheet"/>
+ </head>
+<body>
+	<div class="mui-content mui-content-padded">
+		<div class="memberCard">
+			<img class="gray" style="width:80%;margin-top: 30px;" src="assets/images/果忆会员卡.gif"/>
+			<div class="CardNum">
+				<div class="title">
+					您的电子会员卡未激活😂
+				</div>
+			</div>
+		</div>
+		
+		<div>
+			<a href="bindMember.php" type="button" class="mui-btn mui-btn-success btnBindCard">绑定实体会员卡</a>
+		</div>
+		
+			<ul class="mui-table-view">
+				<!--
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<span class="mui-icon  iconfont  icon-icon-bind"></span>
+						<span class="li-con">绑定实体会员卡</span>
+					</a>
+				<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>-->
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="purchase.php">
+						<span class="mui-icon  iconfont  icon-icon-buy"></span>
+						<span class="li-con">购买电子会员卡</span>
+					</a>
+				</li>
+			</ul>
+		
+		<div class="title">
+			关于会员卡
+		</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="articles/membercard.html">
+						<span class="mui-icon  iconfont  icon-huiyuanqia"></span>
+						<span class="li-con">会员卡详情</span>
+					</a>
+				<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="https://wap.koudaitong.com/v2/showcase/physicalstore?kdt_id=273165&sf=wx_menu">
+						<span class="mui-icon  mui-icon-location"></span>
+						<span class="li-con">适用门店</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<span class="mui-icon  iconfont  icon-kefu"></span>
+						<span class="li-con">在线客服</span>
+					</a>
+				</li>
+			</ul>
+			
+			<div class="bottomTitle title">
+				果忆 · 我的美好水果记忆<br/>
+				宁波花果山果品有限公司©2015
+			</div>
+	</div>
+	<script type="text/javascript" charset="utf-8">
+    // mui.init();
+  </script>	
+</body>
 </html>
 <?php
 }
