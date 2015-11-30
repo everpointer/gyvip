@@ -27,6 +27,9 @@ if (!isset($_GET['action']) && isset($_REQUEST['mobile']) &&
   $mobile = $_REQUEST['mobile'];
   $member = new KMTK\Member();
   $result = $member->queryUserByMobile($mobile);
+  //// for testing
+  // $result['TELEPHONE'] = '13184342077';
+  // $result['CARDNO'] = '143703822043';
   if ($result && !empty($result)) {
     $_SESSION['bindingMember'] = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
@@ -61,6 +64,7 @@ if ($action == 'verifyMobile') {
   $api = new LyfMember\Api();
   $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $member['mobile']), $smsCode);
   $verifyResult = json_decode($verifyResultStr);
+  // temply ignore smscode verification
   // $verifyResult = true;
   
   if($verifyResult && !isset($verifyResult->error)) {
@@ -79,29 +83,11 @@ if ($action == 'verifyMobile') {
     }
     // todo：赠送9积分，纪录云平台, 先不做重复判断
     // 用户积分充值
-    if (isset($config['credit_gift']) && $config['credit_gift'] > 0) {
-      $apiParams = array(
-        'name' => $member['cardNumber'],
-        'userType' => 2, // member card
-        'amount' => $config['credit_gift'], // 9积分
-        'businessId' => 1,
-        'orderId' => '',  // temply
-        'merchantId' => 'ZB001',
-        'opId' => 'gyvip',
-        'opName'=> '果忆会员系统',
-        'description' => '电子会员系统首次绑定积分赠送'
-      );
-      $apiParams['sign'] = genKmtkApiSign($apiParams);
-      $resultStr = $api->call('kmtkDepositScore', $apiParams);
-      $result = json_decode($resultStr);
-      if(!$result || isset($result->data->error)) {
-        header($_SERVER["SERVER_PROTOCOL"]." 501 Bad Request"); 
-        exit();
-      } else if (!empty($result->message)) {
-        die("发生错误：$result->message");
-      }
+    $result = reward_credit_gift($member['cardNumber'], $config['credit_gift']);
+    if ($result != true) {
+      echo apiJsonResult(false, array(), $result['error']);
+      exit;
     }
-    
     unset($_SESSION['bindingMember']);
     echo apiJsonResult(true, array());
     exit;
@@ -122,4 +108,82 @@ function apiJsonResult($success, $data, $errMsg = "") {
     "data" => $data,
     "errMsg" => $errMsg
   )); 
+}
+// 首次绑定积分赠送
+function reward_credit_gift($cardNumber, $credit) {
+  if ($credit > 0) {
+      // checking credit gift reward records
+      $prizeType = "initial_bind";
+      $prizes = queryMemberPrice($cardNumber, $prizeType);
+      // 是否已获得过奖品
+      if ($prizes && !empty($prizes)) {
+        // error_log("Fail to createMemberPrize when cardNumber:" . $cardNumber . " cause already binded");
+        return true; 
+      }
+      
+      $apiParams = array(
+        'name' => $cardNumber,
+        'userType' => 2, // member card
+        'amount' => $credit, // 9积分
+        'businessId' => 1,
+        'orderId' => '',  // temply
+        'merchantId' => 'ZB001',
+        'opId' => 'gyvip',
+        'opName'=> '果忆会员系统',
+        'description' => '电子会员系统首次绑定积分赠送'
+      );
+      $apiParams['sign'] = genKmtkApiSign($apiParams);
+      $api = new LyfMember\Api();
+      $responseStr = $api->call('kmtkDepositScore', $apiParams);
+      $response = json_decode($responseStr);
+      if ($response) {
+        // 首次绑定积分奖品赠送纪录
+        $result = createMemberPrize($cardNumber, $prizeType, array("type" => "credit", "content" => $credit));
+        if ($result != true) {
+          error_log("Fail to createMemberPrize when cardNumber:" . $cardNumber . " initially bind.");
+        }
+        return true;
+      } else if(!$response || isset($response->data->error)) {
+        return array(
+          "success" => false,
+          "error" => $response->data->error
+        );
+      } else if (!empty($response->message)) {
+        return array(
+          "success" => false,
+          "error" => $response->message
+        );
+      }
+  } 
+  return true;
+}
+// query Member price by cardNumber and prize type
+function queryMemberPrice($cardNumber, $type) {
+  $query = new leancloud\AVQuery('MemberPrize');
+  $query->where('cardNumber', $cardNumber);
+  $query->where('type', $type);
+  $results = $query->find()->results;
+  return $results;
+}
+
+// 创建用户奖品纪录 (leancloud)
+// type: initial_bind
+// prize: array("type" => "credit, content => 9)
+function createMemberPrize($cardNumber, $type, $prize) {
+  try {
+    $memberPrize = new leancloud\AVObject("MemberPrize");
+    $memberPrize->type = $type;
+    $memberPrize->prize = json_encode(array(
+      "type" => $prize['type'],
+      "content" => $prize['content']
+    ));
+    $memberPrize->cardNumber = $cardNumber;
+    $memberPrize->save();
+    return true;
+  } catch (Exception $e) {
+    return array(
+      "success" => false,
+      "error" => "Fail to save member pirze record due to:" . $e->getMessage()
+    );
+  }
 }
