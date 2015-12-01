@@ -61,6 +61,7 @@ if ($cardOrder->binded) {
 $api = new LyfMember\Api();
 $verifyResultStr = $api->callExtUrl('verifySmsCode', array("mobilePhoneNumber" => $mobile), $smsCode);
 $verifyResult = json_decode($verifyResultStr);
+// // for testting
 // $verifyResult = true;
 
 if(!$verifyResult || isset($verifyResult->error)) {
@@ -80,6 +81,7 @@ if ($result && !empty($result)) {
 // create member on KMTK
 $memberParams = genKmtkRegisterMemberApiParams($config, array('mobile' => $mobile));
 $result = $api->call('kmtkRegisterMember', $memberParams);
+// // for testing
 // $result = true;
 
 if ($result) {
@@ -106,9 +108,11 @@ if ($result) {
     echo apiJsonResult(false, array(), '内部错误，更新会员卡订单失败');
     exit;
   }
-  //$_SESSION['memberInfo'] = $memberInfo;
-  
-  // header("Location: showMember.php");
+  // 用户积分充值，与用户绑定逻辑一致
+  $result = reward_credit_gift($memberInfo['cardNumber'], $config['credit_gift']);
+  if ($result != true) { // 积分充值失败只记录，不影响后续操作
+    error_log("Fail to reward_credit_gift for cardNumber:" . $memberInfo['cardNumber'] . " due to:" . $result['error']);
+  }
   //TODO:
   // 1. add member card to alipaypass
   // 2. show member card page

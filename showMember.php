@@ -5,6 +5,7 @@ require_once 'checkMember.php';
 if (!isset($memberInfo)) {
   header("Location: index.php");
 }
+$member_ad_badge = getenv('member_ad_badge');
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,6 +55,9 @@ if (!isset($memberInfo)) {
           <a class="mui-navigate-right" href="/credit">
             <span class="mui-icon iconfont icon-duihuan"></span>
             <span class="li-con">积分兑换</span>
+            <?php if (!empty($member_ad_badge)) { ?>
+              <span class="mui-badge mui-badge-danger"><?php echo $member_ad_badge; ?></span>
+            <?php } ?>
           </a>
         <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>
         <!--
