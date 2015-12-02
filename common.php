@@ -14,7 +14,7 @@ $api = new \LyfMember\Api();
 // $_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
 // $_SESSION['platform'] = 'alipay'; // alipay, wechat
 if (isset($_SESSION['uid']) &&
-    !isset($_GET['proxy_redirect'])) {
+    !isset($_GET['proxy_redirect_base64'])) {
   $uid = $_SESSION['uid'];
 } else if (isset($_REQUEST['platform'])) { // index entry point
   $platform = $_GET['platform'];
@@ -35,8 +35,9 @@ if (isset($_SESSION['uid']) &&
       $callback_url = $config['host'] . "?platform=$platform";
       // url入口格式：host?platform=wechat&proxy_redirect
       // 通过proxy_redirect实现转交code和重定向
-      if (isset($_GET['proxy_redirect'])) {
-        $callback_url = $callback_url . "&proxy_redirect=" . $_GET['proxy_redirect'];
+      if (isset($_GET['proxy_redirect_base64'])) {
+        $proxy_redirect_url_base64 =  $_GET['proxy_redirect_base64'];
+        $callback_url = $callback_url . "&proxy_redirect_base64=" . $proxy_redirect_url_base64;
       }
       $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo');
       header("Location: $url");
@@ -44,8 +45,10 @@ if (isset($_SESSION['uid']) &&
     } else {
       $code = $_GET['code'];
       // 转交微信auth code实现统一授权 for weiqing
-      if (isset($_GET['proxy_redirect'])) {
-        $proxy_redirect_url = $_GET['proxy_redirect'] . "&code=" . $code;
+      if (isset($_GET['proxy_redirect_base64'])) {
+        $proxy_redirect_url = urldecode(base64_decode($_GET['proxy_redirect_base64'])). "&code=" . $code;
+        // $proxy_redirect_url = urldecode(base64_decode($_GET['proxy_redirect'])) . "&code=" . $code;
+        // $proxy_redirect_url = urldecode(base64_decode($_GET['proxy_redirect'])) . "&code=" . $code;
         header("Location: $proxy_redirect_url");
         exit;
       } else {
