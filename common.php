@@ -13,7 +13,8 @@ $config = (require 'config.php');
 $api = new \LyfMember\Api();
 // $_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
 // $_SESSION['platform'] = 'alipay'; // alipay, wechat
-if (isset($_SESSION['uid'])) { // other pages
+if (isset($_SESSION['uid']) &&
+    !isset($_GET['proxy_redirect'])) {
   $uid = $_SESSION['uid'];
 } else if (isset($_REQUEST['platform'])) { // index entry point
   $platform = $_GET['platform'];
@@ -34,7 +35,7 @@ if (isset($_SESSION['uid'])) { // other pages
       $callback_url = $config['host'] . "?platform=$platform";
       // url入口格式：host?platform=wechat&proxy_redirect
       // 通过proxy_redirect实现转交code和重定向
-      if ($_GET['proxy_redirect']) {
+      if (isset($_GET['proxy_redirect'])) {
         $callback_url = $callback_url . "&proxy_redirect=" . $_GET['proxy_redirect'];
       }
       $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo');
