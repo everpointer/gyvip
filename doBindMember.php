@@ -72,6 +72,9 @@ if ($action == 'verifyMobile') {
     $member['uid'] = $_SESSION['uid'];
     $member['platform'] = $_SESSION['platform'];
     $member['from'] = 'store';  // 来自门店的老会员
+    if (isset($_SESSION['source_store'])) {
+      $member['source_store']  = $_SESSION['source_store'];
+    }
     $resultStr = $api->call('registerMember', $member);
     $result = json_decode($resultStr);
     if(!$result || isset($result->data->error)) {
@@ -81,6 +84,7 @@ if ($action == 'verifyMobile') {
     } else if (!empty($result->message)) {
       die("发生错误：$result->message");
     }
+    unset($_SESSION['source_store']);
     // todo：赠送9积分，纪录云平台, 先不做重复判断
     // 用户积分充值
     $result = reward_credit_gift($member['cardNumber'], $config['credit_gift']);

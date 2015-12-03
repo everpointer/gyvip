@@ -59,7 +59,7 @@ return array(
       'method' => 'post',
       'url' => 'https://leancloud.cn/1.1/functions/registerMember',
       'params' => array('mobile', 'cardNumber', 'uid', 'platform'),
-      'optionParams' => array('name', 'sex', 'merchantId', 'registedAt', 'from')
+      'optionParams' => array('name', 'sex', 'merchantId', 'registedAt', 'from', 'source_store')
     ),
     /**
      * 老会员绑定支付宝用户接口

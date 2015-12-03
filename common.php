@@ -13,6 +13,10 @@ $config = (require 'config.php');
 $api = new \LyfMember\Api();
 // $_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
 // $_SESSION['platform'] = 'alipay'; // alipay, wechat
+// source_store for store competition
+if (isset($_REQUEST['source_store'])) {
+  $_SESSION['source_store'] = $_REQUEST['source_store'];
+}
 if (isset($_SESSION['uid']) &&
     !isset($_GET['proxy_redirect_base64'])) {
   $uid = $_SESSION['uid'];

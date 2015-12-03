@@ -91,12 +91,16 @@ if ($result) {
   $memberInfo['uid'] = $_SESSION['uid'];
   $memberInfo['platform'] = $_SESSION['platform'];
   $memberInfo['from'] = $_SESSION['platform'];
+  if (isset($_SESSION['source_store'])) {
+    $memberInfo['source_store']  = $_SESSION['source_store'];
+  }
   $result = $api->call('registerMember', $memberInfo);
   
   if (!$result) {
     echo apiJsonResult(false, array(), '保存注册会员失败');
     exit;
   }
+  unset($_SESSION['source_store']);
   // 更新订单状态
   $result = $api->callExtUrl('updateCardOrder', array(
       "binded" => true,
