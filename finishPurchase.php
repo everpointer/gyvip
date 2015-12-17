@@ -74,6 +74,9 @@ if ($order->uid != $uid) exit("订单不属于您");
               alert("发生系统错误，请稍后重试");
               console.log("Error: " + response);
             }
+          }).fail(function(error) {
+            alert("发生错误：" + error + ", 请联系客服处理");
+            console.log("Error: " + error);
           });
         });
         
