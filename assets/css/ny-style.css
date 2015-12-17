@@ -78,8 +78,10 @@
 .barcode {
   text-align: center;
   background: white;
-  padding-top: 10px;
+  padding: 10px 0px 5px 0px;
 }
-.barcode img {
-  width: 100%;
+.barcode .cardnumber {
+  font-size: 16px;
+  letter-spacing: 2px;
 }
+
