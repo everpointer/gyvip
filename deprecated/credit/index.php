@@ -225,8 +225,9 @@ $orderedPrizes = array_merge($normalPrizes, $redeemedPrizes);
       function hideSpinnerBox() {
         var spinnerBox = document.getElementById('spinner_box');
         if (spinnerBox) {
-          spinnerBox.remove();
-          document.querySelector('.overlay').remove();
+          $(spinnerBox).remove();
+          // document.querySelector('.overlay').remove();
+          $(".overlay").remove();
         }
       }
       function closeModal() {

@@ -27,15 +27,12 @@ if (!isset($_GET['action']) && isset($_REQUEST['mobile']) &&
   $mobile = $_REQUEST['mobile'];
   $member = new KMTK\Member();
   $result = $member->queryUserByMobile($mobile);
-  //// for testing
-  // $result['TELEPHONE'] = '13184342077';
-  // $result['CARDNO'] = '143703822043';
   if ($result && !empty($result)) {
     $_SESSION['bindingMember'] = fromKmtkMember($result);
     $_GET['action'] = 'verifyMobile';
   } else if (empty($result)) {
     echo $twig->render('message.html', array(
-      'msg' => "没有找到对应的会员"
+      'msg' => "没有找到对应的会员\n请让店员后台确定您绑定的手机号码"
     ));
     exit;
   } else {

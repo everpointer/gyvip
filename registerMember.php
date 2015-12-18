@@ -153,8 +153,9 @@ if ($order->uid != $uid) exit("订单不属于您");
       function hideSpinnerBox() {
         var spinnerBox = document.getElementById('spinner_box');
         if (spinnerBox) {
-          spinnerBox.remove();
-          document.querySelector('.overlay').remove();
+          $(spinnerBox).remove();
+          // document.querySelector('.overlay').remove();
+          $(".overlay").remove();
         }
       }
     </script>

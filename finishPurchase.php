@@ -69,7 +69,6 @@ if ($order->uid != $uid) exit("订单不属于您");
             url: 'api/isMember.php',
             data: $("#isMemberForm").serialize(),
             success: function(response) {
-              hideSpinnerBox();
               if (response === "true") {
                 $("#isMemberForm")[0].reset();
                 alert("发生错误：该手机号码已绑定会员卡。");
@@ -81,7 +80,6 @@ if ($order->uid != $uid) exit("订单不属于您");
               }
             },
             error: function(xhr, status, error) {
-              hideSpinnerBox();
               alert("发生错误：" + error + ", 请联系客服处理");
               console.log("Error: " + error);
             },
@@ -111,11 +109,12 @@ if ($order->uid != $uid) exit("订单不属于您");
       function hideSpinnerBox() {
         var spinnerBox = document.getElementById('spinner_box');
         if (spinnerBox) {
-          spinnerBox.remove();
-          document.querySelector('.overlay').remove();
+          $(spinnerBox).remove();
+          // document.querySelector('.overlay').remove();
+          $(".overlay").remove();
         }
       }
-      });
+    });
     </script>
   </body>
 </html>

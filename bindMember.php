@@ -32,10 +32,24 @@
           }
           
           showSpinnerBox();
-          $.post('doBindMember.php', $("#bindForm").serialize(), function(data, status, xhr) {
-            hideSpinnerBox();
-            $("body").html(data);
+          $.ajax({
+            type: 'POST',
+            url: 'doBindMember.php',
+            data: $("#bindForm").serialize(),
+            success: function(result) {
+              $("body").html(result);
+            },
+            error: function(xhr, status, error) {
+              alert("发生错误：" + error);
+            },
+            complete: function() {
+              hideSpinnerBox();
+            }
           });
+          // $.post('doBindMember.php', $("#bindForm").serialize(), function(data, status, xhr) {
+          //   hideSpinnerBox();
+          //   $("body").html(data);
+          // });
         });
         
         // functions
