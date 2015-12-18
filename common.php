@@ -22,6 +22,10 @@ if (isset($_SESSION['uid']) &&
   $uid = $_SESSION['uid'];
 } else if (isset($_REQUEST['platform'])) { // index entry point
   $platform = $_GET['platform'];
+  // session store dest url (for credit.php)
+  if (!isset($_SESSION['dest_url'])) {
+    $_SESSION['dest_url'] = request_URI();
+  }
   // 平台OAuth，获取uid
   if ($platform == "alipay") {
     if (isset( $_REQUEST['auth_code'] )) {
@@ -63,6 +67,11 @@ if (isset($_SESSION['uid']) &&
           $_SESSION['uid'] = $openid;
           $_SESSION['platform'] = $platform;
           $uid = $openid;
+          if (isset($_SESSION['dest_url'])) {
+            $destUrl = $_SESSION['dest_url'];
+            unset($_SESSION['dest_url']);
+            header("Location: $destUrl");
+          }
         }else{
           // echo $oauth->error();
           exit("User fail to authorized!");
