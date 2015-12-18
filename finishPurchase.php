@@ -63,20 +63,29 @@ if ($order->uid != $uid) exit("订单不属于您");
           }
           
           showSpinnerBox();
-          $.post('api/isMember.php', $("#isMemberForm").serialize(), function(response) {
-            hideSpinnerBox();
-            if (response == "true") {
-              $("#isMemberForm")[0].reset();
-              alert("发生错误：该手机号码已绑定会员卡。");
-            } else if (response == "false") {
-              window.location.href = "registerMember.php?out_trade_no=<?php echo $_GET['out_trade_no'] ?>&mobile=" + mobile;
-            } else {
-              alert("发生系统错误，请稍后重试");
-              console.log("Error: " + response);
+          
+          $.ajax({
+            type: 'POST',
+            url: 'api/isMember.php',
+            data: $("#isMemberForm").serialize(),
+            success: function(response) {
+              if (response === "true") {
+                $("#isMemberForm")[0].reset();
+                alert("发生错误：该手机号码已绑定会员卡。");
+              } else if (response === "false") {
+                window.location.href = "registerMember.php?out_trade_no=<?php echo $_GET['out_trade_no'] ?>&mobile=" + mobile;
+              } else {
+                alert("发生系统错误，请稍后重试");
+                console.log("Error: " + response);
+              }
+            },
+            error: function(xhr, status, error) {
+              alert("发生错误：" + error + ", 请联系客服处理");
+              console.log("Error: " + error);
+            },
+            complete: function() {
+              hideSpinnerBox();
             }
-          }).fail(function(error) {
-            alert("发生错误：" + error + ", 请联系客服处理");
-            console.log("Error: " + error);
           });
         });
         
