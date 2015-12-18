@@ -43,16 +43,19 @@ $member_ad_badge = getenv('member_ad_badge');
       <div class="title">
         使用时请向收银员出示此卡
       </div>
-      <!--<div class="barcode">-->
-      <!--  <img id="barcode" />-->
-      <!--</div>-->
       <div class="barcode">
-        <img alt="barcode" src="barcode.php?size=45&text=<?php echo $memberInfo['cardNumber']; ?>" />
-        
+        <img id="barcode" />
         <div class="cardnumber">
           <?php echo $memberInfo['cardNumber']; ?>
         </div>
       </div>
+      <!--<div class="barcode">-->
+      <!--  <img alt="barcode" src="barcode.php?size=45&text=<?php echo $memberInfo['cardNumber']; ?>" />-->
+        
+      <!--  <div class="cardnumber">-->
+      <!--    <?php echo $memberInfo['cardNumber']; ?>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
     <div class="title">
       会员特权
@@ -112,13 +115,13 @@ $member_ad_badge = getenv('member_ad_badge');
         宁波花果山果品有限公司©2015
       </div>
   </div>
-  <!--<script src="assets/js/jquery.min.js"></script>-->
-  <!--<script src="assets/js/JsBarcode.all.min.js"></script>-->
-  <!--<script type="text/javascript" charset="utf-8">-->
-  <!--  $(function() {-->
-  <!--    $("#barcode").JsBarcode("<?php echo $memberInfo['cardNumber']; ?>",-->
-  <!--      {height: 40, width: 1.2, displayValue:true, fontSize: 18});-->
-  <!--  });-->
-  <!--</script>-->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/JsBarcode.all.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      $("#barcode").JsBarcode("<?php echo $memberInfo['cardNumber']; ?>",
+        {height: 50, width: 1.5});
+    });
+  </script>
 </body>
 </html>
