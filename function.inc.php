@@ -310,12 +310,12 @@ function createMemberPrize($cardNumber, $type, $prize) {
 }
 
 function request_URI() {
-  if(!isset($_SERVER['REQUEST_URI'])) {
-    $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
-    if($_SERVER['QUERY_STRING']) {
-      $_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
-    }
-  }
-  return $_SERVER['REQUEST_URI'];
+  if (!isset($_SERVER['REQUEST_URI'])) {
+    $_SESSION['REQUEST_URI'] = $_SESSION['SCRIPT_NAME'];
+    if($_SERVER['QUERY_STRING']) {
+      $_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
+    }
+  }
+  return $_SERVER['REQUEST_URI'];
 }
 ?>
