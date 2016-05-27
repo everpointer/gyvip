@@ -45,7 +45,7 @@ if (isset($_SESSION['uid']) &&
       // 通过proxy_redirect实现转交code和重定向
       if (isset($_GET['proxy_redirect_base64'])) {
         $proxy_redirect_url_base64 =  $_GET['proxy_redirect_base64'];
-        $state = $_GET['state']; // urlencode based on hhpt
+        $state = base64_encode($_GET['state']); // urlencode based on hhpt
         $callback_url = $callback_url . "&proxy_redirect_base64=" . $proxy_redirect_url_base64;
       }
       $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo', $state);
@@ -56,6 +56,7 @@ if (isset($_SESSION['uid']) &&
       $state = $_GET['state'];
       // 转交微信auth code实现统一授权 for weiqing
       if (isset($_GET['proxy_redirect_base64'])) {
+        $state = base64_decode($state);
         // 针对wq连接的特殊处理（去除参数）
         $decoded_proxy_redirect_base64 = base64_decode($_GET['proxy_redirect_base64']);
         if ('state_as_redirect_uri' == $decoded_proxy_redirect_base64) {
