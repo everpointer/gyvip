@@ -93,7 +93,8 @@ if ($action == 'verifyMobile') {
     exit;
   } else {
     // header code 501
-    echo apiJsonResult(false, array(), '内部错误，手机号码验证失败');
+    echo apiJsonResult(false, array(), '内部错误，手机号码验证失败，具体原因：' . $errorMsg);
+    error_log("Fail to verify mobile sms code, reason: " . $errorMsg);
     exit;
   }
 } else {

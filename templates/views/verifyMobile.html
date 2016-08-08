@@ -54,8 +54,8 @@
           alert("绑定失败，失败原因：" + result.errMsg + "，请联系客服咨询");
         }
       },
-      error: function() {
-        alert("验证失败");
+      error: function(xhr, status, error) {
+        alert("验证失败, 失败原因：" + error);
       },
       complete: function() {
         hideSpinnerBox();
