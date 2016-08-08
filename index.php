@@ -45,12 +45,12 @@ if (isset($memberInfo)) {
 						<span class="li-con">绑定实体会员卡</span>
 					</a>
 				<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>-->
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="purchase.php">
-						<span class="mui-icon  iconfont  icon-icon-buy"></span>
-						<span class="li-con">购买电子会员卡</span>
-					</a>
-				</li>
+				<!--<li class="mui-table-view-cell">-->
+				<!--	<a class="mui-navigate-right" href="purchase.php">-->
+				<!--		<span class="mui-icon  iconfont  icon-icon-buy"></span>-->
+				<!--		<span class="li-con">购买电子会员卡</span>-->
+				<!--	</a>-->
+				<!--</li>-->
 			</ul>
 		
 		<div class="title">
