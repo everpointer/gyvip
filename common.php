@@ -56,12 +56,12 @@ if (isset($_SESSION['uid']) &&
       $state = $_GET['state'];
       // 转交微信auth code实现统一授权 for weiqing
       if (isset($_GET['proxy_redirect_base64'])) {
-        $state = base64_decode($state);
         // 针对wq连接的特殊处理（去除参数）
         $decoded_proxy_redirect_base64 = base64_decode($_GET['proxy_redirect_base64']);
         if ('state_as_redirect_uri' == $decoded_proxy_redirect_base64) {
+          $state = base64_decode($state);
           $proxy_redirect_url = urldecode($state)."&code=$code";
-        } else {
+        } else { // $state这里无需base64_decode
           $proxy_redirect_url = urldecode(base64_decode($_GET['proxy_redirect_base64'])). "&code=$code&state=$state";
         }
         header("Location: $proxy_redirect_url");
