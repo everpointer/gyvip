@@ -12,7 +12,8 @@ oci8.php
 test*.*
 *.map
 oracle
-config/env.yml
+config/*
+!config/env.sample.yml
 .env
 Dockerfile.local
 *.log
