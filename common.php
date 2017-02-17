@@ -48,7 +48,7 @@ if (isset($_SESSION['uid']) &&
       } else {
           $callback_url = $oauth_domain . "?proxy_redirect_base64=" . base64_encode($callback_url);
       }
-      $callback_url = urlencode($callback_url);
+      // $callback_url = urlencode($callback_url);
       $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo', $state);
       header("Location: $url");
       exit;
