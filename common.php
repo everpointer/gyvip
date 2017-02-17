@@ -41,13 +41,14 @@ if (isset($_SESSION['uid']) &&
     $oauth = new \Henter\WeChat\OAuth($config['wechat']['app_id'], $config['wechat']['app_secret']);
     if (!isset($_GET['code'])) {
       $callback_url = $config['host'] . "?platform=$platform";
-      // url入口格式：host?platform=wechat&proxy_redirect
-      // 通过proxy_redirect实现转交code和重定向
-      if (isset($_GET['proxy_redirect_base64'])) {
-        $proxy_redirect_url_base64 =  $_GET['proxy_redirect_base64'];
-        $state = $_GET['state']; // urlencode based on hhpt
-        $callback_url = $callback_url . "&proxy_redirect_base64=" . $proxy_redirect_url_base64;
+      $oauth_domain = $config['wechat_oauth_host'];
+      // proxy_redirect_base64 is the interal API temply
+      if (strpos($oauth_domain, '?')) {
+          $callback_url = $oauth_domain . "&proxy_redirect_base64=" . base64_encode($callback_url);
+      } else {
+          $callback_url = $oauth_domain . "?proxy_redirect_base64=" . base64_encode($callback_url);
       }
+      $callback_url = urlencode($callback_url);
       $url = $oauth->getWeChatAuthorizeURL($callback_url, 'snsapi_userinfo', $state);
       header("Location: $url");
       exit;
