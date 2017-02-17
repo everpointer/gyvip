@@ -12,7 +12,7 @@ require 'vendor/autoload.php';
 $config = (require 'config.php');
 $api = new \LyfMember\Api();
 // $_SESSION['uid'] = '20881016718708634955964451718217'; // 20881016718708634955964451718217, oWFVzuPlWpI_z2LNot16KQP1wZ4I
-// $_SESSION['platform'] = 'alipay'; // alipay, wechat
+// $_SESSION['platform'] = 'wechat'; // alipay, wechat
 // source_store for store competition
 if (isset($_REQUEST['source_store'])) {
   $_SESSION['source_store'] = $_REQUEST['source_store'];
@@ -60,8 +60,9 @@ if (isset($_SESSION['uid']) &&
         // 针对wq连接的特殊处理（去除参数）
         $decoded_proxy_redirect_base64 = base64_decode($_GET['proxy_redirect_base64']);
         if ('state_as_redirect_uri' == $decoded_proxy_redirect_base64) {
+          $state = base64_decode($state);
           $proxy_redirect_url = urldecode($state)."&code=$code";
-        } else {
+        } else { // $state这里无需base64_decode
           $proxy_redirect_url = urldecode(base64_decode($_GET['proxy_redirect_base64'])). "&code=$code&state=$state";
         }
         header("Location: $proxy_redirect_url");
