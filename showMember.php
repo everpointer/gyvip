@@ -97,13 +97,13 @@ $member_ad_badge = getenv('member_ad_badge');
           </a>
         <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>
         <li class="mui-table-view-cell">
-          <a class="mui-navigate-right" href="https://wap.koudaitong.com/v2/showcase/physicalstore?kdt_id=273165&sf=wx_menu">
+          <a class="mui-navigate-right" href="https://yuntu.amap.com/share/mquMfq">
             <span class="mui-icon  mui-icon-location"></span>
             <span class="li-con">适用门店</span>
           </a>
         </li>
         <li class="mui-table-view-cell">
-          <a class="mui-navigate-right">
+          <a class="mui-navigate-right" href="https://h5.youzan.com/v2/im?c=wsc&v=2&kdt_id=273165#talk!id=273165&sf=wx_menu">
             <span class="mui-icon  iconfont  icon-kefu"></span>
             <span class="li-con">在线客服</span>
           </a>
